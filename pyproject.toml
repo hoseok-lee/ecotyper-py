@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=63"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ecotyper"
+version = "0.0.1"
+dependencies = [
+    "scanpy",
+    "scikit-learn",
+    "multiprocess",
+    "pytest"
+]
+description = "Python implementation for EcoTyper."
+readme = "README.md"
+
+[tool.setuptools]
+packages = ["ecotyper"]
+py-modules = ["__init__"]

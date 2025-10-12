@@ -1,0 +1,12 @@
+# Build-time generated
+example_data/
+build/
+ecotyper.egg-info/
+__pycache__
+
+# Temporary files
+*.pkl
+*.log
+
+# Configurations
+.vscode
