@@ -3,6 +3,7 @@ import scanpy as sc
 import pandas as pd
 import numpy as np
 import os.path
+import scipy.sparse as sp
 
 from tqdm import tqdm
 from collections import defaultdict
@@ -535,6 +536,34 @@ class EcoTyper:
     def __unused__(self):
             """
             """
+
+
+    @staticmethod
+    def read_text(
+        data: str,
+        annotation: str
+    ):
+
+        df = pd.read_csv(
+            data,
+            compression = 'gzip',
+            sep = "\t",
+            index_col = 0
+        ).dropna()
+
+        obs = pd.read_csv(
+            annotation,
+            sep = "\t",
+            index_col = 0
+        )
+
+        adata = ad.AnnData(
+            X = sp.csr_matrix(df.values).T,
+            obs = obs
+        )
+        adata.var_names = df.index
+
+        return EcoTyper(adata)
 
 
 # Bootstrapping dataset instead of changing the NMF

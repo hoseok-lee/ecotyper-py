@@ -121,8 +121,8 @@ class FastNMF:
 
                 model = NMF(
                     n_components = rank,
-                    init = 'nndsvdar',
-                    # shuffle = True,
+                    # init = 'nndsvdar',
+                    shuffle = True,
                     # solver = "mu",
                     # beta_loss = 'kullback-leibler',
                     random_state = self.random_state + restart
