@@ -1,12 +1,7 @@
 import numpy as np
 import scipy.sparse as sp
 import anndata as ad
-import pandas as pd
 import scanpy as sc
-
-from tqdm import tqdm
-from multiprocess import Pool
-
 
 
 class PosNeg:

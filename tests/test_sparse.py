@@ -72,8 +72,8 @@ def test_sparse_rmse():
 
     from sklearn.metrics import mean_squared_error
 
-    A = np.random.randint(10)
-    B = np.random.randint(10)
+    A = np.random.normal((100, 100))
+    B = np.random.normal((100, 100))
 
     assert(
         sparse_rmse(sp.csr_matrix(A), sp.csr_matrix(B)) == \
