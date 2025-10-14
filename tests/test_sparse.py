@@ -6,7 +6,8 @@ import pandas as pd
 
 from ecotyper.utils import (
     PosNeg,
-    sparse_corrcoef
+    sparse_corrcoef,
+    sparse_rmse
 )
 
 
@@ -61,7 +62,20 @@ def test_sparse_corrcoef():
     assert(
         # Floating point issues
         np.all(
-            sparse_corrcoef(A).todense() ==
+            sparse_corrcoef(A) ==
             pytest.approx(df.corr().values)
         )
+    )
+
+
+def test_sparse_rmse():
+
+    from sklearn.metrics import mean_squared_error
+
+    A = np.random.randint(10)
+    B = np.random.randint(10)
+
+    assert(
+        sparse_rmse(sp.csr_matrix(A), sp.csr_matrix(B)) == \
+        np.sqrt(mean_squared_error(A, B))
     )

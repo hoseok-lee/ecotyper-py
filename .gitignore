@@ -1,6 +1,7 @@
 # Build-time generated
 example_data/
 build/
+figures/
 ecotyper.egg-info/
 __pycache__
 

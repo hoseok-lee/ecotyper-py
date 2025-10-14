@@ -1,14 +1,20 @@
 from sklearn.decomposition import NMF
 from scipy.cluster.hierarchy import linkage, cophenet
-from sklearn.metrics import root_mean_squared_error
-from time import time
+from scipy.spatial.distance import squareform
 from tqdm import tqdm
 from collections import defaultdict
 from typing import Literal
 from dataclasses import dataclass
+from typing import Optional
+from matplotlib.ticker import MaxNLocator
 
 import scipy.sparse as sp
 import numpy as np
+import os
+import matplotlib.pyplot as plt
+
+from .utils import sparse_rmse
+
 
 def connectivity_matrix(X):
 
@@ -21,15 +27,6 @@ def connectivity_matrix(X):
         # For each cluster membership
         # Skip if there are no elements of a certain cluster
         if (x := (X == cluster).reshape(1, -1)).any()
-    )
-
-
-def sparse_rmse(A, B) -> float:
-
-    return np.sqrt(
-        (A - B) \
-            .power(2) \
-            .mean()
     )
 
 
@@ -70,11 +67,9 @@ class FastNMF:
         # [ 1, 0.98, 0.93, 0.97, 0.97, 0.94, 0.93, ... ]
         #                                ^ selects this rank
 
-        nmf_infos = list(nmf_runs.values())
-
         # Compute the difference of cophenetic correlation from cutoff
         # Positive values above cutoff, negatives below cutoff
-        diff = np.array([nmf_info.cophenet for nmf_info in nmf_infos]) - cutoff
+        diff = np.array([nmf_runs[rank].cophenet for rank in nmf_runs]) - cutoff
 
         # Let's dissect this...
         arg = np.argwhere(
@@ -107,16 +102,13 @@ class FastNMF:
         rank_range: list = range(2, 20 + 1),
         nmf_restarts: list = range(1, 5 + 1),
         cutoff: float = 0.95,
-        solver: Literal['mu', 'cd'] = 'cd'
+        solver: Literal['mu', 'cd'] = 'cd',
+        figures: Optional[str] = None
     ):
 
         nmf_runs = defaultdict(FastNMF.NMFInfo)
 
-        for rank in tqdm(
-            rank_range,
-            desc = f"Ranks",
-            leave = False
-        ):
+        for rank in rank_range:
 
             # Row by row <-- cummulative connectivity matrix
             conns = np.zeros((self.X.shape[1], self.X.shape[1]))
@@ -125,15 +117,13 @@ class FastNMF:
             W = np.zeros((self.X.shape[0], rank))
             H = np.zeros((rank, self.X.shape[1]))
 
-            for restart in tqdm(
-                nmf_restarts,
-                desc = "Restarts",
-                leave = False
-            ):
+            for restart in nmf_restarts:
 
                 model = NMF(
                     n_components = rank,
-                    solver = solver,
+                    init = 'nndsvdar',
+                    # shuffle = True,
+                    # solver = "mu",
                     # beta_loss = 'kullback-leibler',
                     random_state = self.random_state + restart
                 )
@@ -159,13 +149,12 @@ class FastNMF:
 
             # Consensus connectivity matrix
             C = conns / len(nmf_restarts)
-            d = 1 - C
 
-            # Upper triangle off-diagonal
-            coph_corr, _ = cophenet(
-                linkage(d, method='average'),
-                d[np.triu_indices(d.shape[0], k = 1)]
-            )
+            # Convert distance (1 - C) to condensed matrix form
+            # squareform performs inverse if square matrix --> upper-triangle
+            d = squareform(1 - C)
+
+            coph_corr, _ = cophenet(linkage(d, method = 'average'), d)
 
             nmf_runs[rank] = FastNMF.NMFInfo(
                 rank = rank,
@@ -177,9 +166,49 @@ class FastNMF:
                 cophenet = coph_corr
             )
 
-        return nmf_runs[
-            self.select_rank(
-                nmf_runs,
-                cutoff = cutoff
+        selected_rank = self.select_rank(nmf_runs, cutoff = cutoff)
+
+        if figures:
+
+            os.makedirs(figures, exist_ok = True)
+            plt.cla()
+
+            # Cophenetic coefficient
+            plt.plot(
+                nmf_runs.keys(),
+                [
+                    nmf_runs[rank].cophenet
+                    for rank in nmf_runs
+                ],
+                marker = 'o',
+                color = 'black',
+                linestyle = '-',
+                label = "Cophenetic Coefficient"
             )
-        ]
+
+            # Cutoff point
+            plt.axhline(
+                y = cutoff,
+                color = 'black',
+                linestyle = '--',
+                label = "Cophenetic Cutoff"
+            )
+
+            # Selected rank
+            plt.axvline(
+                x = selected_rank,
+                color = 'red',
+                linestyle = '--',
+                label = "Selected Rank"
+            )
+
+            plt.xlabel("Rank")
+            plt.ylabel("Cophenetic Coefficient")
+
+            # This is strictly to avoid floating point values being labeled for
+            # x-ticks --> force them to be integers
+            plt.xticks(list(map(int, nmf_runs)))
+            plt.legend()
+            plt.savefig(figures / "cophenet.png")
+
+        return nmf_runs[selected_rank]
