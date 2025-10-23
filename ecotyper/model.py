@@ -3,18 +3,18 @@ import scanpy as sc
 import pandas as pd
 import numpy as np
 import os.path
+import scipy.sparse as sp
 
 from tqdm import tqdm
 from collections import defaultdict
 from multiprocess import Pool
 from functools import partial
-from typing import Optional
+from typing import Optional, Literal
 from pathlib import Path
 from time import time
 
 from .fast_nmf import FastNMF
 from .utils import (
-    PosNeg,
     sparse_corrcoef,
     sparse_dropout,
     idx_sample_top,
@@ -54,6 +54,13 @@ class EcoTyper:
         max_clusters: int = 20,
         nmf_restarts: int = 5,
 
+        nmf_solver: Literal["mu", "cd"] = "mu",
+        nmf_beta_loss: Literal[
+            "kullback-leibler",
+            "frobenius",
+            "itakura-saito"
+        ] = "kullback-leibler",
+
         random_state: int = 0,
 
         figures: Optional[str] = None
@@ -75,6 +82,8 @@ class EcoTyper:
 
         self.max_clusters = max(2, max_clusters)
         self.nmf_restarts = max(1, nmf_restarts)
+        self.nmf_solver = nmf_solver
+        self.nmf_beta_loss = nmf_beta_loss
 
         self.random_state = random_state
         self.figures = Path(figures)
@@ -93,6 +102,11 @@ class EcoTyper:
             self.compute_distances()
             self.compute_initial_nmf()
 
+            # Step 5 - 7
+            self.extract_state_specific_genes()
+            self.recompute_nmf()
+            self.filter_states()
+
             with open("saved.pkl", "wb") as pkl:
                 pickle.dump(self.adata, pkl)
 
@@ -100,8 +114,9 @@ class EcoTyper:
             with open("saved.pkl", "rb") as pkl:
                 self.adata = pickle.load(pkl)
 
-        # Step 5
-        self.extract_state_specific_genes()
+        # Step 7
+        self.map_cell_states()
+        # Step 8
 
 
     def __getitem__(self, key):
@@ -159,17 +174,35 @@ class EcoTyper:
         }
 
 
-    def log2_deg(self, adata):
+    def log2_deg(
+        self,
+        groupby: str | list,
+        obs_subset: pd.Index = slice(None),
+        var_subset: pd.Index = slice(None)
+    ):
 
         from scipy.stats import false_discovery_control
         from scanpy.tools._rank_genes_groups import _RankGenes
 
+        # Subset and log2 + z-scale
+        subset = self.adata[obs_subset, var_subset]
+        sp_mat = log2_norm(subset.X)
+
+        # Passed raw data as annotations
+        if not isinstance(groupby, str):
+            subset.obs['groupby'] = pd.Series(
+                groupby,
+                index = subset.obs_names,
+                dtype = "category"
+            )
+            groupby = 'groupby'
+
         # Scanpy's Wilcoxon is much faster
         # But we compute our own log foldchange
         rgg = _RankGenes(
-            adata,
+            subset,
             groups = "all",
-            groupby = self.cell_type_idx
+            groupby = groupby
         )
 
         # Log Foldchange
@@ -185,7 +218,7 @@ class EcoTyper:
                 ).flat
             )
 
-        # Large shared X
+
         def define_global(var):
             global g_X
             g_X = var
@@ -193,17 +226,18 @@ class EcoTyper:
         with Pool(
             processes = self.n_jobs,
             initializer = define_global,
-            initargs = (adata.X, )
+            initargs = (sp_mat, )
         ) as pool:
 
             foldchange = list(
                 tqdm(
-                    pool.imap(
+                    pool.map(
                         _proc,
                         rgg.groups_masks_obs
                     ),
                     total = len(rgg.groups_masks_obs),
-                    desc = "Computing log foldchanges"
+                    desc = "Computing log foldchanges",
+                    leave = False
                 )
             )
 
@@ -211,7 +245,8 @@ class EcoTyper:
             tqdm(
                 rgg.wilcoxon(tie_correct = True),
                 total = len(rgg.groups_masks_obs),
-                desc = "Statistical test"
+                desc = "Statistical test",
+                leave = False
             )
         )
 
@@ -222,7 +257,7 @@ class EcoTyper:
                     'foldchange': fc,
                     'pvals': w[2]
                 },
-                index = adata.var_names.tolist()
+                index = subset.var_names.rename("genes")
             )
 
             df['pvals_adj'] = false_discovery_control(
@@ -233,7 +268,7 @@ class EcoTyper:
             yield rgg.groups_order[w[0]], df
 
 
-    def significant_genes(self, df):
+    def significant_genes(self, df: pd.DataFrame):
 
         df = df[(df['foldchange'] > 0) & (df['pvals_adj'] <= 0.05)]
         df = df.sort_values(by = 'foldchange', ascending = False)
@@ -252,13 +287,19 @@ class EcoTyper:
             random_state = self.random_state
         )
 
-        sub_adata = self.adata[sub_idx].copy()
-        sc.pp.log1p(sub_adata, base = 2)
-        sc.pp.scale(sub_adata)
-
         if self.fractions == "cell_type_specific":
 
-            self['deg'] = dict(self.log2_deg(sub_adata))
+            self['deg'] = dict(
+                tqdm(
+                    self.log2_deg(
+                        groupby = self.cell_type_idx,
+                        obs_subset = sub_idx
+                    ),
+                    total = len(self['cell_types']),
+                    desc = "Computing cell type specific genes",
+                )
+            )
+
             self['genes'] = dict(
                 map(
                     lambda kv:
@@ -292,7 +333,6 @@ class EcoTyper:
 
         with Pool(processes = self.n_jobs) as pool:
 
-            # This dictionary will be populated
             self['distances'] = dict(
                 tqdm(
                     pool.imap_unordered(
@@ -301,15 +341,10 @@ class EcoTyper:
                             (
                                 cell_type,
                                 cells,
-                                log2_norm(
-                                    self.adata[
-                                        cells,
-                                        self['genes', cell_type]
-                                    ].X
-                                ).T
+                                log2_norm(self.adata[cells, genes].X).T
                             )
 
-                            for cell_type in self['cell_types']
+                            for cell_type, genes in self['genes'].items()
 
                             # Cell type specific cells
                             if np.any(
@@ -319,7 +354,7 @@ class EcoTyper:
                             )
                         ]
                     ),
-                    total = len(self['cell_types']),
+                    total = len(self['genes']),
                     desc = "Computing pairwise distances"
                 )
             )
@@ -332,7 +367,9 @@ class EcoTyper:
             return cell_type, \
                 FastNMF(
                     # posneg transformation
-                    X = PosNeg(data).X,
+                    X = data,
+                    solver = self.nmf_solver,
+                    beta_loss = self.nmf_beta_loss,
                     random_state = self.random_state
                 ) \
                     .estimate_rank(
@@ -349,122 +386,125 @@ class EcoTyper:
 
         with Pool(processes = self.n_jobs) as pool:
 
-            # This dictionary will be populated
-            self.adata.uns['ecotyper']['initial_nmf'] = dict(
+            self['initial_nmf'] = dict(
                 tqdm(
                     pool.imap_unordered(
                         lambda args: _proc(*args),
                         [
                             (
                                 cell_type,
-                                self['distances', cell_type].values
+                                distances.values
                             )
-                            for cell_type in self['cell_types']
+                            for cell_type, distances \
+                                in self['distances'].items()
                         ]
                     ),
-                    total = len(self['cell_types']),
-                    desc = "Computing initial NMF (may take a long time)"
+                    total = len(self['distances']),
+                    desc = "Computing initial NMF on cross-correlation (may take a long time)"
                 )
             )
 
 
-    def extract_state_specific_genes(self):
-
-        print(self.adata.uns['ecotyper']['initial_nmf'])
-
-
-            # print(nmf_info)
-
-            # marker_genes = pd.concat(
-            #     list(
-            #         self.compute_state_marker_genes(
-            #             adata = self.adata[distances.index],
-            #             nmf_info = nmf_info
-            #         )
-            #     ),
-            #     ignore_index = True
-            # ) \
-            #     .groupby(by = 'names')['logfoldchanges'] \
-            #     .max() \
-            #     .sort_values(ascending = False) \
-            #     .head(self.n_genes_top_nmf).index
-
-            # cell_type_adata = sub_adata[
-            #     sub_adata.obs[self.cell_type_idx] == cell_type,
-            #     marker_genes
-            # ]
-
-            # sc.pp.log1p(cell_type_adata, base = 2)
-            # sc.pp.scale(cell_type_adata)
-
-            # # Recompute NMF with marker genes
-            # exp_mat = PosNeg(cell_type_adata.X.T)
-
-            # nmf_info = FastNMF(
-            #     X = exp_mat.X,
-            #     random_state = self.random_state
-            # ).estimate_rank(
-            #     rank_range = range(2, self.max_clusters + 1),
-            #     nmf_restarts = range(1, self.nmf_restarts + 1),
-            #     cutoff  = self.cophenetic_cutoff,
-            #     figures =
-            #         self.figures /
-            #         "rank_selection" /
-            #         "gene_exp" /
-            #         cell_type
-            # )
-
-            # print(nmf_info)
-
-            # # Filter for spurious cell states
-            # # 1. AFI filter
-            # # 2. Dropout score
-            # afi = self.filter_states_by_afi(
-            #     nmf_info = nmf_info,
-            #     is_pos_only = exp_mat.is_pos_only()
-            # )
-
-            # dropouts = self.filter_states_by_dropout(
-            #     adata = cell_type_adata,
-            #     nmf_info = nmf_info
-            # )
-
-            # valid_states = set(afi).intersection(set(dropouts))
-
-            # print(valid_states)
-
-
     def compute_state_marker_genes(
         self,
-        adata: ad.AnnData,
-        nmf_info: FastNMF.NMFInfo
+        nmf_info: FastNMF.NMFInfo,
+        obs_subset: pd.Index = slice(None),
+        var_subset: pd.Index = slice(None)
     ):
 
         from sklearn.preprocessing import binarize
 
 
-        has_gex = binarize(adata.X)
-        gene_names = np.array(adata.var_names)
-        state_assignment = np.argmax(nmf_info.H, axis = 0)
+        has_gex = binarize(self.adata[obs_subset].X)
+        gene_names = np.array(self.adata.var_names)
+        state_assignment = FastNMF.assign_states(nmf_info).astype(str)
 
-        adata.obs['cell_state'] = pd.Categorical(state_assignment)
+        results = defaultdict(pd.DataFrame)
 
-        sc.pp.log1p(adata, base = 2)
-        sc.tl.rank_genes_groups(
-            adata,
-            groupby = 'cell_state',
-            # all vs. rest
-            method = 'wilcoxon'
-        )
+        for cell_state, df in self.log2_deg(
+            groupby = state_assignment,
+            obs_subset = obs_subset,
+            var_subset = var_subset
+        ):
 
-        for cell_state in range(nmf_info.rank):
-
-            df = sc.get.rank_genes_groups_df(adata, group = str(cell_state))
-            df = df[(df['logfoldchanges'] > 0) & (df['pvals_adj'] <= 0.05)]
+            df = df[(df['foldchange'] > 0) & (df['pvals_adj'] <= 0.05)]
 
             # Filter significant genes by abundance >= 0.5
             abundance = has_gex[state_assignment == cell_state].mean(axis = 0)
-            yield df[df['names'].isin(gene_names[(abundance >= 0.5).flat])]
+
+            results[cell_state] = \
+                df[df.index.isin(gene_names[(abundance >= 0.5).flat])]
+
+        return pd.concat(
+            results.values(),
+            axis = 0,
+            keys = results,
+            names = ['cell_state', 'genes']
+        )
+
+
+    def extract_state_specific_genes(self):
+
+        self['state_genes'] = {
+            cell_type: self.compute_state_marker_genes(
+                nmf_info = nmf_info,
+                obs_subset = self['distances',   cell_type].index,
+                var_subset = self['genes',       cell_type]
+            )
+
+            for cell_type, nmf_info in tqdm(
+                self['initial_nmf'].items(),
+                desc = "Computing state specific genes"
+            )
+        }
+
+
+    def recompute_nmf(self):
+
+        def _proc(cell_type, data, rank):
+
+            return cell_type, \
+                FastNMF(
+                    X = data,
+                    solver = self.nmf_solver,
+                    beta_loss = self.nmf_beta_loss,
+                    random_state = self.random_state
+                ) \
+                    .estimate_rank(
+                        rank_range = [ rank ],
+                        nmf_restarts = range(1, self.nmf_restarts + 1)
+                    )
+
+
+        with Pool(processes = self.n_jobs) as pool:
+
+            self['recomp_nmf'] = dict(
+                tqdm(
+                    pool.imap_unordered(
+                        lambda args: _proc(*args),
+                        [
+                            (
+                                cell_type,
+                                self.adata[
+                                    self['distances',   cell_type].index,
+                                    # Get top genes out of all cell states
+                                    # groupby --> sort --> head
+                                    self['state_genes', cell_type] \
+                                        .groupby(by = 'genes')['foldchange'] \
+                                        .max() \
+                                        .sort_values(ascending = False) \
+                                        .head(self.n_genes_top_nmf).index
+                                ].X.T,
+                                nmf_info.rank
+                            )
+                            for cell_type, nmf_info \
+                                in self['initial_nmf'].items()
+                        ]
+                    ),
+                    total = len(self['initial_nmf']),
+                    desc = "Re-computing NMF on gene expression"
+                )
+            )
 
 
     def filter_states_by_afi(
@@ -485,62 +525,181 @@ class EcoTyper:
         return np.where(afi < 1)[0]
 
 
-    # def filter_states_by_dropout(
-    #     self,
-    #     adata: ad.AnnData,
-    #     nmf_info: FastNMF.NMFInfo
-    # ) -> list:
+    def filter_states_by_dropout(
+        self,
+        cell_type: str,
+        nmf_info: FastNMF.NMFInfo
+    ) -> list:
 
-    #     from scipy.stats import zscore
+        from scipy.stats import zscore
 
-    #     valid_states = []
+        valid_states = []
 
-    #     dropout = np.zeros(nmf_info.rank)
-    #     gex = np.zeros(nmf_info.rank)
+        dropout = np.zeros(nmf_info.rank)
+        gex = np.zeros(nmf_info.rank)
 
-    #     for cell_state, marker_genes in \
-    #         enumerate(
-    #             self.compute_state_marker_genes(
-    #                 adata = adata,
-    #                 nmf_info = nmf_info
-    #             )
-    #         ):
+        for cell_state, marker_genes in \
+            self['state_genes', cell_type].groupby(by = 'cell_state'):
 
-    #         # Skip if less than or equal to 10 marker genes
-    #         if len(marker_genes) <= 10:
-    #             continue
+            # Skip if less than or equal to 10 marker genes
+            if len(marker_genes) <= 10:
+                continue
 
-    #         # Subset to marker genes
-    #         sub_adata = adata[:, marker_genes]
-    #         valid_states.append(cell_state)
+            cell_state = int(cell_state)
+            valid_states.append(cell_state)
 
-    #         # Dropout score is computed as the fraction of the highest occuring
-    #         # count number per gene
-    #         dropout[cell_state] = sparse_dropout(sub_adata.X).mean()
+            # Subset to marker genes
+            sp_mat = self.adata[
+                self['distances', cell_type].index,
+                marker_genes \
+                    .index \
+                    .get_level_values('genes') \
+                    .unique()
+            ].X
 
-    #         # Compute average log2 expression
-    #         sc.pp.log1p(sub_adata, base = 2)
-    #         gex[cell_state] = sub_adata.X.mean()
+            # Dropout score is computed as the fraction of the highest occuring
+            # count number per gene
+            dropout[cell_state] = sparse_dropout(sp_mat).mean()
 
-    #     # Only consider valid states
-    #     mean_z = zscore(
-    #         zscore(dropout[valid_states]) + \
-    #         zscore(gex[valid_states])
-    #     )
+            # Compute average log2 expression
+            gex[cell_state] = sc.pp.log1p(sp_mat, base = 2).mean()
 
-    #     # np.where returns the states where mean z score <= 1.96 (p < 0.05)
-    #     return np.array(valid_states)[np.where(mean_z <= 1.96)]
+        # Only consider valid states
+        mean_z = zscore(
+            zscore(dropout[valid_states]) + \
+            zscore(gex[valid_states])
+        )
 
-
-    def __unused__(self):
-            """
-            """
+        # np.where returns the states where mean z score <= 1.96 (p < 0.05)
+        return np.array(valid_states)[np.where(mean_z <= 1.96)]
 
 
-# Bootstrapping dataset instead of changing the NMF
-# - choose random 2500
-# GBMCare ecosystems
-# Sarcoma
-# Manually choose the rank after observing the elbow plot
-# Force certain ranks instead of a range
-# Dropping reccurrence
+    def filter_states(self):
+
+        def _proc(cell_type, nmf_info):
+
+            # Filter for spurious cell states
+            # 1. AFI filter
+            # 2. Dropout score
+            afi = self.filter_states_by_afi(
+                nmf_info = nmf_info,
+                is_pos_only = nmf_info.pos_only
+            )
+
+            dropouts = self.filter_states_by_dropout(
+                cell_type = cell_type,
+                nmf_info = nmf_info
+            )
+
+            valid_states = set(afi).intersection(set(dropouts))
+
+            return cell_type, list(valid_states)
+
+
+        with Pool(processes = self.n_jobs) as pool:
+
+            self['filt_states'] = dict(
+                tqdm(
+                    pool.imap_unordered(
+                        lambda args: _proc(*args),
+                        [
+                            (
+                                cell_type,
+                                nmf_info
+                            )
+                            for cell_type, nmf_info \
+                                in self['recomp_nmf'].items()
+                        ]
+                    ),
+                    total = len(self['recomp_nmf']),
+                    desc = "Filtering re-computed cell states"
+                )
+            )
+
+
+    def map_cell_states(self):
+
+        for cell_type, valid_states in self['filt_states'].items():
+
+            valid_states = list(valid_states)
+
+            if len(valid_states) == 0:
+                continue
+
+            cells_idx = np.isin(
+                FastNMF.assign_states(self['recomp_nmf', cell_type]),
+                list(valid_states)
+            )
+
+            valid_cells = self['distances', cell_type].index[cells_idx]
+
+            valid_genes = self['state_genes', cell_type] \
+                .loc[map(str, valid_states), :] \
+                .index \
+                .get_level_values('genes') \
+                .unique()
+
+            nmf_info = self['recomp_nmf', cell_type]
+
+            subset = self.adata[valid_cells, valid_genes].copy()
+            subset.X = log2_norm(subset.X)
+            assigned_states = \
+                FastNMF.assign_states(
+                    nmf_info.H[
+                        np.ix_(
+                            valid_states,
+                            cells_idx
+                        )
+                    ]
+                )
+
+            subset.obs['cell_state'] = pd.Series(
+                assigned_states,
+                index = subset.obs_names,
+                dtype = "category"
+            )
+
+            sc.tl.dendrogram(
+                subset,
+                groupby             = 'cell_state',
+                linkage_method      = "average",
+                optimal_ordering    = True
+            )
+
+            sc.pl.heatmap(
+                subset,
+                var_names           = valid_genes,
+                groupby             = 'cell_state',
+                dendrogram          = True,
+                swap_axes           = True,
+                cmap                = "bwr",
+                save                = cell_type
+            )
+
+
+    @staticmethod
+    def read_text(
+        data: str,
+        annotation: str
+    ):
+
+        df = pd.read_csv(
+            data,
+            compression = 'gzip',
+            sep = "\t",
+            index_col = 0
+        ).dropna()
+
+        obs = pd.read_csv(
+            annotation,
+            sep = "\t",
+            index_col = 0
+        )
+
+        adata = ad.AnnData(
+            X = sp.csr_matrix(df.values).T,
+            obs = obs
+        )
+        adata.var_names = df.index
+
+        return EcoTyper(adata)

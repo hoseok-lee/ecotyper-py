@@ -9,7 +9,11 @@ EcoTyper(adata).discovery(
     sample_idx = "Sample",
 
     # max_clusters = 6,
-    cophenetic_cutoff = 0.975,
+    cophenetic_cutoff = 0.95,
+
+    nmf_solver = "cd",
+    nmf_beta_loss = "frobenius",
+    nmf_restarts = 5,
 
     random_state = 1234,
     figures = "figures"

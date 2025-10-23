@@ -9,7 +9,8 @@ dependencies = [
     "scanpy",
     "scikit-learn",
     "multiprocess",
-    "pytest"
+    "pytest",
+    "fastcluster"
 ]
 description = "Python implementation for EcoTyper."
 readme = "README.md"

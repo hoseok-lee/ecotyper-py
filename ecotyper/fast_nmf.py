@@ -1,19 +1,18 @@
 from sklearn.decomposition import NMF
-from scipy.cluster.hierarchy import linkage, cophenet
+from scipy.cluster.hierarchy import cophenet
 from scipy.spatial.distance import squareform
-from tqdm import tqdm
+from fastcluster import linkage
 from collections import defaultdict
 from typing import Literal
 from dataclasses import dataclass
 from typing import Optional
-from matplotlib.ticker import MaxNLocator
 
 import scipy.sparse as sp
 import numpy as np
 import os
 import matplotlib.pyplot as plt
 
-from .utils import sparse_rmse
+from .utils import sparse_rmse, PosNeg
 
 
 def connectivity_matrix(X):
@@ -41,15 +40,26 @@ class FastNMF:
         connectivity_mat: float
         reconstruction_err: float
         cophenet: float
+        pos_only: bool
 
 
     def __init__(
         self,
         X,
+        solver: Literal["mu", "cd"] = "mu",
+        beta_loss: Literal[
+            "kullback-leibler",
+            "frobenius",
+            "itakura-saito"
+        ] = "kullback-leibler",
         random_state: int = 0
     ):
 
-        self.X = X
+        # posneg transformation
+        self.posneg = PosNeg(X)
+        self.X = self.posneg.X
+        self.solver = solver
+        self.beta_loss = beta_loss
         self.random_state = random_state
 
 
@@ -102,11 +112,10 @@ class FastNMF:
         rank_range: list = range(2, 20 + 1),
         nmf_restarts: list = range(1, 5 + 1),
         cutoff: float = 0.95,
-        solver: Literal['mu', 'cd'] = 'cd',
         figures: Optional[str] = None
     ):
 
-        nmf_runs = defaultdict(FastNMF.NMFInfo)
+        nmf_runs = defaultdict(self.NMFInfo)
 
         for rank in rank_range:
 
@@ -121,10 +130,9 @@ class FastNMF:
 
                 model = NMF(
                     n_components = rank,
-                    init = 'nndsvdar',
-                    # shuffle = True,
-                    # solver = "mu",
-                    # beta_loss = 'kullback-leibler',
+                    init = 'random',
+                    solver = self.solver,
+                    beta_loss = self.beta_loss,
                     random_state = self.random_state + restart
                 )
 
@@ -137,7 +145,7 @@ class FastNMF:
                     sp.csr_matrix(np.matmul(W_, H_))
                 )
 
-                cell_states = np.argmax(H_, axis = 0)
+                cell_states = self.assign_states(H_)
                 conns += connectivity_matrix(cell_states)
 
                 # Although it is ugly, minimizes number of loops
@@ -156,14 +164,15 @@ class FastNMF:
 
             coph_corr, _ = cophenet(linkage(d, method = 'average'), d)
 
-            nmf_runs[rank] = FastNMF.NMFInfo(
+            nmf_runs[rank] = self.NMFInfo(
                 rank = rank,
                 W = W,
                 # Normalize by column --> each cell has probability of state
                 H = H / H.sum(axis = 0),
                 connectivity_mat = C,
                 reconstruction_err = best_fit,
-                cophenet = coph_corr
+                cophenet = coph_corr,
+                pos_only = self.posneg.is_pos_only()
             )
 
         selected_rank = self.select_rank(nmf_runs, cutoff = cutoff)
@@ -212,3 +221,13 @@ class FastNMF:
             plt.savefig(figures / "cophenet.png")
 
         return nmf_runs[selected_rank]
+
+
+    @staticmethod
+    def assign_states(data: np.ndarray | NMFInfo):
+
+        # Extract H
+        if isinstance(data, FastNMF.NMFInfo):
+            data = data.H
+
+        return np.argmax(data, axis = 0)
