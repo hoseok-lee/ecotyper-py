@@ -40,7 +40,7 @@ from .io import (annotation_from_anndata, from_anndata, read_annotation, read_bu
                  read_fractions, read_scrna_matrix)
 from .model import EcoTyperModel
 from .rcompat.rng import RRandom
-from .rlayout import write_ecotype_recovery, write_recovery_output, write_state_recovery
+from .rlayout import _wm, write_ecotype_recovery, write_recovery_output, write_state_recovery
 
 
 def _model(model, discovery_root=None) -> EcoTyperModel:
@@ -301,10 +301,172 @@ def recover_visium_files(visium_dir, fractions_path, model, out_dir, *, recovery
         r.heatmap_data = None  # Visium does not write heatmap tables
         r.heatmap_top_ann = None
         write_state_recovery(r, base / ct / str(model.cell_types[ct].n_states))
+    from .rcompat.frame import make_names
+
+    fr = frac.copy()
+    fr.columns = make_names(list(fr.columns))
+    write_table(fr, base / f"{recovery_name}_CSx_fractions.txt", row_names=False)
     write_table(long, base / "state_abundances_long.txt", row_names=False)
+    eco_long = ecotype_abundances_long(eco)
+    write_table(eco_long, base / "ecotype_abundances_long.txt")
     write_table(wide, base / "state_abundances.txt", row_names=False)
     write_table(eco, base / "ecotype_abundances.txt")
     vo = out / "VisiumOutput" / recovery_name
     write_table(wide, vo / "state_abundances.txt", row_names=False)
     write_table(eco, vo / "ecotype_abundances.txt")
     return states, long, wide, eco
+
+
+def ecotype_abundances_long(eco: pd.DataFrame) -> pd.DataFrame:
+    """``melt(ecotype_data, id.vars = c("ID", "X", "Y", "Sample", "Malignant"))``."""
+    ids = ["ID", "X", "Y", "Sample", "Malignant"]
+    parts = []
+    for c in [c for c in eco.columns if c not in ids]:
+        d = eco[ids].copy().reset_index(drop=True)
+        d["Ecotype"] = c
+        d["Abundance"] = eco[c].to_numpy()
+        parts.append(d)
+    out = pd.concat(parts, ignore_index=True)
+    out.index = pd.Index([str(i + 1) for i in range(len(out))], dtype=object)
+    return out
+
+
+# ----------------------------------------------------------------------------
+# discovery (bulk downstream of CIBERSORTx, presorted)
+# ----------------------------------------------------------------------------
+def _nmf_rank_task(V, rank, restarts):
+    from . import discovery as dsc
+
+    fits = [dsc.run_nmf(V, rank, r) for r in range(1, restarts + 1)]
+    merged, metrics = dsc.rank_metrics(fits, rank)
+    return merged, metrics, [int(f.niter) for f in fits]
+
+
+class DiscoveryResult(dict):
+    """Results of a discovery run (attribute access to the dict keys)."""
+
+    __getattr__ = dict.__getitem__
+
+
+def discover_from_profiles(profiles: dict, annotation: pd.DataFrame | None = None, *, scale_column=None,
+                           max_states: int = 20, restarts: int = 5, cophenetic_cutoff: float = 0.95,
+                           min_states: int = 3, n_jobs: int = 1, r_exact: bool = True, verbose: bool = True):
+    """Cell state + ecotype discovery from per-cell-type expression profiles
+    (``EcoTyper_discovery_bulk.R`` steps 3–6 and 8 with CSx HiRes profiles as
+    input, or ``EcoTyper_discovery_presorted.R`` with "no filter").
+
+    ``profiles``: cell type → genes x samples DataFrame (values as read by
+    ``read.delim(row.names = 1)``), in the order of ``classes.txt``."""
+    from . import discovery as dsc
+
+    feats = {}
+    for ct, raw in profiles.items():
+        f = dsc.extract_features(raw, ct, annotation, scale_column)
+        if f is None:
+            if verbose:
+                print(f"Only {raw.shape[0]} genes are available for '{ct}'; skipping (need >= 50).")
+            continue
+        feats[ct] = f
+    tasks, keys = [], []
+    for ct, f in feats.items():
+        V = dsc.nmf_input(f.top_scaled, r_exact)
+        for k in range(2, max_states + 1):
+            tasks.append((V, k, restarts))
+            keys.append((ct, k))
+    res = _run_parallel(_nmf_rank_task, tasks, n_jobs)
+    merged = {key: r[0] for key, r in zip(keys, res)}
+    metrics = {key: r[1] for key, r in zip(keys, res)}
+    niter = {key: r[2] for key, r in zip(keys, res)}
+    rank_tables = {ct: pd.DataFrame([metrics[(ct, k)] for k in range(2, max_states + 1)]) for ct in feats}
+    ranks = dsc.select_ranks(rank_tables, max_states, cophenetic_cutoff, r_exact)
+    initial, states = {}, {}
+    cts = [str(c) for c in ranks["CellType"]]
+    for ct, k in zip(cts, ranks["Chosen_Rank"]):
+        k = int(k)
+        initial[ct] = dsc.initial_states(merged[(ct, k)], feats[ct].top_scaled, ct, k, r_exact)
+        states[ct] = dsc.first_filter(initial[ct], feats[ct], annotation, r_exact)
+    eco = dsc.discover_ecotypes(initial, states, cts, min_states)
+    assigned = dsc.assign_samples(states, eco.ecotypes, cts, annotation, r_exact)
+    return DiscoveryResult(features=feats, merged=merged, rank_tables=rank_tables, niter=niter, ranks=ranks,
+                           initial=initial, states=states, ecotypes=eco, assignment=assigned,
+                           params=dict(max_states=max_states, restarts=restarts,
+                                       cophenetic_cutoff=cophenetic_cutoff, min_states=min_states))
+
+
+def read_profiles(input_dir, classes=None) -> dict:
+    """Per-cell-type profiles ``<input_dir>/<cell type>.txt`` (``read.delim(row.names = 1)``).
+    ``classes``: cell type order (default: ``list.files`` order)."""
+    d = Path(input_dir)
+    if classes is None:
+        if (d / "classes.txt").exists():
+            classes = [c.strip('"') for c in (d / "classes.txt").read_text().strip().split("\t")]
+        else:
+            classes = sorted(p.name[:-4] for p in d.glob("*.txt") if p.name != "classes.txt")
+    return {ct: read_bulk_matrix(d / f"{ct}.txt") for ct in classes}
+
+
+def write_discovery(res: DiscoveryResult, out_dir, name: str, fractions: str) -> Path:
+    """Write the R layout ``<out_dir>/EcoTyper/<name>/<fractions>/...``."""
+    from .rcompat.io import write_table
+
+    base = Path(out_dir) / "EcoTyper" / name / fractions
+    cs = base / "Cell_States" / "discovery"
+    p = res.params
+    for ct, f in res.features.items():
+        d = cs / ct
+        d.mkdir(parents=True, exist_ok=True)
+        (d / "expression_top_genes_log2.txt").write_text('"x"\n')  # R writes utils::data here (sic)
+        _wm(f.top_log2, d / "expression_full_matrix_log2.txt")
+        _wm(f.top_scaled, d / "expression_top_genes_scaled.txt")
+        _wm(f.full_scaled, d / "expression_full_matrix_scaled.txt")
+        for k in range(2, p["max_states"] + 1):
+            row = res.rank_tables[ct].iloc[[k - 2]].reset_index(drop=True)
+            row["n_clusters"] = row["n_clusters"].astype(int)
+            write_table(row, d / str(k) / "rank_data.txt", row_names=False)
+    rs = base / "Analysis" / "rank_selection"
+    write_table(res.ranks, rs / "rank_data.txt", row_names=False)
+    from .rcompat.io import format_real
+
+    write_table(res.ranks, rs / f"rank_data_cutoff_{format_real(p['cophenetic_cutoff'])}.txt", row_names=False)
+    for ct, ini in res.initial.items():
+        d = cs / ct / str(ini.rank)
+        _wm(ini.W, d / "W.txt")
+        _wm(ini.H, d / "H.txt")
+        _wm(ini.initial_abundances, d / "initial_state_abundances.txt")
+        write_table(ini.initial_assignment, d / "initial_state_assignment.txt", row_names=False)
+        write_table(ini.initial_gene_info, d / "initial_gene_info.txt")
+        st = res.states[ct]
+        write_table(st.first_filter_data, d / "first_filter_data.txt", row_names=False)
+        write_table(st.mapping, d / "mapping_to_initial_states.txt", row_names=False)
+        _wm(st.state_abundances, d / "state_abundances.txt")
+        write_table(st.state_assignment, d / "state_assignment.txt")
+        write_table(st.heatmap_top_ann, d / "heatmap_top_ann.txt")
+        write_table(st.gene_info, d / "gene_info.txt")
+        _wm(st.heatmap_data, d / "heatmap_data.txt")
+    ed = base / "Ecotypes" / "discovery"
+    e = res.ecotypes
+    write_table(e.mapping_all_states, ed / "mapping_all_states.txt", row_names=False)
+    write_table(e.binary, ed / "binary_classification_all_states.txt")
+    _wm(e.jaccard, ed / "jaccard_matrix.txt")
+    write_table(pd.DataFrame({"x": [e.silhouette_initial]}), ed / "silhouette_initial.txt", row_names=False)
+    write_table(e.initial_ecotypes, ed / "initial_ecotypes.txt")
+    write_table(e.ecotypes, ed / "ecotypes.txt", row_names=False)
+    write_table(pd.DataFrame({"x": [e.silhouette]}), ed / "silhouette.txt", row_names=False)
+    write_ecotype_recovery(res.assignment, ed)
+    return base
+
+
+def discover_files(input_dir, annotation_path, out_dir, *, name: str, fractions: str = "All_genes",
+                   scale_column=None, max_states: int = 20, restarts: int = 5, cophenetic_cutoff: float = 0.95,
+                   min_states: int = 3, n_jobs: int = 1, r_exact: bool = True):
+    """File-based discovery from a folder of per-cell-type profiles (CSx HiRes
+    output or presorted profiles) and a sample annotation file."""
+    from .rlayout import _wm  # noqa: F401
+
+    profiles = read_profiles(input_dir)
+    ann = read_annotation(annotation_path)
+    res = discover_from_profiles(profiles, ann, scale_column=scale_column, max_states=max_states,
+                                 restarts=restarts, cophenetic_cutoff=cophenetic_cutoff, min_states=min_states,
+                                 n_jobs=n_jobs, r_exact=r_exact)
+    write_discovery(res, out_dir, name, fractions)
+    return res
