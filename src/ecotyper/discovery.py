@@ -257,7 +257,10 @@ class InitialStates:
     initial_gene_info: pd.DataFrame
 
 
-def initial_states(merged, top_scaled: pd.DataFrame, cell_type: str, rank: int, r_exact=True) -> InitialStates:
+def initial_states(merged, top_scaled: pd.DataFrame, cell_type: str, rank: int, r_exact=True,
+                   gene_info: bool = True) -> InitialStates:
+    """``state_discovery_initial_plots.R`` (``gene_info=False``: the scRNA
+    cross-correlation variant, which does not compute marker genes)."""
     fit = merged.fit
     genes = [str(g) for g in top_scaled.index]
     samples = [str(s) for s in top_scaled.columns]
@@ -271,9 +274,11 @@ def initial_states(merged, top_scaled: pd.DataFrame, cell_type: str, rank: int, 
     codes = np.searchsorted(lv, pred) + 1
     cls = pd.DataFrame({"ID": samples, "State": [f"IS{c:02d}" for c in codes]})
     cls = cls.iloc[r_order(cls["State"].tolist())]
-    raw = _rt_df(top_scaled, r_exact)
-    data = raw.iloc[:, r_match(cls["ID"].tolist(), samples)]
-    gi = get_fc_for_clusters(data, cls["State"].tolist())
+    gi = None
+    if gene_info:
+        raw = _rt_df(top_scaled, r_exact)
+        data = raw.iloc[:, r_match(cls["ID"].tolist(), samples)]
+        gi = get_fc_for_clusters(data, cls["State"].tolist())
     return InitialStates(cell_type, rank, W, H, ab, cls, gi)
 
 
@@ -303,18 +308,25 @@ def _mode_count(row: np.ndarray) -> int:
     return max(Counter(vals).values())
 
 
-def first_filter(init: InitialStates, feats: Features, annotation: pd.DataFrame | None, r_exact=True) -> States:
+def first_filter(init: InitialStates, feats: Features, annotation: pd.DataFrame | None, r_exact=True,
+                 csx_filter: bool = True) -> States:
+    """``state_discovery_first_filter.R`` (``csx_filter=False``:
+    ``state_discovery_first_filter_scRNA.R``, without the filter on genes
+    whose imputed values are mostly identical)."""
     raw = _rt_df(feats.top_scaled, r_exact)
-    csx = _rt_df(feats.top_log2, r_exact)
-    gidx = r_match([str(g) for g in raw.index], [str(g) for g in csx.index])
-    C = csx.to_numpy()
-    ncol = C.shape[1]
-    keep_genes = set()
-    for gi_, g in zip(gidx, raw.index):
-        row = C[gi_] if gi_ >= 0 else np.full(ncol, np.nan)
-        if not (_mode_count(row) > 0.5 * ncol):
-            keep_genes.add(str(g))
     gi = init.initial_gene_info.copy()
+    if csx_filter:
+        csx = _rt_df(feats.top_log2, r_exact)
+        gidx = r_match([str(g) for g in raw.index], [str(g) for g in csx.index])
+        C = csx.to_numpy()
+        ncol = C.shape[1]
+        keep_genes = set()
+        for gi_, g in zip(gidx, raw.index):
+            row = C[gi_] if gi_ >= 0 else np.full(ncol, np.nan)
+            if not (_mode_count(row) > 0.5 * ncol):
+                keep_genes.add(str(g))
+    else:
+        keep_genes = {str(i) for i in gi.index}
     num_cols = [c for c in gi.columns if c not in ("Gene", "State")]
     for c in num_cols:
         gi[c] = _rt(gi[c].to_numpy(dtype=np.float64), r_exact)

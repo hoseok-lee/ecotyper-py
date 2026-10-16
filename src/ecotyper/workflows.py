@@ -470,3 +470,158 @@ def discover_files(input_dir, annotation_path, out_dir, *, name: str, fractions:
                                  n_jobs=n_jobs, r_exact=r_exact)
     write_discovery(res, out_dir, name, fractions)
     return res
+
+
+# ----------------------------------------------------------------------------
+# scRNA-seq discovery
+# ----------------------------------------------------------------------------
+def _nmf_rank_task_cc(V, rank, restarts):
+    return _nmf_rank_task(V, rank, restarts)
+
+
+def discover_scrna_frame(expr: pd.DataFrame, annotation: pd.DataFrame, *, filter_genes="cell type specific",
+                         scale_column=None, max_states: int = 20, restarts: int = 5,
+                         cophenetic_cutoff: float = 0.975, p_value_cutoff: float = 1.0, min_states: int = 3,
+                         n_jobs: int = 1, r_exact: bool = True, verbose: bool = True):
+    """``EcoTyper_discovery_scRNA.R`` on a genes x cells matrix (fread semantics)
+    and a cell annotation with ``ID``, ``CellType`` and ``Sample``."""
+    from . import discovery as dsc
+    from . import discovery_scrna as dsr
+    from .rcompat.frame import factor_levels
+
+    cell_types = factor_levels(annotation["CellType"].astype(str).tolist())
+    specific = None
+    if filter_genes != "no filter":
+        specific = dsr.cell_type_specific_genes(expr, annotation, cell_types, filter_genes, scale_column)
+    cc = {}
+    for ct in cell_types:
+        if specific is not None and ct not in specific:
+            continue
+        try:
+            genes = None if specific is None else specific[ct].filtered["Gene"].tolist()
+            cc[ct] = dsr.cross_correlation(expr, annotation, ct, genes, scale_column)
+        except ValueError as e:
+            if verbose:
+                print(e)
+    tasks, keys = [], []
+    for ct, c in cc.items():
+        V = dsc.nmf_input(c.cor, r_exact)
+        for k in range(2, max_states + 1):
+            tasks.append((V, k, restarts))
+            keys.append((ct, k))
+    res = _run_parallel(_nmf_rank_task_cc, tasks, n_jobs)
+    merged = {key: r[0] for key, r in zip(keys, res)}
+    rank_tables = {ct: pd.DataFrame([res[keys.index((ct, k))][1] for k in range(2, max_states + 1)]) for ct in cc}
+    ranks = dsc.select_ranks(rank_tables, max_states, cophenetic_cutoff, r_exact)
+    cts = [str(c) for c in ranks["CellType"]]
+    initial_cc, feats, initial, states, merged2, rank2 = {}, {}, {}, {}, {}, {}
+    for ct, k in zip(cts, ranks["Chosen_Rank"]):
+        k = int(k)
+        initial_cc[ct] = dsc.initial_states(merged[(ct, k)], cc[ct].cor, ct, k, r_exact, gene_info=False)
+        feats[ct] = dsr.extract_features_scrna(cc[ct], initial_cc[ct].initial_assignment, r_exact)
+    tasks2 = [(dsc.nmf_input(feats[ct].top_scaled, r_exact), int(k), restarts) for ct, k in zip(cts, ranks["Chosen_Rank"])]
+    res2 = _run_parallel(_nmf_rank_task, tasks2, n_jobs)
+    for (ct, k), r in zip(zip(cts, ranks["Chosen_Rank"]), res2):
+        k = int(k)
+        merged2[ct], rank2[ct] = r[0], r[1]
+        initial[ct] = dsc.initial_states(r[0], feats[ct].top_scaled, ct, k, r_exact)
+        f = dsc.Features(ct, None, None, feats[ct].top_scaled, feats[ct].full_scaled)
+        states[ct] = dsc.first_filter(initial[ct], f, annotation, r_exact, csx_filter=False)
+    eco = dsr.discover_ecotypes_scrna(initial, states, cts, annotation, p_value_cutoff, min_states)
+    assigned = dsr.assign_samples_scrna(initial, states, eco.ecotypes, cts, annotation)
+    return DiscoveryResult(specific=specific, cross_cor=cc, merged_cc=merged, rank_tables=rank_tables, ranks=ranks,
+                           initial_cc=initial_cc, features=feats, merged=merged2, rank_metrics=rank2,
+                           initial=initial, states=states, ecotypes=eco, assignment=assigned,
+                           params=dict(max_states=max_states, restarts=restarts, cophenetic_cutoff=cophenetic_cutoff,
+                                       min_states=min_states, filter_genes=filter_genes))
+
+
+def discover_scrna(adata, *, layer=None, **kwargs):
+    """scRNA-seq discovery on AnnData (cells x genes, raw-scale expression;
+    ``obs`` with ``CellType`` and ``Sample``). Results are stored in
+    ``adata.obs["ecotyper_state_<cell type>"]`` (per cell) and returned."""
+    expr = from_anndata(adata, layer)
+    ann = annotation_from_anndata(adata)
+    res = discover_scrna_frame(expr, ann, **kwargs)
+    for ct, st in res.states.items():
+        s = pd.Series(np.nan, index=adata.obs_names, dtype=object)
+        a = st.state_assignment
+        s.loc[a["ID"].astype(str).to_numpy()] = a["State"].to_numpy()
+        adata.obs[f"ecotyper_state_{ct}"] = pd.Categorical(s)
+    adata.uns["ecotyper_discovery"] = {"ranks": res.ranks, "ecotypes": res.ecotypes.ecotypes}
+    return res
+
+
+def write_discovery_scrna(res, out_dir, name: str, fractions: str = "Cell_type_specific_genes",
+                          write_large: bool = False) -> Path:
+    """Write the R layout of a scRNA discovery run. The very large
+    ``expression_full_matrix_*`` files are only written with ``write_large``."""
+    from .rcompat.io import format_real, write_table
+
+    base = Path(out_dir) / "EcoTyper" / name / fractions
+    p = res.params
+    if res.specific is not None:
+        d = base / "Analysis" / "Cell_type_specific_genes"
+        for ct, sg in res.specific.items():
+            write_table(sg.raw, d / f"{ct}_cell_type_specific_genes_raw.txt", row_names=False)
+            write_table(sg.filtered, d / f"{ct}_cell_type_specific_genes.txt", row_names=False)
+    ccd = base / "Cell_States" / "discovery_cross_cor"
+    for ct, c in res.cross_cor.items():
+        d = ccd / ct
+        d.mkdir(parents=True, exist_ok=True)
+        if write_large:
+            _wm(c.log_data, d / "expression_full_matrix_log2.txt")
+        _wm(c.scaled_filt, d / "expression_top_genes_scaled_filt.txt")
+        _wm(c.cor, d / "expression_top_genes_scaled.txt")
+        for k in range(2, p["max_states"] + 1):
+            row = res.rank_tables[ct].iloc[[k - 2]].reset_index(drop=True)
+            row["n_clusters"] = row["n_clusters"].astype(int)
+            write_table(row, d / str(k) / "rank_data.txt", row_names=False)
+    rs = base / "Analysis" / "rank_selection"
+    write_table(res.ranks, rs / "rank_data.txt", row_names=False)
+    write_table(res.ranks, rs / f"rank_data_cutoff_{format_real(p['cophenetic_cutoff'])}.txt", row_names=False)
+    for ct, ini in res.initial_cc.items():
+        d = ccd / ct / str(ini.rank)
+        _wm(ini.W, d / "W.txt")
+        _wm(ini.H, d / "H.txt")
+        _wm(ini.initial_abundances, d / "initial_state_abundances.txt")
+        write_table(ini.initial_assignment, d / "initial_state_assignment.txt", row_names=False)
+    cs = base / "Cell_States" / "discovery"
+    for ct, f in res.features.items():
+        d = cs / ct
+        write_table(f.full_fcs, d / "full_FCs.txt")
+        write_table(f.top_fcs, d / "top_FCs.txt")
+        if write_large:
+            _wm(f.log_full, d / "expression_full_matrix_log2.txt")
+        _wm(f.log_top, d / "expression_top_genes_log2.txt")
+        _wm(f.top_scaled, d / "expression_top_genes_scaled.txt")
+        _wm(f.full_scaled, d / "expression_full_matrix_scaled.txt")
+        ini = res.initial[ct]
+        row = pd.DataFrame([res.rank_metrics[ct]])
+        row["n_clusters"] = row["n_clusters"].astype(int)
+        e = cs / ct / str(ini.rank)
+        write_table(row, e / "rank_data.txt", row_names=False)
+        _wm(ini.W, e / "W.txt")
+        _wm(ini.H, e / "H.txt")
+        _wm(ini.initial_abundances, e / "initial_state_abundances.txt")
+        write_table(ini.initial_assignment, e / "initial_state_assignment.txt", row_names=False)
+        write_table(ini.initial_gene_info, e / "initial_gene_info.txt")
+        st = res.states[ct]
+        write_table(st.first_filter_data, e / "first_filter_data.txt", row_names=False)
+        write_table(st.mapping, e / "mapping_to_initial_states.txt", row_names=False)
+        _wm(st.state_abundances, e / "state_abundances.txt")
+        write_table(st.state_assignment, e / "state_assignment.txt")
+        write_table(st.heatmap_top_ann, e / "heatmap_top_ann.txt")
+        write_table(st.gene_info, e / "gene_info.txt")
+        _wm(st.heatmap_data, e / "heatmap_data.txt")
+    ed = base / "Ecotypes" / "discovery"
+    eco = res.ecotypes
+    write_table(eco.mapping_all_states, ed / "mapping_all_states.txt", row_names=False)
+    write_table(eco.binary, ed / "binary_classification_all_states.txt")
+    _wm(eco.jaccard, ed / "jaccard_matrix.txt")
+    write_table(pd.DataFrame({"x": [eco.silhouette_initial]}), ed / "silhouette_initial.txt", row_names=False)
+    write_table(eco.initial_ecotypes, ed / "initial_ecotypes.txt")
+    write_table(eco.ecotypes, ed / "ecotypes.txt", row_names=False)
+    write_table(pd.DataFrame({"x": [eco.silhouette]}), ed / "silhouette.txt", row_names=False)
+    write_ecotype_recovery(res.assignment, ed)
+    return base
