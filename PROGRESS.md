@@ -28,3 +28,6 @@
 - Ported hclust (Fortran, incl. the gfortran FMA in average linkage), hcass2,
   cutree, cophenetic, dist, cluster::silhouette, cov.c correlation, R number
   formatting for write.table (verified on 246k values from R output files).
+
+## PAUSED Fri Oct 16 12:25:18 EDT 2026 (power loss, by parent)
+- Worker run cancelled; R reference loop (run_r_reference.sh over t1_lymphoma t2_crc t2_lymphoma t3_visium t6_presorted t4_bulk) was killed mid-run during t4_bulk (EcoTyper_discovery_bulk.R). Logs: /tmp/ecotyper_logs/. On resume: check which tutorial reference outputs are complete and rerun the interrupted/missing ones (t4_bulk at least) before continuing.
