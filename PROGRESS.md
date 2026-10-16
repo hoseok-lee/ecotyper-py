@@ -31,3 +31,18 @@
 
 ## PAUSED Fri Oct 16 12:25:18 EDT 2026 (power loss, by parent)
 - Worker run cancelled; R reference loop (run_r_reference.sh over t1_lymphoma t2_crc t2_lymphoma t3_visium t6_presorted t4_bulk) was killed mid-run during t4_bulk (EcoTyper_discovery_bulk.R). Logs: /tmp/ecotyper_logs/. On resume: check which tutorial reference outputs are complete and rerun the interrupted/missing ones (t4_bulk at least) before continuing.
+
+## RESUMED 2026-10-16 13:10 (after power loss)
+- R reference status: t1_lung, t1_lymphoma, t2_crc, t2_lymphoma, t3_visium complete
+  (text outputs copied to `work/r_ref/`, gitignored). t6_presorted and t4_bulk were killed;
+  partial outputs moved aside; chain `t6_presorted → t4_bulk → t5_scrna` restarted
+  (`/tmp/ecotyper_chain2.sh`, logs `/tmp/ecotyper_logs/chain2.log`).
+- Fixed `format_real`: R's `scientific()` decides the number of significant digits with
+  double-precision scaling (`alpha = nearbyint(r / 10^kp)`), not correct rounding; ported
+  it exactly (e.g. 0.2527597964472405 is written as 0.25275979644724 by R).
+- New modules: `model.py` (load EcoTyper model folders), `recovery.py` (state recovery,
+  bulk/scRNA ecotype recovery, spatial states/ecotypes), `rlayout.py` (R file layout),
+  `workflows.py` (AnnData + file workflows), `io.py`, `validate.py` (tree comparison).
+- Tutorial 1 (lung, Carcinoma): all 120 state-recovery files, combined/ecotype abundances
+  and RecoveryOutput files byte-identical to R. Only t-test p-values (assignment_p_vals,
+  AssignmentP/Q) differ by ≤1.5e-14 relative (scipy's incomplete beta vs R's TOMS 708).

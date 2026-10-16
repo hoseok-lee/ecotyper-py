@@ -102,41 +102,88 @@ def read_expression(path, check_names: bool = False, dedup_first_col: bool = Tru
 # ----------------------------------------------------------------------------
 # writing
 # ----------------------------------------------------------------------------
+_TBL = [float(10**k) for k in range(23)]  # format.c tbl[] (double build, KP_MAX 22)
+_KP_MAX = 22
+_R_DEC_MIN_EXPONENT = -308
+
+
+def _scientific(x: float, digits: int = 15):
+    """R's ``scientific()`` (src/main/format.c) for a build where long double
+    is double (macOS arm64): returns ``(neg, kpower, nsig, roundingwidens)``.
+
+    The number of significant digits is decided by scaling and rounding in
+    double precision, which differs from correctly rounded decimal conversion
+    in rare half-way cases (e.g. 0.2527597964472405 is written with 14 digits).
+    """
+    if x == 0.0:
+        return 0, 0, 1, False
+    neg = 1 if x < 0 else 0
+    r = -x if neg else x
+    kp = int(math.floor(math.log10(r))) - digits + 1
+    r_prec = r
+    if abs(kp) <= _KP_MAX:
+        if kp >= 0:
+            r_prec /= _TBL[kp]
+        else:
+            r_prec *= _TBL[-kp]
+    elif kp <= _R_DEC_MIN_EXPONENT:
+        r_prec = (r_prec * 1e303) / math.pow(10.0, float(kp + 303))
+    else:
+        r_prec /= math.pow(10.0, float(kp))
+    if r_prec < _TBL[digits - 1]:
+        r_prec *= 10.0
+        kp -= 1
+    alpha = float(np.rint(r_prec))
+    nsig = digits
+    for _ in range(digits):
+        alpha /= 10.0
+        if alpha == math.floor(alpha):
+            nsig -= 1
+        else:
+            break
+    if nsig == 0 and digits > 0:
+        nsig = 1
+        kp += 1
+    kpower = kp + digits - 1
+    rgt = digits - kpower
+    rgt = 0 if rgt < 0 else (_KP_MAX if rgt > _KP_MAX else rgt)
+    fuzz = 0.5 / _TBL[rgt]
+    widens = kpower > 0 and kpower <= _KP_MAX and r < _TBL[kpower] - fuzz
+    return neg, kpower, nsig, widens
+
+
 def _sci_parts(x: float, digits: int = 15):
     """Return (nsig, kpower) as R's ``scientific()`` for |x| > 0."""
-    s = f"{abs(x):.{digits - 1}e}"
-    mant, exp = s.split("e")
-    kp = int(exp)
-    mant = mant.replace(".", "")
-    nsig = len(mant.rstrip("0")) or 1
+    _, kp, nsig, _ = _scientific(x, digits)
     return nsig, kp
 
 
 def format_real(x: float, digits: int = 15) -> str:
-    """Format one double as ``write.table`` does (``EncodeReal0`` with 15 digits)."""
+    """Format one double as ``write.table`` does (``formatReal`` + ``EncodeReal0``
+    with ``digits = 15``)."""
     if x is None or (isinstance(x, float) and math.isnan(x)):
         if isinstance(x, float) and math.isnan(x) and np.isnan(x):
             return "NA" if _is_r_na(x) else "NaN"
         return "NA"
     if math.isinf(x):
         return "Inf" if x > 0 else "-Inf"
-    if x == 0:
-        return "0"
-    nsig, kp = _sci_parts(x, digits)
-    neg = 1 if x < 0 else 0
-    # fixed notation widths
-    rgt = max(0, nsig - kp - 1)
-    left = kp + 1 if kp >= 0 else 1
-    wF = neg + left + (rgt + 1 if rgt > 0 else 0)
-    # scientific widths
-    eexp = 2 if abs(kp) < 100 else 3
-    wE = neg + (nsig + 1 if nsig > 1 else 1) + 2 + eexp
+    neg, kpower, nsig, widens = _scientific(x, digits)
+    left = kpower + 1
+    if widens:
+        left -= 1
+    sleft = neg + (1 if left <= 0 else left)
+    rgt = max(0, nsig - left)
+    mxsl = 1 + neg if left < 0 else sleft
+    wF = mxsl + rgt + (rgt != 0)
+    e = 2 if (left > 100 or left <= -99) else 1
+    d = nsig - 1
+    wE = neg + (d > 0) + d + 4 + e
     if wF <= wE:
         return f"{x:.{rgt}f}"
-    s = f"{x:.{nsig - 1}e}"
+    s = f"{x:.{d}e}"
     mant, ex = s.split("e")
     sign = ex[0]
-    ev = ex[1:].lstrip("0").rjust(eexp, "0")
+    ev = ex[1:].lstrip("0").rjust(e + 1, "0")
     return f"{mant}e{sign}{ev}"
 
 

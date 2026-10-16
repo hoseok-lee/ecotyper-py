@@ -29,7 +29,7 @@ CHECK_INTERVAL = 10
 # ----------------------------------------------------------------------------
 # numba kernels
 # ----------------------------------------------------------------------------
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _update_h(V, W, H, sumW, wh, tmp):
     """In-place ``divergence_update_H`` (Brunet H step)."""
     n, r = W.shape
@@ -58,7 +58,7 @@ def _update_h(V, W, H, sumW, wh, tmp):
             H[i, j] = H[i, j] * tmp[i] / sumW[i]
 
 
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _update_w(V, W, H, sumH, wh, tmp):
     """In-place ``divergence_update_W`` (Brunet W step)."""
     n, r = W.shape
@@ -85,7 +85,7 @@ def _update_w(V, W, H, sumH, wh, tmp):
             W[iw, jw] = W[iw, jw] * tmp[jw] / sumH[jw]
 
 
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _pmax_inplace(X, lim):
     n0, n1 = X.shape
     for a in range(n0):
@@ -94,7 +94,7 @@ def _pmax_inplace(X, lim):
                 X[a, b] = lim
 
 
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _which_max_cols(H, out):
     """``apply(h, 2, which.max)`` (first maximum, NaN ignored); 0 if all NaN."""
     r, p = H.shape
@@ -109,7 +109,7 @@ def _which_max_cols(H, out):
         out[j] = best + 1
 
 
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _canonical(idx, out):
     """Relabel by first occurrence: equal partitions ⇔ equal connectivity."""
     p = idx.shape[0]
@@ -123,7 +123,7 @@ def _canonical(idx, out):
         out[j] = m[v]
 
 
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _brunet_loop(V, W, H, max_iter, update_w, stopconv, check_interval, eps):
     n, r = W.shape
     p = H.shape[1]
@@ -170,7 +170,7 @@ def _brunet_loop(V, W, H, max_iter, update_w, stopconv, check_interval, eps):
     return i, stop
 
 
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _kl(V, WH):
     """NMF's ``KL_divergence`` (reverse loop order as in distance.cpp)."""
     n, p = V.shape

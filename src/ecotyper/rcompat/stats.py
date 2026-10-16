@@ -23,7 +23,7 @@ DBL_EPS = np.finfo(np.float64).eps
 # ----------------------------------------------------------------------------
 # sums and means
 # ----------------------------------------------------------------------------
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _seq_sum(x):
     s = 0.0
     for v in x:
@@ -31,7 +31,7 @@ def _seq_sum(x):
     return s
 
 
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _r_mean(x):
     n = x.shape[0]
     s = 0.0
@@ -61,13 +61,13 @@ def r_mean(x, na_rm: bool = False) -> float:
     return float(_r_mean(x))
 
 
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _row_means(X, out):
     for i in range(X.shape[0]):
         out[i] = _r_mean(X[i])
 
 
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _row_means_narm(X, out):
     for i in range(X.shape[0]):
         row = X[i]
@@ -98,7 +98,7 @@ def apply_mean_rows(X, na_rm: bool = False) -> np.ndarray:
     return out
 
 
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _col_means(X, out):
     # colMeans: sum in long double (== double here) then divide
     nr, nc = X.shape
@@ -124,7 +124,7 @@ def row_means(X) -> np.ndarray:
 # ----------------------------------------------------------------------------
 # var / cor (cov.c)
 # ----------------------------------------------------------------------------
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _mean2(x):
     n = x.shape[0]
     s = 0.0
@@ -139,7 +139,7 @@ def _mean2(x):
     return tmp
 
 
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _var(x):
     n = x.shape[0]
     if n < 2:
@@ -155,7 +155,7 @@ def _var(x):
     return s / (n - 1)
 
 
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _row_var(X, out):
     for i in range(X.shape[0]):
         out[i] = _var(X[i])
@@ -178,7 +178,7 @@ def row_var(X) -> np.ndarray:
     return out
 
 
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _cor_cols(X, out):
     """cov_na_1 + cor (use = "everything"): correlation between columns."""
     n, nc = X.shape
@@ -238,7 +238,7 @@ def cor_matrix(X) -> np.ndarray:
     return out
 
 
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _cor2(x, y):
     n = x.shape[0]
     for v in x:
@@ -292,7 +292,7 @@ def fast_cor(X) -> np.ndarray:
 # ----------------------------------------------------------------------------
 # scale
 # ----------------------------------------------------------------------------
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _scale_vec(x, out):
     """``scale(x)`` for a vector (as a one-column matrix)."""
     n = x.shape[0]
@@ -320,7 +320,7 @@ def _scale_vec(x, out):
         out[i] = out[i] / sc
 
 
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _scale_rows(X, out):
     for i in range(X.shape[0]):
         _scale_vec(X[i], out[i])
@@ -340,6 +340,62 @@ def scale_vec(x) -> np.ndarray:
     out = np.empty_like(x)
     _scale_vec(x, out)
     return out
+
+
+@nb.njit(cache=True, error_model="numpy")
+def _log2p1(X, out):
+    for i in range(X.shape[0]):
+        for j in range(X.shape[1]):
+            out[i, j] = math.log2(X[i, j] + 1.0)
+
+
+def log2p1(X) -> np.ndarray:
+    """``log2(X + 1)`` with libm's log2 (as R calls it), not numpy's SIMD log2."""
+    X = np.ascontiguousarray(X, dtype=np.float64)
+    out = np.empty_like(X)
+    _log2p1(X, out)
+    return out
+
+
+@nb.njit(cache=True, error_model="numpy")
+def _col_normalize(X, out, narm):
+    nr, nc = X.shape
+    for j in range(nc):
+        s = 0.0
+        for i in range(nr):
+            v = X[i, j]
+            if narm and v != v:
+                continue
+            s += v
+        for i in range(nr):
+            out[i, j] = X[i, j] / s
+
+
+def col_normalize(X, na_rm: bool = False) -> np.ndarray:
+    """``apply(X, 2, function(x) x / sum(x[, na.rm = TRUE]))``."""
+    X = np.ascontiguousarray(X, dtype=np.float64)
+    out = np.empty_like(X)
+    _col_normalize(X, out, na_rm)
+    return out
+
+
+def which_max(x) -> int:
+    """``which.max(x)`` → 0-based index of the first maximum ignoring NaN; -1 if none."""
+    x = np.asarray(x, dtype=np.float64)
+    ok = ~np.isnan(x)
+    if not ok.any():
+        return -1
+    xm = np.where(ok, x, -np.inf)
+    m = xm.max()
+    if m == -np.inf:
+        # all non-NA values are -Inf: R returns the first of them
+        return int(np.flatnonzero(ok)[0])
+    return int(np.flatnonzero(xm == m)[0])
+
+
+def col_apply_mean(X, na_rm: bool = False) -> np.ndarray:
+    """``apply(X, 2, mean[, na.rm = TRUE])``."""
+    return apply_mean_rows(np.asarray(X, dtype=np.float64).T, na_rm=na_rm)
 
 
 # ----------------------------------------------------------------------------
@@ -435,7 +491,7 @@ _M_SQRT_32 = 5.656854249492380195206754896838
 _M_1_SQRT_2PI = 0.398942280401432677939946059934
 
 
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _pnorm_both(x):
     """R's ``pnorm_both`` (Cody 1993) for log_p = FALSE → (cum, ccum)."""
     a = _A
@@ -499,7 +555,7 @@ def _pnorm_both(x):
         return 0.0, 1.0
 
 
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _pnorm(x, lower):
     cum, ccum = _pnorm_both(x)
     if lower:
@@ -580,7 +636,7 @@ def phyper_upper(q: float, m: float, n: float, k: float) -> float:
 # ----------------------------------------------------------------------------
 # matrixTests::row_wilcoxon_twosample (normal approximation path)
 # ----------------------------------------------------------------------------
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _wilcox_rows(X, nx, out_stat, out_ties):
     """Average ranks of each row; returns rank-sum of the first nx entries and
     sum(t^3 - t) over tie groups."""

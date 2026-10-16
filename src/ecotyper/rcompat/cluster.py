@@ -19,13 +19,13 @@ METHODS = {"ward.D": 1, "single": 2, "complete": 3, "average": 4, "mcquitty": 5,
            "median": 6, "centroid": 7, "ward.D2": 8}
 
 
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _ioffst(n, i, j):
     # 1-based (i < j) -> 1-based index into the dist vector
     return j + (i - 1) * n - (i * (i + 1)) // 2
 
 
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _hclust(n, iopt, diss, membr):
     INF = 1e300
     ia = np.zeros(n + 1, dtype=np.int64)
@@ -127,7 +127,7 @@ def _hclust(n, iopt, diss, membr):
     return ia, ib, crit
 
 
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _hcass2(n, ia, ib):
     iia = np.zeros(n + 1, dtype=np.int64)
     iib = np.zeros(n + 1, dtype=np.int64)
@@ -201,7 +201,7 @@ def hclust(d: np.ndarray, n: int, method: str = "complete", labels=None) -> HClu
                   labels=labels, method=method)
 
 
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _cutree(merge, k):
     n = merge.shape[0] + 1
     sing = np.ones(n + 1, dtype=np.bool_)
@@ -274,7 +274,7 @@ def cophenetic(tree: HClust) -> np.ndarray:
     return np.concatenate([full[j + 1 :, j] for j in range(n - 1)])
 
 
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _dist_euclidean_cols(X):
     # dist(t(X)) : distances between columns of X (rows of t(X)); R_euclidean
     nr, nc = X.shape
@@ -307,7 +307,7 @@ def dist_euclidean_rows(X: np.ndarray) -> np.ndarray:
     return _dist_euclidean_cols(np.ascontiguousarray(np.asarray(X, dtype=np.float64).T))
 
 
-@nb.njit(cache=True)
+@nb.njit(cache=True, error_model="numpy")
 def _sildist(d, n, clustering, k, ismat):
     diC = np.zeros(n * k)
     counts = np.zeros(k, dtype=np.int64)
