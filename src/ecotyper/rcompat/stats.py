@@ -148,9 +148,15 @@ def _var(x):
         if v != v:
             return np.nan
     m = _mean2(x)
+    # cov.c (cov_na_1) as compiled by clang on arm64: the first 8*floor(n/8)
+    # terms are vectorised (separate multiply, sequential add), the tail is fused
+    n8 = (n // 8) * 8
     s = 0.0
-    for v in x:
-        d = v - m
+    for k in range(n8):
+        d = x[k] - m
+        s = s + d * d
+    for k in range(n8, n):
+        d = x[k] - m
         s = fma(d, d, s)
     return s / (n - 1)
 
@@ -194,6 +200,7 @@ def _cor_cols(X, out):
         else:
             xm[i] = _mean2(X[:, i])
     n1 = n - 1
+    n8 = (n // 8) * 8
     for i in range(nc):
         if has_na[i]:
             for j in range(i + 1):
@@ -205,8 +212,11 @@ def _cor_cols(X, out):
                 out[j, i] = np.nan
                 out[i, j] = np.nan
                 continue
+            # vectorised head (mul + add), fused tail: see _var
             s = 0.0
-            for k in range(n):
+            for k in range(n8):
+                s = s + (X[k, i] - xm[i]) * (X[k, j] - xm[j])
+            for k in range(n8, n):
                 s = fma(X[k, i] - xm[i], X[k, j] - xm[j], s)
             out[j, i] = s / n1
             out[i, j] = out[j, i]

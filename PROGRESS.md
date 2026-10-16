@@ -46,3 +46,14 @@
 - Tutorial 1 (lung, Carcinoma): all 120 state-recovery files, combined/ecotype abundances
   and RecoveryOutput files byte-identical to R. Only t-test p-values (assignment_p_vals,
   AssignmentP/Q) differ by ≤1.5e-14 relative (scipy's incomplete beta vs R's TOMS 708).
+- 13:40 Tutorials 1 (lymphoma), 2 (CRC, lymphoma) and 3 (Visium) also byte-identical to R
+  except t-test p-values (≤1.5e-14 rel). R t6 (presorted) reference finished (27 min);
+  t4_bulk running, then t5_scrna. Python t6 discovery running (`work/py_t6.log`).
+- Found: R's `cov.c` loop is vectorised by clang: for n ≥ 8 the first 8·⌊n/8⌋ products are
+  separate mul + sequential add, the tail uses fmadd. Ported in `_var`/`_cor_cols`
+  (`cor()` now bit-exact; used by HiClimR::fastCor in scRNA discovery).
+- Found: EcoTyper passes the *name* of the scaling column to `scale_data()`, so bulk/presorted
+  discovery scales across all samples (not within groups). Reproduced as is.
+- pytest: 24 unit parity tests (RNG, sample, rnmf, Brunet bit-exact, consensus/cophenetic/
+  silhouettes, hclust/cutree, dist/cor, write.table formatting, t-test, BH, phyper,
+  quantile/median/mad, Wilcoxon) — all pass.
