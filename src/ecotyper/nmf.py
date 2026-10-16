@@ -353,8 +353,10 @@ def cophcor(consensus: np.ndarray) -> float:
 
 
 def dispersion(consensus: np.ndarray) -> float:
+    from .rcompat.stats import r_sum
+
     C = np.asarray(consensus, dtype=np.float64)
-    return float(np.sum(4 * (C - 0.5) ** 2) / C.shape[0] ** 2)
+    return r_sum((4 * (C - 0.5) ** 2).ravel(order="F")) / C.shape[0] ** 2
 
 
 def _as_dist(D: np.ndarray) -> np.ndarray:
@@ -383,5 +385,46 @@ def silhouettes(merged: NMFMerged) -> dict:
     cl = cutree(hc, fit.W.shape[1])
     dm = 1.0 - C
     out["chc"] = silhouette_avg_width(cl, dm)
-    out["consensus"] = out["chc"]  # relabelling by dendrogram order does not change widths
+    # 'consensus': same clusters (relabelled), widths reordered by the dendrogram
+    # order of reorder(as.dendrogram(hc), rowMeans(consensus)) before averaging
+    from .rcompat.cluster import silhouette_widths
+    from .rcompat.stats import r_mean, row_means
+
+    w = silhouette_widths(cl, dm, ismat=True)
+    if w is None:
+        out["consensus"] = np.nan
+    else:
+        o = reorder_dendrogram_order(hc.merge, row_means(C))
+        out["consensus"] = r_mean(w[o - 1])
     return out
+
+
+def reorder_dendrogram_order(merge: np.ndarray, wts: np.ndarray) -> np.ndarray:
+    """``order.dendrogram(reorder(as.dendrogram(hc), wts))`` (1-based leaves)."""
+    n = merge.shape[0] + 1
+    nodes: dict[int, tuple] = {}
+
+    def child(x):
+        if x < 0:
+            return ("leaf", -x, float(wts[-x - 1]))
+        return nodes[x]
+
+    for k in range(n - 1):
+        a, b = merge[k]
+        ca, cb = child(a), child(b)
+        vals = [ca[-1], cb[-1]]
+        kids = [ca, cb]
+        if vals[1] < vals[0]:  # sort.list (stable)
+            kids = [cb, ca]
+            vals = [vals[1], vals[0]]
+        nodes[k + 1] = ("node", kids, (0.0 + vals[0]) + vals[1])
+
+    def leaves(nd, acc):
+        if nd[0] == "leaf":
+            acc.append(nd[1])
+        else:
+            for c in nd[1]:
+                leaves(c, acc)
+        return acc
+
+    return np.array(leaves(nodes[n - 1], []), dtype=np.int64)
