@@ -13,6 +13,12 @@ export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 # one BLAS/OpenMP thread per process; parallelism comes from the job queue
 export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 MKL_NUM_THREADS=1
 export R_PROFILE_USER="$HERE/Rprofile.R" ECOTYPER_REF_SEED=42
+# ECOTYPER_R_THREADS overrides "Number of threads" in the YAML configs (e.g. on a big server)
+if [ -n "${ECOTYPER_R_THREADS:-}" ]; then
+  CFG="$(mktemp -d)"
+  for f in "$HERE"/*.yml; do sed -E "s/(Number of threads *: *)[0-9]+/\1${ECOTYPER_R_THREADS}/" "$f" > "$CFG/$(basename "$f")"; done
+  cp "$HERE/Rprofile.R" "$CFG/"; HERE="$CFG"
+fi
 cd "$W"
 case "$T" in
   t1_lung)     Rscript EcoTyper_recovery_bulk.R -d Carcinoma -m example_data/bulk_lung_data.txt -a example_data/bulk_lung_annotation.txt -c Tissue -o RecoveryOutput ;;
