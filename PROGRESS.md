@@ -72,3 +72,16 @@ Order: finish T4/T5/T6 parity and VALIDATION.md first. Then:
 2. **Fast mode** (`exact=False`; the default stays `exact=True`, R-exact). Use BLAS matmuls for the Brunet updates, threaded restarts and fewer copies, and vectorize the hot paths (consensus, cophenetic, filters). Validate on every tutorial by discrete parity (state and ecotype assignments, ranks, filtered genes/states identical to R), and report numeric deviation and speed-up. Document any dataset where the assignments differ, and explain why (NMF converging to a different local minimum).
 3. **Alternative NMF solver** (opt-in, e.g. `nmf_method="hals"`, or sklearn/nimfa-style coordinate descent). Use an existing maintained implementation if one is adequate, under the Existing Solutions Preflight. It's explicitly NOT EcoTyper-equivalent. Report agreement with R's assignments (e.g. ARI) and the speed-up, and document it as an extension in the README.
 The port is complete only when exact parity + VALIDATION.md + 1–3 are done.
+
+## REMOTE SERVER ADDED 2026-10-17 01:50 (user decision: option A)
+- Server: `ssh hoseoklee@142.1.33.110`, NixOS x86-64 (Xeon Gold 6258R), 112 cores, 754 GB RAM, shared lab machine. Use up to ~100 cores.
+  Project clone: `~/workspace/ecotyper-py` (on /mnt/data0; /home is 95% full, so never write there).
+  Conda packages don't run on NixOS, so Python runs in Docker: `work/dock.sh <cmd>` (image `ecotyper-py:dev`, `docker/Dockerfile`, same package versions as the Mac env).
+  `work/r_ref` was rsynced from the Mac, and `work/ecotyper-r-src` is a fresh clone at 11408e7.
+- Option A: **R reference runs stay on the Mac** (R's results depend on the platform's compiler/FMA). Python port runs, benchmarks, fast mode and the alternative solver run on the server.
+- Server results: 24/24 unit parity tests pass (RNG, Brunet NMF etc. bit-exact cross-platform).
+  T1 lung on the server: 175/175 files discrete-equal, 77 byte-identical, max rel 7.39e-13 (29 s with 16 jobs).
+  Cause: `log2p1` calls libm `log2` (Apple libm on the Mac vs glibc on Linux), which differs by 1 ulp for a few inputs (9 cells in B.cells/9 expression_matrix), and that propagates.
+  So **byte-exact R parity must be checked by Python runs on the Mac**; server runs are discrete-equal with ≤1e-12 drift.
+- New TODO (after the plan items): platform-independent libm. Test whether Apple libm's log2/log/exp are correctly rounded on all inputs the tutorials use (compare to an mpmath/CORE-MATH reference). If they are, use correctly-rounded implementations so Python results are byte-identical on the Mac and on Linux. Record the result either way.
+- 01:48 server: `work/run_py_all.sh` started (Python t6 → t4 → t5, 32 jobs each, logs `work/logs/py_*.log` on the server).
