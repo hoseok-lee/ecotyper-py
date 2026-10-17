@@ -85,3 +85,16 @@ The port is complete only when exact parity + VALIDATION.md + 1–3 are done.
   So **byte-exact R parity must be checked by Python runs on the Mac**; server runs are discrete-equal with ≤1e-12 drift.
 - New TODO (after the plan items): platform-independent libm. Test whether Apple libm's log2/log/exp are correctly rounded on all inputs the tutorials use (compare to an mpmath/CORE-MATH reference). If they are, use correctly-rounded implementations so Python results are byte-identical on the Mac and on Linux. Record the result either way.
 - 01:48 server: `work/run_py_all.sh` started (Python t6 → t4 → t5, 32 jobs each, logs `work/logs/py_*.log` on the server).
+
+## ALL JOBS ON SERVER 2026-10-17 02:00 (user decision; supersedes "R stays on Mac")
+- The user wants every compute job on the server. The Mac only orchestrates: it edits code, commits and pushes, and runs no R or Python jobs.
+  Mac jobs stopped. The Mac's partial T4 R outputs are kept in the Mac's work/ecotyper-r-src (not deleted).
+- R image `ecotyper-r:dev` (`docker/Dockerfile.r`): R 4.4.3, NMF 0.28, HiClimR 2.2.1, same conda package versions as the Mac, en_US.UTF-8 collation.
+  Run with `work/dock_r.sh <cmd>`. `ECOTYPER_R_THREADS` overrides "Number of threads" in the configs.
+  conda-forge builds packages with `-march=nocona` (no FMA), so R on x86 does **no** FMA contraction.
+- **New primary reference = R on the server (x86-64/glibc).** Plan: copy server R outputs into `work/r_ref_x86/` (same layout as `work/r_ref/`) and compare Python-on-server against them with `ECOTYPER_NO_FMA=1`. Both sides use glibc libm there, so byte-exact parity should be reachable. Audit the other Mac-specific code paths (`cov.c` clang vectorisation in `_var`/`_cor_cols`, FMAs in hclust) and add an x86/gcc profile where needed.
+  Keep the Mac R references (`work/r_ref/`) as a cross-platform comparison: report Mac-R vs x86-R differences in VALIDATION.md.
+- 01:58 server: `work/run_r_all.sh` started (R t4 → t5 → t6 → t1 → t2 → t3, 64 threads; logs `work/logs/r_*.log`; outputs in work/ecotyper-r-src).
+  `work/run_py_all.sh` running (Python t6 done in 9:18 wall, 35 MB peak RSS (the main process only); now t4, then t5).
+- Python T6 (server, FMA on) vs **Mac** R ref: 608 files, 115 byte-identical, 397 discrete-equal, **209 missing**, max rel inf (one or more zero vs nonzero values).
+  Unclear whether this is a port bug or platform drift; Python T6 was never compared before. Investigate against the x86 R reference once `r_t6_presorted` finishes; check the missing files first (likely naming/layout).
