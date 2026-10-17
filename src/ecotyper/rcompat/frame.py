@@ -118,13 +118,19 @@ def make_unique(names, sep: str = ".") -> list[str]:
 
 
 def r_merge(x: pd.DataFrame, y: pd.DataFrame, by: str, all_x: bool = False, all_y: bool = False,
-            suffixes=(".x", ".y")) -> pd.DataFrame:
+            suffixes=(".x", ".y"), x_factor: bool = False) -> pd.DataFrame:
     """``merge(x, y, by = by, all.x, all.y)`` for a single key column.
 
     Rows: matched pairs, then unmatched x, then unmatched y, finally stably
     ordered by the key (``sort = TRUE``). Columns: key, remaining x columns,
     remaining y columns (duplicates suffixed). The row index is reset
-    (R gives 1..n)."""
+    (R gives 1..n).
+
+    ``x_factor=True``: the key of ``x`` is a factor (e.g. from
+    ``as.data.frame(table(..))``) and ``all.y`` is set. R's final sort then
+    orders by the integer factor codes: ``rbind`` appends the unmatched y keys
+    as new levels after x's levels, so they stay in y order after the matched
+    rows instead of being sorted alphabetically."""
     xk = list(x[by])
     yk = list(y[by])
     ypos: dict = {}
@@ -171,5 +177,11 @@ def r_merge(x: pd.DataFrame, y: pd.DataFrame, by: str, all_x: bool = False, all_
             parts.append(u)
     res = pd.concat(parts, ignore_index=True) if len(parts) > 1 else parts[0]
     res = res[[by] + [xcols[c] for c in x_rest] + [ycols[c] for c in y_rest]]
-    o = r_order(res[by].tolist())
+    if x_factor:
+        codes = {k: i for i, k in enumerate(dict.fromkeys(xk))}
+        for k in yk:
+            codes.setdefault(k, len(codes))
+        o = sorted(range(len(res)), key=lambda i: codes[res[by].iloc[i]])
+    else:
+        o = r_order(res[by].tolist())
     return res.iloc[o].reset_index(drop=True)

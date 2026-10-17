@@ -45,3 +45,15 @@ def test_row_wilcoxon_normal_approximation():
     a = hexread(S / "wx_in.txt", (50, 130))
     p = row_wilcoxon_twosample(a[:, :60], a[:, 60:])
     np.testing.assert_allclose(p, hexread(S / "wx_p.txt"), rtol=1e-12, atol=0)
+
+
+def test_r_merge_factor_key_keeps_unmatched_y_after_matched():
+    import pandas as pd
+    from ecotyper.rcompat.frame import r_merge
+
+    x = pd.DataFrame({"State": ["IS02", "IS03"], "N": [4, 87]})
+    y = pd.DataFrame({"State": ["IS01", "IS02", "IS03", "IS04"], "R": [1.0, 2.0, 3.0, 4.0]})
+    out = r_merge(x, y, "State", all_y=True, x_factor=True)
+    assert out["State"].tolist() == ["IS02", "IS03", "IS01", "IS04"]
+    out2 = r_merge(x, y, "State", all_y=True)
+    assert out2["State"].tolist() == ["IS01", "IS02", "IS03", "IS04"]

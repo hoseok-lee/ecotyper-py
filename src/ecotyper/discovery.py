@@ -342,7 +342,8 @@ def first_filter(init: InitialStates, feats: Features, annotation: pd.DataFrame 
     counts = {s: int((gi["State"] == s).sum()) for s in st_levels}
     tb = pd.DataFrame({"State": st_levels, "NumberMarkers": [counts[s] for s in st_levels]})
     ag = pd.DataFrame({"InitialState": list(agg), "PosRatio": list(agg.values())})
-    tb = r_merge(tb, ag.rename(columns={"InitialState": "State"}), "State", all_y=True)
+    tb = r_merge(tb, ag.rename(columns={"InitialState": "State"}), "State", all_y=True,
+                  x_factor=True)
     tb["NumberMarkers"] = [0 if pd.isna(v) else int(v) for v in tb["NumberMarkers"]]
     log = []
     to_keep = [str(s) for s, n in zip(tb["State"], tb["NumberMarkers"]) if n > 10]
