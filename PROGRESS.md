@@ -98,3 +98,11 @@ The port is complete only when exact parity + VALIDATION.md + 1–3 are done.
   `work/run_py_all.sh` running (Python t6 done in 9:18 wall, 35 MB peak RSS (the main process only); now t4, then t5).
 - Python T6 (server, FMA on) vs **Mac** R ref: 608 files, 115 byte-identical, 397 discrete-equal, **209 missing**, max rel inf (one or more zero vs nonzero values).
   Unclear whether this is a port bug or platform drift; Python T6 was never compared before. Investigate against the x86 R reference once `r_t6_presorted` finishes; check the missing files first (likely naming/layout).
+
+## STEP 2026-10-17 11:30 (server state + T6 missing files)
+- Server R reference runs all finished (t4 15 min, t5 4 h, t6 42 min, t1/t2 1–3 min each). **t3_visium R failed**: `library(Matrix)` is not installed in `ecotyper-r:dev` (add `r-matrix` to `docker/Dockerfile.r`, rebuild, rerun t3). The `rc=` in run_r_all.log is unreliable (it is `$?` of `$(date)`); check each r_*.log instead.
+- Python t6/t4/t5 server runs (FMA on) finished earlier (t4 14 min, t5 4.6 h wall).
+- New `validation/r_reference/collect_r_ref.sh` builds `work/r_ref_x86/` (text outputs, same layout as `work/r_ref/`) from the server R run; it is built on the server (t3 Visium states/ecotypes are missing until R t3 is rerun).
+- Python T6 vs x86 R: same as vs Mac R: 115 byte-identical, 397 discrete-equal, 209 missing. All 209 were `Cell_States/discovery/<ct>/<k>/used.txt`, a file R writes per rank (`"V1"` plus `"X{i}L"\t{i}` for restarts 1..5) that the port never wrote. Fixed with `_write_used` in `workflows.py` (bulk/presorted discovery, cross_cor, and the chosen-rank dir in scRNA).
+- 11:30 server: T6 Python rerun started (`work/rerun_t6.sh`, ~10 min, ECOTYPER_NO_FMA=1, output work/py_t6_presorted_b, log work/logs/py_t6_b.log, ends with a compare against r_ref_x86 into validation/reports/t6_presorted.tsv).
+- NEXT: read `tail -3 work/logs/py_t6_b.log` on the server; then investigate remaining non-identical T6 files (max rel inf was likely the zero-vs-nonzero values; look at the biggest n_diff_numeric rows). Then compare T4/T5 with `ECOTYPER_NO_FMA=1 ECOTYPER_R_REF=/work/work/r_ref_x86 work/dock.sh python validation/tutorials.py <t> --out work/py_<t> --compare-only`. Also fix the Dockerfile.r Matrix issue and rerun R t3 (can be done in parallel).
