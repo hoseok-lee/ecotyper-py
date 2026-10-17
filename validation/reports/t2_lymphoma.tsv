@@ -1,0 +1,14 @@
+tree	file	missing	identical_bytes	shape_equal	discrete_equal	n_numeric	n_diff_numeric	max_abs	max_rel	n_diff_other	rows	cols
+Lymphoma/states/scRNA/scRNA_lymphoma_data	B.cells/6/H.txt	False	True	True	True	6000	0	0.0	0.0	0	6	1001
+Lymphoma/states/scRNA/scRNA_lymphoma_data	B.cells/6/annotation.txt	False	True	True	True	0	0	0.0	0.0	0	1000	4
+Lymphoma/states/scRNA/scRNA_lymphoma_data	B.cells/6/expression_matrix.txt	False	True	True	True	1000000	0	0.0	0.0	0	1000	1001
+Lymphoma/states/scRNA/scRNA_lymphoma_data	B.cells/6/expression_matrix_scaled.txt	False	True	True	True	1000000	0	0.0	0.0	0	1000	1001
+Lymphoma/states/scRNA/scRNA_lymphoma_data	B.cells/6/heatmap_data.txt	False	True	True	True	692328	0	0.0	0.0	0	951	729
+Lymphoma/states/scRNA/scRNA_lymphoma_data	B.cells/6/heatmap_top_ann.txt	False	True	True	True	0	0	0.0	0.0	0	728	6
+Lymphoma/states/scRNA/scRNA_lymphoma_data	B.cells/6/initial_state_abundances.txt	False	True	True	True	6000	0	0.0	0.0	0	6	1001
+Lymphoma/states/scRNA/scRNA_lymphoma_data	B.cells/6/initial_state_assignment.txt	False	True	True	True	0	0	0.0	0.0	0	1000	2
+Lymphoma/states/scRNA/scRNA_lymphoma_data	B.cells/6/state_abundances.txt	False	True	True	True	5000	0	0.0	0.0	0	5	1001
+Lymphoma/states/scRNA/scRNA_lymphoma_data	B.cells/6/state_assignment.txt	False	True	True	True	0	0	0.0	0.0	0	728	3
+RecoveryOutput/scRNA_lymphoma_data	B.cells/heatmap_data.txt	False	True	True	True	692328	0	0.0	0.0	0	951	729
+RecoveryOutput/scRNA_lymphoma_data	B.cells/heatmap_top_ann.txt	False	True	True	True	0	0	0.0	0.0	0	728	6
+RecoveryOutput/scRNA_lymphoma_data	B.cells/state_assignment.txt	False	True	True	True	0	0	0.0	0.0	0	728	3
