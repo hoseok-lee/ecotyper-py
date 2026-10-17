@@ -1,7 +1,7 @@
 # EcoTyper R → Python porting plan
 
 Source: <https://github.com/digitalcytometry/ecotyper> at commit `11408e7`
-(shallow clone in `/tmp/ecotyper_probe/ecotyper`). Python package: `ecotyper`
+(clone in `work/ecotyper-r-src`, gitignored). Python package: `ecotyper`
 (src layout). The R code is a set of command-line scripts that communicate
 through tab-delimited files in a fixed directory tree; the port keeps every
 computation as a pure function (pandas/numpy in, pandas/numpy out), wraps them

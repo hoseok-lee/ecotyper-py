@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 # R reference outputs (text) and the R working copy with the example data;
 # see validation/r_reference/run_r_reference.sh
 R_REF = Path(os.environ.get("ECOTYPER_R_REF", ROOT / "work" / "r_ref"))
-R_WORK = Path(os.environ.get("ECOTYPER_R_WORK", "/tmp/ecotyper_ref"))
+R_WORK = Path(os.environ.get("ECOTYPER_R_WORK", str(ROOT / "work" / "ecotyper-r-src")))
 PY_OUT = Path(os.environ.get("ECOTYPER_PY_OUT", ROOT / "work" / "py_test_out"))
 
 

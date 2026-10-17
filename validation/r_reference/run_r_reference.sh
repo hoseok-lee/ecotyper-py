@@ -2,11 +2,12 @@
 # Regenerate the R reference outputs used by the parity tests.
 # Usage: run_r_reference.sh <tutorial> [workdir]
 #   tutorial: t1_lung t1_lymphoma t2_crc t2_lymphoma t3_visium t4_bulk t5_scrna t6_presorted
-# workdir: a copy of the EcoTyper repo (default /tmp/ecotyper_ref) with
-#          example_data/scRNA_CRC_data.txt extracted.
+# workdir: R working copy = clone of the EcoTyper repo at 11408e7 with
+#          example_data/scRNA_CRC_data.txt extracted (default <project>/work/ecotyper-r-src,
+#          gitignored so it survives reboots unlike /tmp).
 set -euo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"
-T="$1"; W="${2:-/tmp/ecotyper_ref}"
+T="$1"; W="${2:-$HERE/../../work/ecotyper-r-src}"
 export PATH=/opt/miniconda3/envs/ecotyper-r/bin:$PATH
 export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 export R_PROFILE_USER="$HERE/Rprofile.R" ECOTYPER_REF_SEED=42

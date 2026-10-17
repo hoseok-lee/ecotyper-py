@@ -57,3 +57,11 @@
 - pytest: 24 unit parity tests (RNG, sample, rnmf, Brunet bit-exact, consensus/cophenetic/
   silhouettes, hclust/cutree, dist/cor, write.table formatting, t-test, BH, phyper,
   quantile/median/mad, Wilcoxon) — all pass.
+
+## RESUMED 2026-10-17 00:45 (after reboot; /tmp wiped)
+- R source/working copy re-cloned at 11408e7 into `work/ecotyper-r-src` (gitignored via `/work/`),
+  `scRNA_CRC_data.txt` extracted. `run_r_reference.sh`, `tests/conftest.py`,
+  `validation/tutorials.py` now default to it (`$ECOTYPER_R_WORK` still overrides).
+- `work/r_ref/` intact: T1–T3 and T6 R references present; T4/T5 missing.
+- 00:49 R chain `t4_bulk → t5_scrna` started (`work/logs/chain3.sh`, logs `work/logs/r_*.log`).
+  Python T6 rerun started (`work/logs/py_t6.log`); previous Python T6 run died with the reboot.

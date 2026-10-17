@@ -3,7 +3,7 @@
 Usage: python validation/tutorials.py <tutorial> [--out DIR] [--jobs N] [--compare-only]
 
 Tutorials: t1_lung t1_lymphoma t2_crc t2_lymphoma t3_visium t4_bulk t5_scrna t6_presorted
-R working copy (inputs, prebuilt models): $ECOTYPER_R_WORK (default /tmp/ecotyper_ref)
+R working copy (inputs, prebuilt models): $ECOTYPER_R_WORK (default work/ecotyper-r-src)
 R reference text outputs: $ECOTYPER_R_REF (default work/r_ref, see README in validation/)
 """
 from __future__ import annotations
@@ -17,7 +17,7 @@ from pathlib import Path
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
-R_WORK = Path(os.environ.get("ECOTYPER_R_WORK", "/tmp/ecotyper_ref"))
+R_WORK = Path(os.environ.get("ECOTYPER_R_WORK", str(ROOT / "work" / "ecotyper-r-src")))
 R_REF = Path(os.environ.get("ECOTYPER_R_REF", ROOT / "work" / "r_ref"))
 
 # tutorial -> list of (python subdir, R reference subdir) pairs to compare
