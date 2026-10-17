@@ -65,3 +65,10 @@
 - `work/r_ref/` intact: T1–T3 and T6 R references present; T4/T5 missing.
 - 00:49 R chain `t4_bulk → t5_scrna` started (`work/logs/chain3.sh`, logs `work/logs/r_*.log`).
   Python T6 rerun started (`work/logs/py_t6.log`); previous Python T6 run died with the reboot.
+
+## PLAN ADDED 2026-10-17 01:15 (user request), to do AFTER exact parity is finished
+Order: finish T4/T5/T6 parity and VALIDATION.md first. Then:
+1. **Benchmark.** Time Python against R per tutorial on the same machine and the same job count, with one BLAS/OpenMP thread per process. Reuse R wall times from work/logs where valid; otherwise rerun. Add a timing table to VALIDATION.md (wall time, peak RSS) and a reproducible script `validation/benchmark.py`.
+2. **Fast mode** (`exact=False`; the default stays `exact=True`, R-exact). Use BLAS matmuls for the Brunet updates, threaded restarts and fewer copies, and vectorize the hot paths (consensus, cophenetic, filters). Validate on every tutorial by discrete parity (state and ecotype assignments, ranks, filtered genes/states identical to R), and report numeric deviation and speed-up. Document any dataset where the assignments differ, and explain why (NMF converging to a different local minimum).
+3. **Alternative NMF solver** (opt-in, e.g. `nmf_method="hals"`, or sklearn/nimfa-style coordinate descent). Use an existing maintained implementation if one is adequate, under the Existing Solutions Preflight. It's explicitly NOT EcoTyper-equivalent. Report agreement with R's assignments (e.g. ARI) and the speed-up, and document it as an extension in the README.
+The port is complete only when exact parity + VALIDATION.md + 1–3 are done.
