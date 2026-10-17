@@ -25,7 +25,7 @@ default :
     # "no filter" - use all genes
     # <integer> - e.g. 1000, select top <integer> genes with highest variance in a cell type
     Filter genes : "cell type specific"
-    Number of threads : 10
+    Number of threads : 8 
     Number of NMF restarts : 5
     Maximum number of states per cell type : 20
     Cophenetic coefficient cutoff : 0.975

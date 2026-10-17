@@ -10,6 +10,8 @@ HERE="$(cd "$(dirname "$0")" && pwd)"
 T="$1"; W="${2:-$HERE/../../work/ecotyper-r-src}"
 export PATH=/opt/miniconda3/envs/ecotyper-r/bin:$PATH
 export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
+# one BLAS/OpenMP thread per process; parallelism comes from the job queue
+export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 MKL_NUM_THREADS=1
 export R_PROFILE_USER="$HERE/Rprofile.R" ECOTYPER_REF_SEED=42
 cd "$W"
 case "$T" in

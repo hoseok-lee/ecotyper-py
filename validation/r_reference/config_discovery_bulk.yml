@@ -26,7 +26,7 @@ default :
     #   step 7 (advanced cell state QC filter)
     #   step 8 (ecotype discovery)
     Pipeline steps to skip : [1, 2, 7] # CSx steps 1-2 replaced by the shipped HiRes profiles # Step 7 is skipped by default
-    Number of threads : 10    
+    Number of threads : 8     
     Number of NMF restarts : 5
     Maximum number of states per cell type : 20
     Cophenetic coefficient cutoff : 0.95
