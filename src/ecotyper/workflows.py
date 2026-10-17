@@ -405,6 +405,12 @@ def read_profiles(input_dir, classes=None) -> dict:
     return {ct: read_bulk_matrix(d / f"{ct}.txt") for ct in classes}
 
 
+def _write_used(d, restarts: int) -> None:
+    """``used.txt``: R writes ``t(as.data.frame(list(1, ..., restarts)))`` (all restarts are used)."""
+    Path(d).mkdir(parents=True, exist_ok=True)
+    (Path(d) / "used.txt").write_text('"V1"\n' + "".join(f'"X{i}L"\t{i}\n' for i in range(1, restarts + 1)))
+
+
 def write_discovery(res: DiscoveryResult, out_dir, name: str, fractions: str) -> Path:
     """Write the R layout ``<out_dir>/EcoTyper/<name>/<fractions>/...``."""
     from .rcompat.io import write_table
@@ -423,6 +429,7 @@ def write_discovery(res: DiscoveryResult, out_dir, name: str, fractions: str) ->
             row = res.rank_tables[ct].iloc[[k - 2]].reset_index(drop=True)
             row["n_clusters"] = row["n_clusters"].astype(int)
             write_table(row, d / str(k) / "rank_data.txt", row_names=False)
+            _write_used(d / str(k), p["restarts"])
     rs = base / "Analysis" / "rank_selection"
     write_table(res.ranks, rs / "rank_data.txt", row_names=False)
     from .rcompat.io import format_real
@@ -577,6 +584,7 @@ def write_discovery_scrna(res, out_dir, name: str, fractions: str = "Cell_type_s
             row = res.rank_tables[ct].iloc[[k - 2]].reset_index(drop=True)
             row["n_clusters"] = row["n_clusters"].astype(int)
             write_table(row, d / str(k) / "rank_data.txt", row_names=False)
+            _write_used(d / str(k), p["restarts"])
     rs = base / "Analysis" / "rank_selection"
     write_table(res.ranks, rs / "rank_data.txt", row_names=False)
     write_table(res.ranks, rs / f"rank_data_cutoff_{format_real(p['cophenetic_cutoff'])}.txt", row_names=False)
@@ -601,6 +609,7 @@ def write_discovery_scrna(res, out_dir, name: str, fractions: str = "Cell_type_s
         row["n_clusters"] = row["n_clusters"].astype(int)
         e = cs / ct / str(ini.rank)
         write_table(row, e / "rank_data.txt", row_names=False)
+        _write_used(e, p["restarts"])
         _wm(ini.W, e / "W.txt")
         _wm(ini.H, e / "H.txt")
         _wm(ini.initial_abundances, e / "initial_state_abundances.txt")
