@@ -30,3 +30,5 @@ RUN Rscript -e 'for (u in c("https://cran.r-project.org/src/contrib/Archive/NMF/
                   install.packages(f, repos = NULL, type = "source") }; \
                 library(NMF); library(HiClimR); cat(as.character(packageVersion("NMF")), as.character(packageVersion("HiClimR")), "\n")'
 ENV OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
+# Matrix is needed by the Visium tutorial (separate late layer keeps earlier layers cached)
+RUN micromamba install -y -p /opt/miniconda3/envs/ecotyper-r -c conda-forge r-matrix && micromamba clean -a -y
