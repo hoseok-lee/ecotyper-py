@@ -19,6 +19,8 @@ RUN micromamba create -y -p /opt/miniconda3/envs/ecotyper-r -c conda-forge -c bi
       c-compiler cxx-compiler fortran-compiler make \
  && micromamba clean -a -y
 ENV PATH=/opt/miniconda3/envs/ecotyper-r/bin:$PATH
+# NMF's DESCRIPTION imports BiocManager (separate layer keeps the big env layer cached)
+RUN micromamba install -y -p /opt/miniconda3/envs/ecotyper-r -c conda-forge r-biocmanager=1.30.27 && micromamba clean -a -y
 # CRAN-only packages, pinned to the Mac versions
 RUN Rscript -e 'for (u in c("https://cran.r-project.org/src/contrib/Archive/NMF/NMF_0.28.tar.gz", \
                             "https://cran.r-project.org/src/contrib/Archive/HiClimR/HiClimR_2.2.1.tar.gz")) { \
