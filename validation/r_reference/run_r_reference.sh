@@ -16,6 +16,8 @@ case "$T" in
   t1_lymphoma) Rscript EcoTyper_recovery_bulk.R -d Lymphoma -m example_data/bulk_lymphoma_data.txt -a example_data/bulk_lymphoma_annotation.txt -c schmitz_labels,COO -o RecoveryOutput ;;
   t2_crc)      Rscript EcoTyper_recovery_scRNA.R -d Carcinoma -m example_data/scRNA_CRC_data.txt -a example_data/scRNA_CRC_annotation.txt -o RecoveryOutput ;;
   t2_lymphoma) Rscript EcoTyper_recovery_scRNA.R -d Lymphoma -m example_data/scRNA_lymphoma_data.txt -a example_data/scRNA_lymphoma_annotation.txt -o RecoveryOutput -c Tissue ;;
+  # not a README tutorial: recovery significance (-z TRUE) on the small lymphoma scRNA data
+  z_lymphoma)  Rscript EcoTyper_recovery_scRNA.R -d Lymphoma -m example_data/scRNA_lymphoma_data.txt -a example_data/scRNA_lymphoma_annotation.txt -o RecoveryOutputZ -c Tissue -z TRUE -t 2 ;;
   t3_visium)   Rscript EcoTyper_recovery_visium.R -c "$HERE/config_recovery_visium.yml" ;;
   t4_bulk)
     D=CIBERSORTx/hires/MyDiscovery/Carcinoma_Fractions; mkdir -p "$D"
