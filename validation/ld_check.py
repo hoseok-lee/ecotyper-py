@@ -20,7 +20,7 @@ def gen(d):
     X[:, 5] = np.round(X[:, 5])  # ties / exact values
     X[:, 7] = 3.25  # constant column (sd == 0)
     d.mkdir(parents=True, exist_ok=True)
-    np.asfortranarray(X).T.copy().T.tofile(d / "X.bin")  # column-major
+    X.T.copy().tofile(d / "X.bin")  # column-major
     (d / "dim.txt").write_text(f"{NR} {NC}\n")
     return X
 
