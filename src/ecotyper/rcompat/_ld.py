@@ -66,6 +66,9 @@ def _build() -> Path:
 def _load():
     if not _wanted():
         return None
+    # the cor kernel is OpenMP-parallel; keep it single-threaded unless asked
+    # (the workflows already run one process per task)
+    os.environ.setdefault("OMP_NUM_THREADS", "1")
     try:
         lib = C.CDLL(str(_build()))
     except Exception as e:  # pragma: no cover
