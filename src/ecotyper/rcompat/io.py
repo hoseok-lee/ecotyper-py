@@ -174,6 +174,8 @@ def format_real(x: float, digits: int = 15) -> str:
         return "NA"
     if math.isinf(x):
         return "Inf" if x > 0 else "-Inf"
+    if x == 0.0:
+        return "0"  # R prints -0 as 0
     neg, kpower, nsig, widens = _scientific(x, digits)
     left = kpower + 1
     if widens:
