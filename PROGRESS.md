@@ -113,3 +113,17 @@ The port is complete only when exact parity + VALIDATION.md + 1–3 are done.
 - 16:13 server: fresh runs with NO_FMA and the x86 R ref: `work/run_py_nofma.sh a` (t6 then t4, 32 jobs) and `b` (t5, 64 jobs); logs `work/logs/py_nofma_all.log`, `work/logs/py_<t>_nofma.log`; outputs `work/py_<t>`; reports to `validation/reports/<t>.tsv` (untracked on server).
 - Still TODO: Dockerfile.r add `r-matrix`, rebuild, rerun R t3; then T1/T2/T3 Python vs x86 R.
 - NEXT: when t6/t4 finish (~25 min) read the summary line at the end of `work/logs/py_t6_presorted_nofma.log`; look at the biggest non-identical files. t5 takes ~4.6 h.
+
+## STEP 2026-10-17 22:55 (NO_FMA server results vs x86 R; root cause = x87 long double)
+- Server NO_FMA runs vs `r_ref_x86` (reports in server `validation/reports/*.tsv`, untracked):
+  T6 and T4: 608 files, 272 byte-identical, 608 discrete-equal, 0 missing, max rel 3.26e-07 (above the 1e-8 target).
+  T5: 762 files, 235 byte-identical, 568 discrete-equal, **33 missing**, max rel inf. All 161 non-discrete T5 files are in `discovery_scRNA_CRC/Cell_type_specific_genes`.
+  Missing T5 files: `Cell_States/discovery/<ct>/expression_full_matrix_log2.txt` (11) and `Cell_States/discovery_cross_cor/<ct>/expression_full_matrix_{log2,scaled}.txt` (22). They are probably only written in some code path (check workflows.py scRNA writer against R `EcoTyper_discovery_scRNA.R`).
+  The T5 mismatches start at the DE step: `<ct>_cell_type_specific_genes_raw.txt` FC differs by ~1e-14 relative (B.cells BANK1 2.29230937156139 R vs ...141 Py) and genes with tied FC come out in a different order, which then propagates (different gene sets -> W, heatmaps).
+- **Root cause (hypothesis, not yet verified by a fix): `rcompat/stats.py` assumes `long double == double` (true on the Mac's arm64).** R on x86-64 accumulates `sum`, `mean`, `colMeans`, `rowMeans`, and the `cov.c` cov/cor/var/scale sums in 80-bit x87 long double. The port is therefore not bit-exact vs x86 R. This also explains the T6/T4 1e-7 drift.
+- Plan (next steps):
+  1. `docker/Dockerfile`: gcc added (done in this commit). Rebuild `ecotyper-py:dev` on the server.
+  2. Add a C kernel library (`src/ecotyper/rcompat/_ld.c`, built on demand with `cc -O2 -ffp-contract=off`, loaded via ctypes) implementing with `long double`: `r_sum`, `r_mean` (two-pass), `colMeans`/`rowMeans`, `mean2`+`var`+`cov/cor` of cov.c (cov_complete1/2, cov_na_1), `scale` (colMeans + sqrt(sum(v^2)/(n-1))). Use it when `sizeof(long double) > 8` (x86); keep the numba double path on arm64 (long double == double). Don't write the kernels from memory: check the R 4.4.3 sources (`src/main/summary.c`, `src/library/stats/src/cov.c`, `src/main/array.c`) for the exact LDOUBLE variable types.
+  3. Re-run the T5 `Cell_type_specific_genes` step and T6/T4 on the server and compare. Expect byte-identical or <1e-12.
+  4. Then fix the 33 missing T5 files.
+- The `docker ps` listing now shows no ecotyper jobs running on the server.
