@@ -136,6 +136,7 @@ class CrossCor:
     log_data: pd.DataFrame  # genes x cells (all genes)
     scaled_filt: pd.DataFrame  # specific genes x cells
     cor: pd.DataFrame  # cells x cells
+    scaled_full: pd.DataFrame | None = None  # all genes x cells, scaled (expression_full_matrix_scaled.txt)
 
 
 def cross_correlation(expr: pd.DataFrame, annotation: pd.DataFrame, cell_type: str, specific: list | None,
@@ -154,11 +155,12 @@ def cross_correlation(expr: pd.DataFrame, annotation: pd.DataFrame, cell_type: s
     scaled = dsc.scale_data(log_data, by=by)
     S = np.nan_to_num(scaled.to_numpy(), nan=0.0)
     scaled = pd.DataFrame(S, index=scaled.index, columns=cols)
+    scaled_full = scaled
     if specific is not None:
         ks = set(map(str, specific))
         scaled = scaled[[str(g) in ks for g in scaled.index]]
     C = fast_cor(scaled.to_numpy())
-    return CrossCor(cell_type, log_data, scaled, pd.DataFrame(C, index=cols, columns=cols))
+    return CrossCor(cell_type, log_data, scaled, pd.DataFrame(C, index=cols, columns=cols), scaled_full)
 
 
 # ----------------------------------------------------------------------------

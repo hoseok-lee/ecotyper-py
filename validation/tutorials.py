@@ -74,7 +74,7 @@ def run(tut: str, out: Path, jobs: int):
         res = wf.discover_scrna_frame(read_scrna_matrix(ex / "scRNA_CRC_data.txt"),
                                       read_annotation(ex / "scRNA_CRC_annotation.txt"),
                                       cophenetic_cutoff=0.975, n_jobs=jobs)
-        wf.write_discovery_scrna(res, out, "discovery_scRNA_CRC")
+        wf.write_discovery_scrna(res, out, "discovery_scRNA_CRC", write_large=True)
     else:
         raise SystemExit(f"unknown tutorial {tut}")
 

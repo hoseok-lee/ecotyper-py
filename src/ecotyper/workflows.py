@@ -578,6 +578,8 @@ def write_discovery_scrna(res, out_dir, name: str, fractions: str = "Cell_type_s
         d.mkdir(parents=True, exist_ok=True)
         if write_large:
             _wm(c.log_data, d / "expression_full_matrix_log2.txt")
+            if c.scaled_full is not None:
+                _wm(c.scaled_full, d / "expression_full_matrix_scaled.txt")
         _wm(c.scaled_filt, d / "expression_top_genes_scaled_filt.txt")
         _wm(c.cor, d / "expression_top_genes_scaled.txt")
         for k in range(2, p["max_states"] + 1):
@@ -630,7 +632,11 @@ def write_discovery_scrna(res, out_dir, name: str, fractions: str = "Cell_type_s
     _wm(eco.jaccard, ed / "jaccard_matrix.txt")
     write_table(pd.DataFrame({"x": [eco.silhouette_initial]}), ed / "silhouette_initial.txt", row_names=False)
     write_table(eco.initial_ecotypes, ed / "initial_ecotypes.txt")
-    write_table(eco.ecotypes, ed / "ecotypes.txt", row_names=False)
+    # R (ecotypes_scRNA.R:152) adds a "Cell type" copy of CellType before ecotypes.txt is written
+    et = eco.ecotypes.copy()
+    if "Cell type" not in et.columns:
+        et.insert(list(et.columns).index("Ecotype"), "Cell type", et["CellType"])
+    write_table(et, ed / "ecotypes.txt", row_names=False)
     write_table(pd.DataFrame({"x": [eco.silhouette]}), ed / "silhouette.txt", row_names=False)
     write_ecotype_recovery(res.assignment, ed)
     return base
