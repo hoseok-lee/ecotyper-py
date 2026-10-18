@@ -9,12 +9,14 @@
 from __future__ import annotations
 
 import csv
+import ctypes as C
 import math
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
+from ._ld import LD as _LD
 from .frame import make_names
 
 
@@ -108,8 +110,9 @@ _R_DEC_MIN_EXPONENT = -308
 
 
 def _scientific(x: float, digits: int = 15):
-    """R's ``scientific()`` (src/main/format.c) for a build where long double
-    is double (macOS arm64): returns ``(neg, kpower, nsig, roundingwidens)``.
+    """R's ``scientific()`` (src/main/format.c): the C long-double kernel on
+    x86-64, else a double-precision emulation (macOS arm64, where long double
+    is double). Returns ``(neg, kpower, nsig, roundingwidens)``.
 
     The number of significant digits is decided by scaling and rounding in
     double precision, which differs from correctly rounded decimal conversion
@@ -117,6 +120,10 @@ def _scientific(x: float, digits: int = 15):
     """
     if x == 0.0:
         return 0, 0, 1, False
+    if _LD is not None and digits < 16:
+        neg, kpow, nsig, widens = (C.c_int() for _ in range(4))
+        _LD.ld_scientific(x, digits, C.byref(neg), C.byref(kpow), C.byref(nsig), C.byref(widens))
+        return neg.value, kpow.value, nsig.value, bool(widens.value)
     neg = 1 if x < 0 else 0
     r = -x if neg else x
     kp = int(math.floor(math.log10(r))) - digits + 1

@@ -90,6 +90,7 @@ def _load():
         "ld_scale_vec": (None, [dp, i64, dp]),
         "ld_scale_rows": (None, [dp, i64, i64, dp]),
         "ld_col_normalize": (None, [dp, i64, i64, C.c_int, dp]),
+        "ld_scientific": (None, [C.c_double, C.c_int] + [C.POINTER(C.c_int)] * 4),
     }
     for name, (res, args) in sigs.items():
         f = getattr(lib, name)

@@ -283,3 +283,41 @@ void ld_col_normalize(const double *X, i64 nr, i64 nc, int narm, double *out)
     free(acc);
     free(s);
 }
+
+/* ---- format.c: scientific() with long double (x86-64 build of R 4.4.3) ---- */
+
+static const LD fmt_tbl[] = {
+    1e00L, 1e01L, 1e02L, 1e03L, 1e04L, 1e05L, 1e06L, 1e07L, 1e08L, 1e09L,
+    1e10L, 1e11L, 1e12L, 1e13L, 1e14L, 1e15L, 1e16L, 1e17L, 1e18L, 1e19L,
+    1e20L, 1e21L, 1e22L, 1e23L, 1e24L, 1e25L, 1e26L, 1e27L
+};
+#define FMT_KP_MAX 27
+
+/* R's scientific() for digits <= 15; the tbl[] entries are the long double
+ * constants R's C compiler produces from the double-literal 1eNN (exact up to
+ * 1e27 in a 64-bit mantissa) */
+void ld_scientific(double x, int digits, int *neg, int *kpower, int *nsig, int *widens)
+{
+    if (x == 0.0) { *kpower = 0; *nsig = 1; *neg = 0; *widens = 0; return; }
+    double r;
+    if (x < 0.0) { *neg = 1; r = -x; } else { *neg = 0; r = x; }
+    int kp = (int)floor(log10(r)) - digits + 1;
+    LD r_prec = r;
+    if (abs(kp) <= FMT_KP_MAX) {
+        if (kp > 0) r_prec /= fmt_tbl[kp]; else if (kp < 0) r_prec *= fmt_tbl[-kp];
+    } else
+        r_prec /= powl(10.0L, (LD)kp);
+    if (r_prec < fmt_tbl[digits - 1]) { r_prec *= 10.0; kp--; }
+    double alpha = (double)nearbyintl(r_prec);
+    *nsig = digits;
+    for (int j = 1; j <= digits; j++) {
+        alpha /= 10.0;
+        if (alpha == floor(alpha)) (*nsig)--; else break;
+    }
+    if (*nsig == 0 && digits > 0) { *nsig = 1; kp += 1; }
+    *kpower = kp + digits - 1;
+    int rgt = digits - *kpower;
+    rgt = rgt < 0 ? 0 : rgt > FMT_KP_MAX ? FMT_KP_MAX : rgt;
+    double fuzz = 0.5 / (double)fmt_tbl[rgt];
+    *widens = *kpower > 0 && *kpower <= FMT_KP_MAX && (LD)r < fmt_tbl[*kpower] - (LD)fuzz;
+}

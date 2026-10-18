@@ -1,0 +1,609 @@
+tree	file	missing	identical_bytes	shape_equal	discrete_equal	n_numeric	n_diff_numeric	max_abs	max_rel	n_diff_other	rows	cols
+PresortedDiscovery/All_genes	Analysis/rank_selection/rank_data.txt	False	True	True	True	11.0	0.0	0.0	0.0	0.0	11.0	3.0
+PresortedDiscovery/All_genes	Analysis/rank_selection/rank_data_cutoff_0.95.txt	False	True	True	True	11.0	0.0	0.0	0.0	0.0	11.0	3.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/expression_full_matrix_log2.txt	False	True	True	True	110000.0	0.0	0.0	0.0	0.0	440.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/expression_full_matrix_scaled.txt	False	True	True	True	110000.0	0.0	0.0	0.0	0.0	440.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/expression_top_genes_log2.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	0.0	1.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/expression_top_genes_scaled.txt	False	True	True	True	110000.0	0.0	0.0	0.0	0.0	440.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/10/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/10/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/11/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/11/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/12/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/12/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/13/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/13/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/14/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/14/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/15/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/15/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/16/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/16/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/17/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/17/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/18/rank_data.txt	False	False	True	True	7.0	1.0	9.992007221626409e-16	1.1573256818275414e-15	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/18/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/19/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/19/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/2/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/2/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/20/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/20/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/3/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/3/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/4/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/4/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/5/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/5/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/6/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/6/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/7/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/7/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/8/H.txt	False	True	True	True	2000.0	0.0	0.0	0.0	0.0	8.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/8/W.txt	False	True	True	True	7040.0	0.0	0.0	0.0	0.0	880.0	9.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/8/first_filter_data.txt	False	True	True	True	16.0	0.0	0.0	0.0	0.0	8.0	3.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/8/gene_info.txt	False	True	True	True	2970.0	0.0	0.0	0.0	0.0	330.0	13.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/8/heatmap_data.txt	False	True	True	True	45540.0	0.0	0.0	0.0	0.0	330.0	139.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/8/heatmap_top_ann.txt	False	True	True	True	274.0	0.0	0.0	0.0	0.0	138.0	9.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/8/initial_gene_info.txt	False	True	True	True	3960.0	0.0	0.0	0.0	0.0	440.0	12.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/8/initial_state_abundances.txt	False	True	True	True	2000.0	0.0	0.0	0.0	0.0	8.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/8/initial_state_assignment.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	250.0	2.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/8/mapping_to_initial_states.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	5.0	2.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/8/rank_data.txt	False	False	True	True	7.0	1.0	9.992007221626409e-16	1.0403014427764032e-15	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/8/state_abundances.txt	False	True	True	True	1250.0	0.0	0.0	0.0	0.0	5.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/8/state_assignment.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	138.0	4.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/8/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/9/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/B.cells/9/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/expression_full_matrix_log2.txt	False	True	True	True	28750.0	0.0	0.0	0.0	0.0	115.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/expression_full_matrix_scaled.txt	False	True	True	True	28750.0	0.0	0.0	0.0	0.0	115.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/expression_top_genes_log2.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	0.0	1.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/expression_top_genes_scaled.txt	False	True	True	True	28750.0	0.0	0.0	0.0	0.0	115.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/10/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/10/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/11/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/11/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/12/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/12/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/13/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/13/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/14/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/14/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/15/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/15/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/16/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/16/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/17/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/17/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/18/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/18/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/19/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/19/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/2/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/2/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/20/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/20/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/3/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/3/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/4/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/4/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/5/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/5/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/6/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/6/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/7/H.txt	False	True	True	True	1750.0	0.0	0.0	0.0	0.0	7.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/7/W.txt	False	True	True	True	1610.0	0.0	0.0	0.0	0.0	230.0	8.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/7/first_filter_data.txt	False	False	True	False	14.0	13.0	83.0	inf	7.0	7.0	3.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/7/gene_info.txt	False	True	True	True	880.0	0.0	0.0	0.0	0.0	110.0	12.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/7/heatmap_data.txt	False	True	True	True	10560.0	0.0	0.0	0.0	0.0	110.0	97.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/7/heatmap_top_ann.txt	False	True	True	True	191.0	0.0	0.0	0.0	0.0	96.0	9.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/7/initial_gene_info.txt	False	True	True	True	920.0	0.0	0.0	0.0	0.0	115.0	11.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/7/initial_state_abundances.txt	False	True	True	True	1750.0	0.0	0.0	0.0	0.0	7.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/7/initial_state_assignment.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	250.0	2.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/7/mapping_to_initial_states.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	3.0	2.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/7/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/7/state_abundances.txt	False	True	True	True	750.0	0.0	0.0	0.0	0.0	3.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/7/state_assignment.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	96.0	4.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/7/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/8/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/8/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/9/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD4.T.cells/9/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/expression_full_matrix_log2.txt	False	True	True	True	26750.0	0.0	0.0	0.0	0.0	107.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/expression_full_matrix_scaled.txt	False	True	True	True	26750.0	0.0	0.0	0.0	0.0	107.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/expression_top_genes_log2.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	0.0	1.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/expression_top_genes_scaled.txt	False	True	True	True	26750.0	0.0	0.0	0.0	0.0	107.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/10/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/10/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/11/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/11/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/12/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/12/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/13/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/13/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/14/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/14/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/15/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/15/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/16/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/16/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/17/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/17/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/18/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/18/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/19/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/19/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/2/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/2/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/20/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/20/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/3/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/3/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/4/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/4/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/5/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/5/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/6/H.txt	False	True	True	True	1500.0	0.0	0.0	0.0	0.0	6.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/6/W.txt	False	True	True	True	1284.0	0.0	0.0	0.0	0.0	214.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/6/first_filter_data.txt	False	True	True	True	12.0	0.0	0.0	0.0	0.0	6.0	3.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/6/gene_info.txt	False	True	True	True	651.0	0.0	0.0	0.0	0.0	93.0	11.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/6/heatmap_data.txt	False	True	True	True	12462.0	0.0	0.0	0.0	0.0	93.0	135.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/6/heatmap_top_ann.txt	False	True	True	True	265.0	0.0	0.0	0.0	0.0	134.0	9.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/6/initial_gene_info.txt	False	True	True	True	749.0	0.0	0.0	0.0	0.0	107.0	10.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/6/initial_state_abundances.txt	False	True	True	True	1500.0	0.0	0.0	0.0	0.0	6.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/6/initial_state_assignment.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	250.0	2.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/6/mapping_to_initial_states.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	2.0	2.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/6/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/6/state_abundances.txt	False	True	True	True	500.0	0.0	0.0	0.0	0.0	2.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/6/state_assignment.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	134.0	4.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/6/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/7/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/7/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/8/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/8/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/9/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/CD8.T.cells/9/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/expression_full_matrix_log2.txt	False	True	True	True	47750.0	0.0	0.0	0.0	0.0	191.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/expression_full_matrix_scaled.txt	False	True	True	True	47750.0	0.0	0.0	0.0	0.0	191.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/expression_top_genes_log2.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	0.0	1.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/expression_top_genes_scaled.txt	False	True	True	True	47750.0	0.0	0.0	0.0	0.0	191.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/10/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/10/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/11/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/11/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/12/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/12/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/13/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/13/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/14/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/14/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/15/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/15/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/16/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/16/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/17/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/17/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/18/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/18/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/19/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/19/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/2/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/2/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/20/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/20/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/3/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/3/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/4/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/4/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/5/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/5/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/6/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/6/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/7/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/7/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/8/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/8/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/9/H.txt	False	True	True	True	2250.0	0.0	0.0	0.0	0.0	9.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/9/W.txt	False	True	True	True	3438.0	0.0	0.0	0.0	0.0	382.0	10.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/9/first_filter_data.txt	False	True	True	True	18.0	0.0	0.0	0.0	0.0	9.0	3.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/9/gene_info.txt	False	True	True	True	1680.0	0.0	0.0	0.0	0.0	168.0	14.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/9/heatmap_data.txt	False	True	True	True	15960.0	0.0	0.0	0.0	0.0	168.0	96.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/9/heatmap_top_ann.txt	False	True	True	True	190.0	0.0	0.0	0.0	0.0	95.0	9.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/9/initial_gene_info.txt	False	True	True	True	1910.0	0.0	0.0	0.0	0.0	191.0	13.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/9/initial_state_abundances.txt	False	True	True	True	2250.0	0.0	0.0	0.0	0.0	9.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/9/initial_state_assignment.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	250.0	2.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/9/mapping_to_initial_states.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	4.0	2.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/9/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/9/state_abundances.txt	False	True	True	True	1000.0	0.0	0.0	0.0	0.0	4.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/9/state_assignment.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	95.0	4.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Dendritic.cells/9/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/expression_full_matrix_log2.txt	False	True	True	True	250000.0	0.0	0.0	0.0	0.0	1000.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/expression_full_matrix_scaled.txt	False	True	True	True	380250.0	0.0	0.0	0.0	0.0	1521.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/expression_top_genes_log2.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	0.0	1.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/expression_top_genes_scaled.txt	False	True	True	True	250000.0	0.0	0.0	0.0	0.0	1000.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/10/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/10/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/11/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/11/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/12/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/12/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/13/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/13/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/14/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/14/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/15/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/15/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/16/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/16/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/17/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/17/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/18/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/18/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/19/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/19/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/2/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/2/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/20/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/20/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/3/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/3/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/4/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/4/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/5/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/5/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/6/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/6/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/7/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/7/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/8/H.txt	False	True	True	True	2000.0	0.0	0.0	0.0	0.0	8.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/8/W.txt	False	True	True	True	16000.0	0.0	0.0	0.0	0.0	2000.0	9.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/8/first_filter_data.txt	False	True	True	True	16.0	0.0	0.0	0.0	0.0	8.0	3.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/8/gene_info.txt	False	True	True	True	6372.0	0.0	0.0	0.0	0.0	708.0	13.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/8/heatmap_data.txt	False	True	True	True	92748.0	0.0	0.0	0.0	0.0	708.0	132.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/8/heatmap_top_ann.txt	False	True	True	True	261.0	0.0	0.0	0.0	0.0	131.0	9.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/8/initial_gene_info.txt	False	True	True	True	9000.0	0.0	0.0	0.0	0.0	1000.0	12.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/8/initial_state_abundances.txt	False	True	True	True	2000.0	0.0	0.0	0.0	0.0	8.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/8/initial_state_assignment.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	250.0	2.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/8/mapping_to_initial_states.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	4.0	2.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/8/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/8/state_abundances.txt	False	True	True	True	1000.0	0.0	0.0	0.0	0.0	4.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/8/state_assignment.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	131.0	4.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/8/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/9/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Endothelial.cells/9/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/expression_full_matrix_log2.txt	False	True	True	True	250000.0	0.0	0.0	0.0	0.0	1000.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/expression_full_matrix_scaled.txt	False	True	True	True	3630250.0	0.0	0.0	0.0	0.0	14521.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/expression_top_genes_log2.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	0.0	1.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/expression_top_genes_scaled.txt	False	True	True	True	250000.0	0.0	0.0	0.0	0.0	1000.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/10/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/10/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/11/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/11/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/12/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/12/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/13/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/13/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/14/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/14/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/15/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/15/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/16/H.txt	False	True	True	True	4000.0	0.0	0.0	0.0	0.0	16.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/16/W.txt	False	True	True	True	32000.0	0.0	0.0	0.0	0.0	2000.0	17.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/16/first_filter_data.txt	False	True	True	True	32.0	0.0	0.0	0.0	0.0	16.0	3.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/16/gene_info.txt	False	True	True	True	9503.0	0.0	0.0	0.0	0.0	559.0	21.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/16/heatmap_data.txt	False	True	True	True	85527.0	0.0	0.0	0.0	0.0	559.0	154.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/16/heatmap_top_ann.txt	False	True	True	True	304.0	0.0	0.0	0.0	0.0	153.0	9.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/16/initial_gene_info.txt	False	True	True	True	17000.0	0.0	0.0	0.0	0.0	1000.0	20.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/16/initial_state_abundances.txt	False	True	True	True	4000.0	0.0	0.0	0.0	0.0	16.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/16/initial_state_assignment.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	250.0	2.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/16/mapping_to_initial_states.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	8.0	2.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/16/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/16/state_abundances.txt	False	True	True	True	2000.0	0.0	0.0	0.0	0.0	8.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/16/state_assignment.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	153.0	4.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/16/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/17/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/17/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/18/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/18/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/19/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/19/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/2/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/2/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/20/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/20/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/3/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/3/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/4/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/4/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/5/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/5/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/6/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/6/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/7/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/7/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/8/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/8/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/9/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Epithelial.cells/9/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/expression_full_matrix_log2.txt	False	True	True	True	250000.0	0.0	0.0	0.0	0.0	1000.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/expression_full_matrix_scaled.txt	False	True	True	True	1063000.0	0.0	0.0	0.0	0.0	4252.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/expression_top_genes_log2.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	0.0	1.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/expression_top_genes_scaled.txt	False	True	True	True	250000.0	0.0	0.0	0.0	0.0	1000.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/10/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/10/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/11/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/11/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/12/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/12/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/13/H.txt	False	True	True	True	3250.0	0.0	0.0	0.0	0.0	13.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/13/W.txt	False	True	True	True	26000.0	0.0	0.0	0.0	0.0	2000.0	14.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/13/first_filter_data.txt	False	True	True	True	26.0	0.0	0.0	0.0	0.0	13.0	3.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/13/gene_info.txt	False	True	True	True	9730.0	0.0	0.0	0.0	0.0	695.0	18.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/13/heatmap_data.txt	False	True	True	True	91740.0	0.0	0.0	0.0	0.0	695.0	133.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/13/heatmap_top_ann.txt	False	True	True	True	262.0	0.0	0.0	0.0	0.0	132.0	9.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/13/initial_gene_info.txt	False	True	True	True	14000.0	0.0	0.0	0.0	0.0	1000.0	17.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/13/initial_state_abundances.txt	False	True	True	True	3250.0	0.0	0.0	0.0	0.0	13.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/13/initial_state_assignment.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	250.0	2.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/13/mapping_to_initial_states.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	7.0	2.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/13/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/13/state_abundances.txt	False	True	True	True	1750.0	0.0	0.0	0.0	0.0	7.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/13/state_assignment.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	132.0	4.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/13/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/14/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/14/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/15/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/15/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/16/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/16/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/17/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/17/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/18/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/18/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/19/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/19/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/2/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/2/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/20/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/20/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/3/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/3/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/4/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/4/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/5/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/5/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/6/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/6/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/7/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/7/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/8/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/8/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/9/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Fibroblasts/9/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/expression_full_matrix_log2.txt	False	True	True	True	46000.0	0.0	0.0	0.0	0.0	184.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/expression_full_matrix_scaled.txt	False	True	True	True	46000.0	0.0	0.0	0.0	0.0	184.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/expression_top_genes_log2.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	0.0	1.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/expression_top_genes_scaled.txt	False	True	True	True	46000.0	0.0	0.0	0.0	0.0	184.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/10/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/10/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/11/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/11/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/12/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/12/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/13/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/13/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/14/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/14/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/15/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/15/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/16/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/16/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/17/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/17/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/18/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/18/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/19/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/19/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/2/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/2/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/20/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/20/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/3/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/3/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/4/H.txt	False	True	True	True	1000.0	0.0	0.0	0.0	0.0	4.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/4/W.txt	False	True	True	True	1472.0	0.0	0.0	0.0	0.0	368.0	5.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/4/first_filter_data.txt	False	True	True	True	8.0	0.0	0.0	0.0	0.0	4.0	3.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/4/gene_info.txt	False	True	True	True	850.0	0.0	0.0	0.0	0.0	170.0	9.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/4/heatmap_data.txt	False	True	True	True	25330.0	0.0	0.0	0.0	0.0	170.0	150.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/4/heatmap_top_ann.txt	False	True	True	True	295.0	0.0	0.0	0.0	0.0	149.0	9.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/4/initial_gene_info.txt	False	True	True	True	920.0	0.0	0.0	0.0	0.0	184.0	8.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/4/initial_state_abundances.txt	False	True	True	True	1000.0	0.0	0.0	0.0	0.0	4.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/4/initial_state_assignment.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	250.0	2.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/4/mapping_to_initial_states.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	2.0	2.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/4/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/4/state_abundances.txt	False	True	True	True	500.0	0.0	0.0	0.0	0.0	2.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/4/state_assignment.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	149.0	4.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/4/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/5/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/5/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/6/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/6/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/7/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/7/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/8/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/8/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/9/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Mast.cells/9/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/expression_full_matrix_log2.txt	False	True	True	True	60250.0	0.0	0.0	0.0	0.0	241.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/expression_full_matrix_scaled.txt	False	True	True	True	60250.0	0.0	0.0	0.0	0.0	241.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/expression_top_genes_log2.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	0.0	1.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/expression_top_genes_scaled.txt	False	True	True	True	60250.0	0.0	0.0	0.0	0.0	241.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/10/H.txt	False	True	True	True	2500.0	0.0	0.0	0.0	0.0	10.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/10/W.txt	False	True	True	True	4820.0	0.0	0.0	0.0	0.0	482.0	11.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/10/first_filter_data.txt	False	False	True	False	20.0	15.0	39.0	inf	8.0	10.0	3.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/10/gene_info.txt	False	True	True	True	2431.0	0.0	0.0	0.0	0.0	221.0	15.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/10/heatmap_data.txt	False	True	True	True	18564.0	0.0	0.0	0.0	0.0	221.0	85.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/10/heatmap_top_ann.txt	False	True	True	True	168.0	0.0	0.0	0.0	0.0	84.0	9.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/10/initial_gene_info.txt	False	True	True	True	2651.0	0.0	0.0	0.0	0.0	241.0	14.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/10/initial_state_abundances.txt	False	True	True	True	2500.0	0.0	0.0	0.0	0.0	10.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/10/initial_state_assignment.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	250.0	2.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/10/mapping_to_initial_states.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	3.0	2.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/10/rank_data.txt	False	False	True	True	7.0	1.0	9.992007221626409e-16	1.0520309748857336e-15	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/10/state_abundances.txt	False	True	True	True	750.0	0.0	0.0	0.0	0.0	3.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/10/state_assignment.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	84.0	4.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/10/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/11/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/11/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/12/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/12/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/13/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/13/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/14/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/14/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/15/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/15/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/16/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/16/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/17/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/17/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/18/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/18/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/19/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/19/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/2/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/2/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/20/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/20/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/3/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/3/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/4/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/4/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/5/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/5/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/6/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/6/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/7/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/7/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/8/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/8/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/9/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/Monocytes.and.Macrophages/9/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/expression_full_matrix_log2.txt	False	True	True	True	84500.0	0.0	0.0	0.0	0.0	338.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/expression_full_matrix_scaled.txt	False	True	True	True	84500.0	0.0	0.0	0.0	0.0	338.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/expression_top_genes_log2.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	0.0	1.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/expression_top_genes_scaled.txt	False	True	True	True	84500.0	0.0	0.0	0.0	0.0	338.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/10/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/10/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/11/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/11/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/12/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/12/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/13/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/13/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/14/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/14/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/15/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/15/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/16/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/16/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/17/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/17/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/18/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/18/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/19/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/19/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/2/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/2/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/20/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/20/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/3/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/3/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/4/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/4/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/5/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/5/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/6/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/6/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/7/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/7/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/8/H.txt	False	True	True	True	2000.0	0.0	0.0	0.0	0.0	8.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/8/W.txt	False	True	True	True	5408.0	0.0	0.0	0.0	0.0	676.0	9.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/8/first_filter_data.txt	False	True	True	True	16.0	0.0	0.0	0.0	0.0	8.0	3.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/8/gene_info.txt	False	True	True	True	2232.0	0.0	0.0	0.0	0.0	248.0	13.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/8/heatmap_data.txt	False	True	True	True	27032.0	0.0	0.0	0.0	0.0	248.0	110.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/8/heatmap_top_ann.txt	False	True	True	True	215.0	0.0	0.0	0.0	0.0	109.0	9.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/8/initial_gene_info.txt	False	True	True	True	3042.0	0.0	0.0	0.0	0.0	338.0	12.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/8/initial_state_abundances.txt	False	True	True	True	2000.0	0.0	0.0	0.0	0.0	8.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/8/initial_state_assignment.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	250.0	2.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/8/mapping_to_initial_states.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	4.0	2.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/8/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/8/state_abundances.txt	False	True	True	True	1000.0	0.0	0.0	0.0	0.0	4.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/8/state_assignment.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	109.0	4.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/8/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/9/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PCs/9/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/expression_full_matrix_log2.txt	False	True	True	True	15250.0	0.0	0.0	0.0	0.0	61.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/expression_full_matrix_scaled.txt	False	True	True	True	15250.0	0.0	0.0	0.0	0.0	61.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/expression_top_genes_log2.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	0.0	1.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/expression_top_genes_scaled.txt	False	True	True	True	15250.0	0.0	0.0	0.0	0.0	61.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/10/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/10/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/11/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/11/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/12/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/12/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/13/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/13/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/14/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/14/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/15/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/15/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/16/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/16/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/17/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/17/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/18/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/18/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/19/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/19/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/2/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/2/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/20/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/20/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/3/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/3/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/4/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/4/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/5/H.txt	False	True	True	True	1250.0	0.0	0.0	0.0	0.0	5.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/5/W.txt	False	True	True	True	610.0	0.0	0.0	0.0	0.0	122.0	6.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/5/first_filter_data.txt	False	True	True	True	10.0	0.0	0.0	0.0	0.0	5.0	3.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/5/gene_info.txt	False	True	True	True	336.0	0.0	0.0	0.0	0.0	56.0	10.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/5/heatmap_data.txt	False	True	True	True	5320.0	0.0	0.0	0.0	0.0	56.0	96.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/5/heatmap_top_ann.txt	False	True	True	True	189.0	0.0	0.0	0.0	0.0	95.0	9.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/5/initial_gene_info.txt	False	True	True	True	366.0	0.0	0.0	0.0	0.0	61.0	9.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/5/initial_state_abundances.txt	False	True	True	True	1250.0	0.0	0.0	0.0	0.0	5.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/5/initial_state_assignment.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	250.0	2.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/5/mapping_to_initial_states.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	2.0	2.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/5/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/5/state_abundances.txt	False	True	True	True	500.0	0.0	0.0	0.0	0.0	2.0	251.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/5/state_assignment.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	95.0	4.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/5/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/6/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/6/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/7/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/7/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/8/rank_data.txt	False	True	True	True	7.0	0.0	0.0	0.0	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/8/used.txt	True										
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/9/rank_data.txt	False	False	True	True	7.0	1.0	9.992007221626409e-16	1.1214396509605577e-15	0.0	1.0	7.0
+PresortedDiscovery/All_genes	Cell_States/discovery/PMNs/9/used.txt	True										
+PresortedDiscovery/All_genes	Ecotypes/discovery/assignment_p_vals.txt	False	False	True	True	1750.0	388.0	1.0269562977782698e-15	9.580572351919393e-15	0.0	7.0	251.0
+PresortedDiscovery/All_genes	Ecotypes/discovery/binary_classification_all_states.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	44.0	251.0
+PresortedDiscovery/All_genes	Ecotypes/discovery/combined_state_abundances.txt	False	True	True	True	8750.0	0.0	0.0	0.0	0.0	35.0	251.0
+PresortedDiscovery/All_genes	Ecotypes/discovery/ecotype_abundance.txt	False	True	True	True	1750.0	0.0	0.0	0.0	0.0	7.0	251.0
+PresortedDiscovery/All_genes	Ecotypes/discovery/ecotype_assignment.txt	False	False	True	True	757.0	78.0	9.992007221626409e-16	6.771650260806449e-15	0.0	190.0	12.0
+PresortedDiscovery/All_genes	Ecotypes/discovery/ecotypes.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	35.0	5.0
+PresortedDiscovery/All_genes	Ecotypes/discovery/initial_ecotype_assignment.txt	False	False	True	True	995.0	91.0	9.992007221626409e-16	6.771650260806449e-15	0.0	250.0	12.0
+PresortedDiscovery/All_genes	Ecotypes/discovery/initial_ecotypes.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	44.0	4.0
+PresortedDiscovery/All_genes	Ecotypes/discovery/jaccard_matrix.txt	False	True	True	True	1936.0	0.0	0.0	0.0	0.0	44.0	45.0
+PresortedDiscovery/All_genes	Ecotypes/discovery/mapping_all_states.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	44.0	5.0
+PresortedDiscovery/All_genes	Ecotypes/discovery/silhouette.txt	False	True	True	True	1.0	0.0	0.0	0.0	0.0	1.0	1.0
+PresortedDiscovery/All_genes	Ecotypes/discovery/silhouette_initial.txt	False	True	True	True	1.0	0.0	0.0	0.0	0.0	1.0	1.0
