@@ -1,0 +1,17 @@
+# Reads <dir>/X.bin (double, column-major, 300 x 40) and <dir>/dim.txt; writes R's results as raw doubles.
+d <- commandArgs(TRUE)[1]
+dm <- scan(file.path(d, "dim.txt"), quiet = TRUE)
+X <- matrix(readBin(file.path(d, "X.bin"), "double", n = dm[1] * dm[2]), dm[1], dm[2])
+w <- function(name, v) writeBin(as.double(v), file.path(d, paste0(name, ".R.bin")))
+w("sum", apply(X, 2, sum))
+w("mean", apply(X, 2, mean))
+w("colMeans", colMeans(X))
+w("rowMeans", rowMeans(X))
+w("rowMean_apply", apply(X, 1, mean))
+w("var", apply(X, 2, var))
+w("rowvar", apply(X, 1, var))
+w("cor", cor(X))
+w("cor2", sapply(seq_len(dm[2] - 1), function(j) cor(X[, j], X[, j + 1])))
+w("scale_rows", t(apply(X, 1, scale)))
+w("scale_vec", apply(X, 2, function(v) as.vector(scale(v))))
+w("colnorm", apply(X, 2, function(x) x / sum(x)))

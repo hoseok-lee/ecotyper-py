@@ -27,6 +27,9 @@ test = ["pytest>=7"]
 [project.scripts]
 ecotyper-py = "ecotyper.cli:main"
 
+[tool.setuptools.package-data]
+ecotyper = ["rcompat/*.c"]
+
 [tool.setuptools.packages.find]
 where = ["src"]
 

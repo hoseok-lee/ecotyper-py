@@ -15,7 +15,14 @@ import numpy as np
 from scipy import special
 from scipy.stats import hypergeom
 
+from . import _ld
 from .fma import fma
+
+_LD = _ld.LD  # C kernels for R's x87 long double reductions (x86-64), else None
+
+
+def _f64(x):
+    return np.ascontiguousarray(x, dtype=np.float64)
 
 DBL_EPS = np.finfo(np.float64).eps
 
@@ -48,6 +55,9 @@ def _r_mean(x):
 
 def r_sum(x) -> float:
     """``sum(x)`` (sequential accumulation)."""
+    if _LD is not None:
+        x = _f64(x).ravel()
+        return _LD.ld_sum(_ld.ptr(x), x.size)
     return float(_seq_sum(np.ascontiguousarray(x, dtype=np.float64).ravel()))
 
 
@@ -58,6 +68,8 @@ def r_mean(x, na_rm: bool = False) -> float:
         x = x[~np.isnan(x)]
     if x.size == 0:
         return np.nan
+    if _LD is not None:
+        return _LD.ld_mean(_ld.ptr(x), x.size)
     return float(_r_mean(x))
 
 
@@ -94,6 +106,9 @@ def apply_mean_rows(X, na_rm: bool = False) -> np.ndarray:
     if X.shape[1] == 0:
         out[:] = np.nan
         return out
+    if _LD is not None:
+        _LD.ld_row_mean(_ld.ptr(X), X.shape[0], X.shape[1], int(na_rm), _ld.ptr(out))
+        return out
     (_row_means_narm if na_rm else _row_means)(X, out)
     return out
 
@@ -110,15 +125,23 @@ def _col_means(X, out):
 
 
 def col_means(X) -> np.ndarray:
-    X = np.asarray(X, dtype=np.float64)
+    X = _f64(X)
     out = np.empty(X.shape[1])
-    _col_means(np.ascontiguousarray(X), out)
+    if _LD is not None:
+        _LD.ld_col_means(_ld.ptr(X), X.shape[0], X.shape[1], _ld.ptr(out))
+        return out
+    _col_means(X, out)
     return out
 
 
 def row_means(X) -> np.ndarray:
     """``rowMeans(X)`` (column-by-column accumulation; same per-row order)."""
-    return col_means(np.asarray(X, dtype=np.float64).T)
+    X = _f64(X)
+    if _LD is not None:
+        out = np.empty(X.shape[0])
+        _LD.ld_row_means(_ld.ptr(X), X.shape[0], X.shape[1], _ld.ptr(out))
+        return out
+    return col_means(X.T)
 
 
 # ----------------------------------------------------------------------------
@@ -169,7 +192,10 @@ def _row_var(X, out):
 
 def r_var(x) -> float:
     """``var(x)`` for a numeric vector."""
-    return float(_var(np.ascontiguousarray(x, dtype=np.float64).ravel()))
+    x = np.ascontiguousarray(x, dtype=np.float64).ravel()
+    if _LD is not None:
+        return _LD.ld_var(_ld.ptr(x), x.size)
+    return float(_var(x))
 
 
 def r_sd(x) -> float:
@@ -180,6 +206,9 @@ def row_var(X) -> np.ndarray:
     """``apply(X, 1, var)``."""
     X = np.ascontiguousarray(X, dtype=np.float64)
     out = np.empty(X.shape[0])
+    if _LD is not None:
+        _LD.ld_row_var(_ld.ptr(X), X.shape[0], X.shape[1], _ld.ptr(out))
+        return out
     _row_var(X, out)
     return out
 
@@ -244,6 +273,10 @@ def cor_matrix(X) -> np.ndarray:
     """``cor(X)``: Pearson correlation between the columns of ``X``."""
     X = np.asarray(X, dtype=np.float64)
     out = np.empty((X.shape[1], X.shape[1]))
+    if _LD is not None:
+        XT = np.ascontiguousarray(X.T)
+        _LD.ld_cor_cols(_ld.ptr(XT), X.shape[0], X.shape[1], _ld.ptr(out))
+        return out
     _cor_cols(np.ascontiguousarray(X), out)
     return out
 
@@ -286,7 +319,11 @@ def _cor2(x, y):
 
 def cor_vectors(x, y) -> float:
     """``cor(x, y)`` for two numeric vectors (cov_na_2 path)."""
-    return float(_cor2(np.ascontiguousarray(x, dtype=np.float64), np.ascontiguousarray(y, dtype=np.float64)))
+    x = np.ascontiguousarray(x, dtype=np.float64)
+    y = np.ascontiguousarray(y, dtype=np.float64)
+    if _LD is not None:
+        return _LD.ld_cor2(_ld.ptr(x), _ld.ptr(y), x.size)
+    return float(_cor2(x, y))
 
 
 def fast_cor(X) -> np.ndarray:
@@ -340,6 +377,9 @@ def scale_rows(X) -> np.ndarray:
     """``t(apply(X, 1, scale))``."""
     X = np.ascontiguousarray(X, dtype=np.float64)
     out = np.empty_like(X)
+    if _LD is not None:
+        _LD.ld_scale_rows(_ld.ptr(X), X.shape[0], X.shape[1], _ld.ptr(out))
+        return out
     _scale_rows(X, out)
     return out
 
@@ -348,6 +388,9 @@ def scale_vec(x) -> np.ndarray:
     """``as.vector(scale(x))``."""
     x = np.ascontiguousarray(x, dtype=np.float64)
     out = np.empty_like(x)
+    if _LD is not None:
+        _LD.ld_scale_vec(_ld.ptr(x), x.size, _ld.ptr(out))
+        return out
     _scale_vec(x, out)
     return out
 
@@ -385,6 +428,9 @@ def col_normalize(X, na_rm: bool = False) -> np.ndarray:
     """``apply(X, 2, function(x) x / sum(x[, na.rm = TRUE]))``."""
     X = np.ascontiguousarray(X, dtype=np.float64)
     out = np.empty_like(X)
+    if _LD is not None:
+        _LD.ld_col_normalize(_ld.ptr(X), X.shape[0], X.shape[1], int(na_rm), _ld.ptr(out))
+        return out
     _col_normalize(X, out, na_rm)
     return out
 
