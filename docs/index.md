@@ -76,5 +76,6 @@ If you use it, cite:
   lymphoma*, Cancer Cell 2021, <https://doi.org/10.1016/j.ccell.2021.08.011>
 
 This port is a derivative of EcoTyper, distributed under the same **Stanford non-commercial
-license**: free for non-commercial use only. CIBERSORTx is closed source and is not part of
+license**: free for non-commercial use only. It is an independent port, not affiliated
+with or endorsed by the EcoTyper authors. CIBERSORTx is closed source and is not part of
 the port. Steps that need it take precomputed CIBERSORTx outputs as inputs.

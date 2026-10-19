@@ -13,8 +13,9 @@ files are byte-identical, and all numeric outputs agree to ≤8e-11 relative. Se
 
 ## Documentation
 
-Sphinx docs (installation, API reference, step-by-step tutorials, Python vs R
-benchmarks with charts) live in `docs/`:
+<https://hoseok-lee.github.io/ecotyper-py/>. Sphinx docs (installation, API reference, step-by-step tutorials, Python vs R
+benchmarks with charts) live in `docs/`. They are built and published by `.github/workflows/docs.yml` on every
+push to `main`. To build them locally:
 
 ```bash
 pip install -e ".[docs]"
@@ -34,7 +35,8 @@ colleagues. If you use it, cite:
 
 This port is a derivative of EcoTyper and is distributed under the same
 **Stanford non-commercial license** ([LICENSE.md](LICENSE.md)): free for
-non-commercial use only. It is not published anywhere.
+non-commercial use only. It is an independent port, not affiliated with or endorsed by
+the EcoTyper authors.
 
 CIBERSORTx is closed source and is **not** part of the port. Steps that need it
 (cell type fractions and high-resolution purification) take precomputed
