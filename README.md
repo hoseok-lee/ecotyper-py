@@ -5,10 +5,9 @@ A Python/AnnData port of **EcoTyper**
 identifying cell states and multicellular communities (ecotypes) from bulk,
 single-cell and spatial transcriptomes, by the Newman lab (Stanford).
 
-The port reproduces the R implementation **number for number**: on the README
-tutorials, every discrete output is identical and every numeric output is
-byte-identical after R's own text formatting, with the single exception of
-Welch t-test p-values, which agree to ≤1.5e-14 relative. See
+The port reproduces the R implementation: on the README tutorials (compared
+against R on x86-64/glibc), every discrete output is identical, about 60% of the
+files are byte-identical, and all numeric outputs agree to ≤8e-11 relative. See
 [VALIDATION.md](VALIDATION.md) for the comparison and
 [PORTING_PLAN.md](PORTING_PLAN.md) for the mapping from R to Python.
 
