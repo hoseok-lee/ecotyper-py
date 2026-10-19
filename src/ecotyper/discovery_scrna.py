@@ -1,13 +1,14 @@
 """scRNA-seq discovery (``EcoTyper_discovery_scRNA.R``):
 
-1. cell-type-specific genes (``state_discovery_scRNA_filter_genes.R``),
+1. cell-type-specific genes (``state_discovery_scRNA_filter_genes.R``);
 2. cell-cell correlation matrices (``state_discovery_scRNA_distances.R``) and
-   NMF on them (``state_discovery_NMF.R`` with ``discovery_cross_cor``),
-3. rank selection, 4. initial states (``state_discovery_initial_plots_scRNA.R``),
+   NMF on them (``state_discovery_NMF.R`` with ``discovery_cross_cor``);
+3. rank selection;
+4. initial states (``state_discovery_initial_plots_scRNA.R``);
 5. marker genes and NMF re-discovery on expression
-   (``state_discovery_extract_features_scRNA.R``),
-6. initial states on expression, 7. QC filter
-   (``state_discovery_first_filter_scRNA.R``),
+   (``state_discovery_extract_features_scRNA.R``);
+6. initial states on expression;
+7. QC filter (``state_discovery_first_filter_scRNA.R``);
 8. ecotypes (``ecotypes_scRNA.R``, ``ecotypes_assign_samples_scRNA.R``).
 """
 from __future__ import annotations

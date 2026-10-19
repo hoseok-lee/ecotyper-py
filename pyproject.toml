@@ -23,6 +23,7 @@ dependencies = [
 icu = ["PyICU>=2.10"]
 plot = ["matplotlib>=3.7"]
 test = ["pytest>=7"]
+docs = ["sphinx>=7", "furo", "myst-parser>=2", "sphinx-copybutton", "sphinx-design"]
 
 [project.scripts]
 ecotyper-py = "ecotyper.cli:main"

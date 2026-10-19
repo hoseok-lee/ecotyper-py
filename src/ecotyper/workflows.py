@@ -1,10 +1,15 @@
 """High-level workflows mirroring the R wrapper scripts.
 
-* :func:`recover_bulk` ↔ ``EcoTyper_recovery_bulk.R``
-* :func:`recover_scrna` ↔ ``EcoTyper_recovery_scRNA.R``
-* :func:`recover_visium` ↔ ``EcoTyper_recovery_visium.R``
-* :func:`discover_bulk`, :func:`discover_presorted`, :func:`discover_scrna`
-  ↔ the discovery wrappers (see :mod:`ecotyper.discovery`).
+* :func:`recover_bulk`, :func:`recover_bulk_files` ↔ ``EcoTyper_recovery_bulk.R``
+* :func:`recover_scrna`, :func:`recover_scrna_files` ↔ ``EcoTyper_recovery_scRNA.R``
+* :func:`recover_visium_frame`, :func:`recover_visium_files` ↔ ``EcoTyper_recovery_visium.R``
+* :func:`discover_from_profiles`, :func:`discover_files` ↔ ``EcoTyper_discovery_bulk.R``
+  (downstream of CIBERSORTx) and ``EcoTyper_discovery_presorted.R``
+* :func:`discover_scrna`, :func:`discover_scrna_frame` ↔ ``EcoTyper_discovery_scRNA.R``
+
+The ``*_frame`` functions take pandas objects, the ``*_files`` functions take the
+R wrappers' input files and write the R output layout, and the unsuffixed
+functions take :class:`anndata.AnnData` and store results in it.
 
 AnnData conventions (``key = "ecotyper"`` by default):
 
@@ -13,8 +18,7 @@ AnnData conventions (``key = "ecotyper"`` by default):
     was filtered out during discovery);
 ``adata.obsm[f"{key}_abundance_{cell_type}"]``
     cell state abundances (samples x states, columns ``S01``…);
-``adata.obs[f"{key}_ecotype"]``, ``adata.obs[f"{key}_max_ecotype"]``,
-``adata.obs[f"{key}_ecotype_q"]``
+``adata.obs[f"{key}_ecotype"]``, ``adata.obs[f"{key}_max_ecotype"]``, ``adata.obs[f"{key}_ecotype_q"]``
     ecotype assignment (``Unassigned`` if not significant), most abundant
     ecotype and its BH-adjusted p-value (bulk/Visium);
 ``adata.obsm[f"{key}_ecotype_abundance"]``
@@ -182,6 +186,12 @@ def _scrna_state_task(expr_all, annotation, ctm, seed, subsample):
 
 def recover_scrna_frame(expr_all: pd.DataFrame, annotation: pd.DataFrame, model: EcoTyperModel, *,
                         seed: int = 42, subsample: int = -1, n_jobs: int = 1):
+    """scRNA-seq recovery on a genes x cells DataFrame (``fread`` semantics) and a
+    cell annotation with ``ID``, ``CellType`` and optionally ``Sample``.
+
+    ``subsample`` caps the number of cells per cell type (R's ``-s``; values below
+    50, e.g. the default ``-1``, keep all cells). Returns ``(state_results, ecotype_result)``; ``ecotype_result`` is
+    ``None`` without a ``Sample`` column."""
     cts = model.cell_type_order
     res = _run_parallel(_scrna_state_task, [(expr_all, annotation, model.cell_types[ct], seed, subsample)
                                             for ct in cts], n_jobs)

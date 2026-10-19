@@ -3,3 +3,6 @@ __pycache__/
 .pytest_cache/
 tests/data/ref/
 /work/
+docs/_build/
+docs/_generated/
+docs/generated/

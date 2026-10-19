@@ -11,6 +11,16 @@ files are byte-identical, and all numeric outputs agree to ≤8e-11 relative. Se
 [VALIDATION.md](VALIDATION.md) for the comparison and
 [PORTING_PLAN.md](PORTING_PLAN.md) for the mapping from R to Python.
 
+## Documentation
+
+Sphinx docs (installation, API reference, step-by-step tutorials, Python vs R
+benchmarks with charts) live in `docs/`:
+
+```bash
+pip install -e ".[docs]"
+sphinx-build -b html docs docs/_build/html   # open docs/_build/html/index.html
+```
+
 ## Credit and license
 
 EcoTyper was developed by Bogdan A. Luca, Chloé B. Steen, Aaron M. Newman and
