@@ -152,3 +152,8 @@ The port is complete only when exact parity + VALIDATION.md + 1–3 are done.
 - Server NO_FMA + LD kernels + long-double formatting vs x86 R ref (finished 15:43): **T6 608 files, 313 byte-identical, 608 discrete-equal, 0 missing, max rel 3.49e-12; T4 identical numbers; T5 762 files, 490 byte-identical, 762 discrete-equal, 0 missing, max rel 8e-11.** All within the 1e-8 target; discrete outputs fully identical. T4/T5/T6 are DONE.
 - 16:59 server: rebuilding `ecotyper-r:dev` from Dockerfile.r (adds r-matrix) then running R `t3_visium` (log `work/logs/r_t3_rebuild.log`, outputs `work/ecotyper-r-src/...` -> r_ref_x86 copy per run_r_reference.sh).
 - NEXT: check `r_t3_rebuild.log` tail; confirm R t3 produced VisiumOutput in r_ref_x86; run Python T1/T2/T3 (work/dock.sh with NO_FMA=1; see `validation/tutorials.py`) and compare; then `validation/make_validation_md.py` -> VALIDATION.md.
+
+## STEP 2026-10-18 22:00 (R t3 done on x86; Python T1/T2/T3 started)
+- Server R `t3_visium` (rebuilt `ecotyper-r:dev` with r-matrix) finished OK (10 min). Ran `validation/r_reference/collect_r_ref.sh` on the server: `work/r_ref_x86` now has Visium states + `VisiumOutput` (T1/T2 R refs were already there).
+- 21:59 server: `work/run_py_t123.sh` (detached, NO_FMA, 32 jobs) runs Python t3_visium, t1_lung, t1_lymphoma, t2_crc, t2_lymphoma sequentially; log `work/logs/py_t123_all.log`, per-tutorial `work/logs/py_<t>_nofma.log`, reports in server `validation/reports/<t>.tsv`.
+- NEXT: read `tail -n 3 work/logs/py_t123_all.log` and the summary line of each `py_<t>_nofma.log`; fix any mismatch (T3 is new vs x86 R; LD kernels/formatting may already cover it); then `validation/make_validation_md.py` -> VALIDATION.md (copy server reports back, commit).
