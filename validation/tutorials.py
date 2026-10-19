@@ -96,12 +96,15 @@ def main(argv=None):
     ap.add_argument("--out", default=str(ROOT / "work" / "py_out"))
     ap.add_argument("--jobs", type=int, default=4)
     ap.add_argument("--compare-only", action="store_true")
+    ap.add_argument("--no-compare", action="store_true", help="run only (used by benchmark.py)")
     a = ap.parse_args(argv)
     out = Path(a.out)
     if not a.compare_only:
         t = time.time()
         run(a.tutorial, out, a.jobs)
         print(f"{a.tutorial}: python run {time.time() - t:.0f} s", file=sys.stderr)
+    if a.no_compare:
+        return
     df = compare(a.tutorial, out)
     rep = ROOT / "validation" / "reports"
     rep.mkdir(parents=True, exist_ok=True)
