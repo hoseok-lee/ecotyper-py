@@ -183,3 +183,9 @@ The port is complete only when exact parity + VALIDATION.md + 1–3 are done.
 - Benchmarks page: `docs/_scripts/make_benchmark_page.py` builds interactive HTML/SVG charts (wall-time dumbbell on a log scale, peak memory bars, max relative difference vs R with the 1e-8 target; hover tooltips; light and dark mode) and tables from `validation/bench/*.json` + `validation/reports/*.tsv` at every build. Missing results show as "pending".
 - `validation/bench/` now committed with the valid JSONs only (R t4/t5/t6 removed because of the NMF cache issue; py t5 still running). When the reruns land: copy the new JSONs, rebuild the docs, update the speed-up sentence in docs/benchmarks.md ("Reading the results") and remove the "Pending rows" paragraph.
 - Docstring fixes: workflows module docstring named non-existent functions; recover_scrna_frame had none; rcompat package docstring added.
+
+## STEP 2026-10-19 15:00 (benchmark: R t4/t6 reruns and Python t5 landed)
+- Server `bench_all.log`: R t6 and R t4 reruns done (NMF cache moved aside), Python t5 done. Copied `validation/bench/{r_t4_bulk,r_t6_presorted,py_t5_scrna}.json` back.
+- Valid discovery rows at 32 jobs: t4_bulk R 18.2 min (10.4 GB) / Py 10.7 min (14.7 GB) = 1.7x; t6_presorted R 44.7 min (8.7 GB) / Py 10.7 min (14.7 GB) = 4.2x; t5_scrna Py 4.35 h, peak summed RSS 369 GB (summed over processes, so it double-counts shared pages; check before quoting).
+- Still running: R t5 rerun (started ~14:25, log `work/logs/bench_r_t5_scrna.log`, expect several hours; ends with "R reruns done" in `work/logs/bench_all.log`).
+- NEXT: when "R reruns done" appears: copy `r_t5_scrna.json`, rebuild docs (`sphinx-build -b html docs docs/_build/html`), update the speed-up sentence in docs/benchmarks.md, remove "Pending rows" paragraph, add benchmark table to VALIDATION.md, commit. Meanwhile (Mac, no timing) develop item 2: `exact=False` fast mode.
