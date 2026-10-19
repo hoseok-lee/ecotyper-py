@@ -130,10 +130,10 @@ def _hbar(x0, x1, y, t, cls, tip):
 
 def memory_chart(rows):
     hi = max([d["peak_rss_gb"] for _, _, r, p in rows for d in (r, p) if d] + [10])
-    hi = math.ceil(hi / 20) * 20
+    hi = math.ceil(hi / 40) * 40
     svg, h = _svg_open(len(rows), "Peak memory, R vs Python")
     xf = lambda v: _x_lin(v, hi)  # noqa: E731
-    svg += _grid(range(0, hi + 1, 20), xf, h, lambda t: f"{t} GB")
+    svg += _grid(range(0, hi + 1, 40), xf, h, lambda t: f"{t} GB")
     t = 10
     for i, (tut, label, r, p) in enumerate(rows):
         y0 = TOP + i * ROW_H + (ROW_H - 2 * t - 2) / 2
