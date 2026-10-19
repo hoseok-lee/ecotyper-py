@@ -189,3 +189,13 @@ The port is complete only when exact parity + VALIDATION.md + 1–3 are done.
 - Valid discovery rows at 32 jobs: t4_bulk R 18.2 min (10.4 GB) / Py 10.7 min (14.7 GB) = 1.7x; t6_presorted R 44.7 min (8.7 GB) / Py 10.7 min (14.7 GB) = 4.2x; t5_scrna Py 4.35 h, peak summed RSS 369 GB (summed over processes, so it double-counts shared pages; check before quoting).
 - Still running: R t5 rerun (started ~14:25, log `work/logs/bench_r_t5_scrna.log`, expect several hours; ends with "R reruns done" in `work/logs/bench_all.log`).
 - NEXT: when "R reruns done" appears: copy `r_t5_scrna.json`, rebuild docs (`sphinx-build -b html docs docs/_build/html`), update the speed-up sentence in docs/benchmarks.md, remove "Pending rows" paragraph, add benchmark table to VALIDATION.md, commit. Meanwhile (Mac, no timing) develop item 2: `exact=False` fast mode.
+
+## PLAN ADDED 2026-10-19 16:45 (user request): OBJECTIVE 2 = seamless scverse API
+Objective 1 (exact computational parity with R) is achieved. Objective 2, now the top priority (ahead of fast mode and the alternative solver; finishing the R t5 benchmark row stays a small side task):
+make ecotyper-py feel like a native scverse / `scanpy.external` tool (reference: https://scanpy.readthedocs.io/en/stable/external/index.html).
+- A user who loads data with `sc.read_10x_mtx`, `sc.read_visium` / squidpy, or an AnnData of bulk samples can call something like `ecotyper.recovery(adata, model=...)` and `ecotyper.discovery(adata, ...)`. Names are not fixed; follow scanpy conventions (`key_added`, `copy=False`, `layer=`, results in `adata.obs` / `obsm` / `uns`).
+- **Automatic data-type inference** (bulk vs single-cell vs Visium) with an explicit `data_type=` override. Example signals: `obsm["spatial"]` / `uns["spatial"]` → Visium; per-cell annotation in `obs` with many observations and count-like (often sparse) X → scRNA; otherwise bulk. Raise a clear error when ambiguous.
+- Accept sparse `X` and layers directly; users never convert or write files themselves.
+- **`discovery()` returns an in-memory model object** (`EcoTyperModel`) instead of writing the R directory layout. Saving is optional: `model.save(path)` / `EcoTyperModel.load(path)` (plus loading the R layout and built-in models such as Carcinoma/Lymphoma by name). The R-layout writers stay available for validation.
+- Exactness must be preserved: the new API wraps the existing exact engine. Add tests showing the new API gives identical results to the current file-based workflows on small tutorials (t2_lymphoma, t1_lymphoma, t3 subset).
+- Update docs (quickstart and tutorials in scanpy style), README and CLI.
