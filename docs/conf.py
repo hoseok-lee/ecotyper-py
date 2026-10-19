@@ -53,7 +53,7 @@ intersphinx_mapping = {
 }
 
 html_theme = "furo"
-html_title = "ecotyper (Python port)"
+html_title = "ecotyper-py"
 html_static_path = []
 html_theme_options = {
     "source_repository": "https://github.com/hoseok-lee/ecotyper-py",
