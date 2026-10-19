@@ -15,17 +15,26 @@ import os
 import shutil
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 BENCH = ROOT / "validation" / "bench"
 ORDER = ["t1_lung", "t1_lymphoma", "t2_lymphoma", "t2_crc", "t3_visium", "t6_presorted", "t4_bulk", "t5_scrna"]
+# R discovery skips every NMF restart whose estim.RData already exists under EcoTyper/<name>, so a
+# rerun would time almost nothing. Move that cache aside (kept under work/r_cache_bak) first.
+R_DISCOVERY_CACHE = {"t4_bulk": "MyDiscovery", "t5_scrna": "discovery_scRNA_CRC", "t6_presorted": "PresortedDiscovery"}
 
 
 def run_impl(impl, tut, jobs):
     BENCH.mkdir(parents=True, exist_ok=True)
     out = f"validation/bench/{impl}_{tut}.json"
     if impl == "r":
+        cache = ROOT / "work" / "ecotyper-r-src" / "EcoTyper" / R_DISCOVERY_CACHE.get(tut, "")
+        if tut in R_DISCOVERY_CACHE and cache.exists():
+            bak = ROOT / "work" / "r_cache_bak"
+            bak.mkdir(exist_ok=True)
+            shutil.move(cache, bak / f"{cache.name}.{time.strftime('%Y%m%d-%H%M%S')}")
         env = dict(os.environ, ECOTYPER_R_THREADS=str(jobs))
         cmd = ["work/dock_r.sh", "python3", "validation/bench_wrap.py", f"r_{tut}", out, "--",
                "bash", "validation/r_reference/run_r_reference.sh", tut]
