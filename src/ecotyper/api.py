@@ -395,7 +395,8 @@ def discovery(data, *, data_type: DataType | None = None, layer: str | None = No
               name: str = "custom", filter_genes: str | int = "cell type specific", scale_column: str | None = None,
               max_states: int = 20, restarts: int = 5, cophenetic_cutoff: float | None = None,
               p_value_cutoff: float = 1.0, min_states: int = 3, key_added: str = "ecotyper", n_jobs: int = 1,
-              r_exact: bool = True, verbose: bool = True, exact: bool = True) -> EcoTyperModel:
+              r_exact: bool = True, verbose: bool = True, exact: bool = True,
+              nmf_method: str = "brunet") -> EcoTyperModel:
     """Discover cell states and ecotypes; returns an in-memory :class:`EcoTyperModel`.
 
     Parameters
@@ -426,6 +427,11 @@ def discovery(data, *, data_type: DataType | None = None, layer: str | None = No
     exact
         ``False`` selects the fast mode (BLAS NMF updates, no R text round
         trips); see :func:`recovery`.
+    nmf_method
+        ``"brunet"`` (default, EcoTyper's KL multiplicative updates) or
+        ``"cd"``: Frobenius-loss coordinate descent from scikit-learn, an
+        opt-in extension that is not equivalent to EcoTyper (states can
+        differ; see the docs, "Alternative NMF solver").
 
     Notes
     -----
@@ -458,7 +464,7 @@ def discovery(data, *, data_type: DataType | None = None, layer: str | None = No
                                       max_states=max_states, restarts=restarts,
                                       cophenetic_cutoff=0.975 if cophenetic_cutoff is None else cophenetic_cutoff,
                                       p_value_cutoff=p_value_cutoff, min_states=min_states, n_jobs=n_jobs,
-                                      r_exact=r_exact, verbose=verbose, exact=exact)
+                                      r_exact=r_exact, verbose=verbose, exact=exact, nmf_method=nmf_method)
         model = EcoTyperModel.from_discovery(res, name)
         key = key_added
         for ct, st in res.states.items():
@@ -469,7 +475,8 @@ def discovery(data, *, data_type: DataType | None = None, layer: str | None = No
         _cell_ecotypes(adata, key, model, list(res.states))
         _uns(adata, key, params=dict(data_type="scRNA", name=name, filter_genes=str(filter_genes),
                                      max_states=max_states, restarts=restarts, layer=layer,
-                                     cell_type_key=cell_type_key, sample_key=sample_key, exact=exact),
+                                     cell_type_key=cell_type_key, sample_key=sample_key, exact=exact,
+                                     nmf_method=nmf_method),
              n_states=model.n_states)
         return model
     # profiles
@@ -489,5 +496,5 @@ def discovery(data, *, data_type: DataType | None = None, layer: str | None = No
                                     restarts=restarts,
                                     cophenetic_cutoff=0.95 if cophenetic_cutoff is None else cophenetic_cutoff,
                                     min_states=min_states, n_jobs=n_jobs, r_exact=r_exact, verbose=verbose,
-                                    exact=exact)
+                                    exact=exact, nmf_method=nmf_method)
     return EcoTyperModel.from_discovery(res, name)

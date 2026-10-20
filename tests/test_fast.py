@@ -62,3 +62,19 @@ def test_discovery_profiles_fast():
     for ct, st in a.states.items():
         assert st.state_assignment.equals(b.states[ct].state_assignment), ct
     assert a.ecotypes.ecotypes.equals(b.ecotypes.ecotypes)
+
+
+def test_nmf_cd_solver():
+    pytest.importorskip("sklearn")
+    rng = np.random.default_rng(2)
+    n, p, r = 200, 60, 3
+    W = rng.random((n, r)) ** 4
+    H = np.zeros((r, p))
+    H[rng.integers(0, r, p), np.arange(p)] = 1.0
+    V = W @ (H + 0.05 * rng.random((r, p))) + 0.01 * rng.random((n, p))
+    a = N.nmf_brunet(V, r, 1235)
+    b = N.nmf_cd(V, r, 1235)
+    assert b.W.shape == (n, r) and b.H.shape == (r, p) and b.niter >= 1
+    # a different objective, but on well-separated clusters the partition is the same up to labels
+    pa, pb = a.predict(), b.predict()
+    assert len({(x, y) for x, y in zip(pa, pb)}) == len(set(pa))

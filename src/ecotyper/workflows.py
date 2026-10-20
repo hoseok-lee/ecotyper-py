@@ -383,10 +383,10 @@ def ecotype_abundances_long(eco: pd.DataFrame) -> pd.DataFrame:
 # ----------------------------------------------------------------------------
 # discovery (bulk downstream of CIBERSORTx, presorted)
 # ----------------------------------------------------------------------------
-def _nmf_rank_task(V, rank, restarts, exact=True):
+def _nmf_rank_task(V, rank, restarts, exact=True, method="brunet"):
     from . import discovery_steps as dsc
 
-    fits = [dsc.run_nmf(V, rank, r, exact) for r in range(1, restarts + 1)]
+    fits = [dsc.run_nmf(V, rank, r, exact, method) for r in range(1, restarts + 1)]
     merged, metrics = dsc.rank_metrics(fits, rank)
     return merged, metrics, [int(f.niter) for f in fits]
 
@@ -400,13 +400,14 @@ class DiscoveryResult(dict):
 def discover_from_profiles(profiles: dict, annotation: pd.DataFrame | None = None, *, scale_column=None,
                            max_states: int = 20, restarts: int = 5, cophenetic_cutoff: float = 0.95,
                            min_states: int = 3, n_jobs: int = 1, r_exact: bool = True, verbose: bool = True,
-                           exact: bool = True):
+                           exact: bool = True, nmf_method: str = "brunet"):
     """Cell state + ecotype discovery from per-cell-type expression profiles
     (``EcoTyper_discovery_bulk.R`` steps 3–6 and 8 with CSx HiRes profiles as
     input, or ``EcoTyper_discovery_presorted.R`` with "no filter").
 
     ``profiles``: cell type → genes x samples DataFrame (values as read by
-    ``read.delim(row.names = 1)``), in the order of ``classes.txt``. ``exact=False``: fast mode."""
+    ``read.delim(row.names = 1)``), in the order of ``classes.txt``. ``exact=False``: fast mode;
+    ``nmf_method="cd"``: alternative NMF solver (see :func:`ecotyper.nmf.nmf_cd`)."""
     from . import discovery_steps as dsc
 
     r_exact = r_exact and exact
@@ -423,7 +424,7 @@ def discover_from_profiles(profiles: dict, annotation: pd.DataFrame | None = Non
     for ct, f in feats.items():
         V = dsc.nmf_input(f.top_scaled, r_exact)
         for k in range(2, max_states + 1):
-            tasks.append((V, k, restarts, exact))
+            tasks.append((V, k, restarts, exact, nmf_method))
             keys.append((ct, k))
     res = _run_parallel(_nmf_rank_task, tasks, n_jobs)
     merged = {key: r[0] for key, r in zip(keys, res)}
@@ -442,7 +443,8 @@ def discover_from_profiles(profiles: dict, annotation: pd.DataFrame | None = Non
     return DiscoveryResult(features=feats, merged=merged, rank_tables=rank_tables, niter=niter, ranks=ranks,
                            initial=initial, states=states, ecotypes=eco, assignment=assigned,
                            params=dict(max_states=max_states, restarts=restarts,
-                                       cophenetic_cutoff=cophenetic_cutoff, min_states=min_states))
+                                       cophenetic_cutoff=cophenetic_cutoff, min_states=min_states,
+                                       nmf_method=nmf_method))
 
 
 def read_profiles(input_dir, classes=None) -> dict:
@@ -517,7 +519,8 @@ def write_discovery(res: DiscoveryResult, out_dir, name: str, fractions: str) ->
 
 def discover_files(input_dir, annotation_path, out_dir, *, name: str, fractions: str = "All_genes",
                    scale_column=None, max_states: int = 20, restarts: int = 5, cophenetic_cutoff: float = 0.95,
-                   min_states: int = 3, n_jobs: int = 1, r_exact: bool = True, exact: bool = True):
+                   min_states: int = 3, n_jobs: int = 1, r_exact: bool = True, exact: bool = True,
+                   nmf_method: str = "brunet"):
     """File-based discovery from a folder of per-cell-type profiles (CSx HiRes
     output or presorted profiles) and a sample annotation file."""
     from .rlayout import _wm  # noqa: F401
@@ -526,7 +529,7 @@ def discover_files(input_dir, annotation_path, out_dir, *, name: str, fractions:
     ann = read_annotation(annotation_path)
     res = discover_from_profiles(profiles, ann, scale_column=scale_column, max_states=max_states,
                                  restarts=restarts, cophenetic_cutoff=cophenetic_cutoff, min_states=min_states,
-                                 n_jobs=n_jobs, r_exact=r_exact, exact=exact)
+                                 n_jobs=n_jobs, r_exact=r_exact, exact=exact, nmf_method=nmf_method)
     write_discovery(res, out_dir, name, fractions)
     return res
 
@@ -534,14 +537,15 @@ def discover_files(input_dir, annotation_path, out_dir, *, name: str, fractions:
 # ----------------------------------------------------------------------------
 # scRNA-seq discovery
 # ----------------------------------------------------------------------------
-def _nmf_rank_task_cc(V, rank, restarts, exact=True):
-    return _nmf_rank_task(V, rank, restarts, exact)
+def _nmf_rank_task_cc(V, rank, restarts, exact=True, method="brunet"):
+    return _nmf_rank_task(V, rank, restarts, exact, method)
 
 
 def discover_scrna_frame(expr: pd.DataFrame, annotation: pd.DataFrame, *, filter_genes="cell type specific",
                          scale_column=None, max_states: int = 20, restarts: int = 5,
                          cophenetic_cutoff: float = 0.975, p_value_cutoff: float = 1.0, min_states: int = 3,
-                         n_jobs: int = 1, r_exact: bool = True, verbose: bool = True, exact: bool = True):
+                         n_jobs: int = 1, r_exact: bool = True, verbose: bool = True, exact: bool = True,
+                         nmf_method: str = "brunet"):
     """``EcoTyper_discovery_scRNA.R`` on a genes x cells matrix (fread semantics)
     and a cell annotation with ``ID``, ``CellType`` and ``Sample``. ``exact=False``: fast mode."""
     r_exact = r_exact and exact
@@ -567,7 +571,7 @@ def discover_scrna_frame(expr: pd.DataFrame, annotation: pd.DataFrame, *, filter
     for ct, c in cc.items():
         V = dsc.nmf_input(c.cor, r_exact)
         for k in range(2, max_states + 1):
-            tasks.append((V, k, restarts, exact))
+            tasks.append((V, k, restarts, exact, nmf_method))
             keys.append((ct, k))
     res = _run_parallel(_nmf_rank_task_cc, tasks, n_jobs)
     merged = {key: r[0] for key, r in zip(keys, res)}
@@ -579,8 +583,8 @@ def discover_scrna_frame(expr: pd.DataFrame, annotation: pd.DataFrame, *, filter
         k = int(k)
         initial_cc[ct] = dsc.initial_states(merged[(ct, k)], cc[ct].cor, ct, k, r_exact, gene_info=False)
         feats[ct] = dsr.extract_features_scrna(cc[ct], initial_cc[ct].initial_assignment, r_exact)
-    tasks2 = [(dsc.nmf_input(feats[ct].top_scaled, r_exact), int(k), restarts, exact)
-              for ct, k in zip(cts, ranks["Chosen_Rank"])]
+    tasks2 = [(dsc.nmf_input(feats[ct].top_scaled, r_exact), int(k), restarts, exact,
+               nmf_method) for ct, k in zip(cts, ranks["Chosen_Rank"])]
     res2 = _run_parallel(_nmf_rank_task, tasks2, n_jobs)
     for (ct, k), r in zip(zip(cts, ranks["Chosen_Rank"]), res2):
         k = int(k)
@@ -594,7 +598,7 @@ def discover_scrna_frame(expr: pd.DataFrame, annotation: pd.DataFrame, *, filter
                            initial_cc=initial_cc, features=feats, merged=merged2, rank_metrics=rank2,
                            initial=initial, states=states, ecotypes=eco, assignment=assigned,
                            params=dict(max_states=max_states, restarts=restarts, cophenetic_cutoff=cophenetic_cutoff,
-                                       min_states=min_states, filter_genes=filter_genes))
+                                       min_states=min_states, filter_genes=filter_genes, nmf_method=nmf_method))
 
 
 def discover_scrna(adata, *, layer=None, **kwargs):

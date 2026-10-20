@@ -22,6 +22,11 @@ def main(argv=None):
         p.add_argument("--seed", type=int, default=42, help="seed for NMFpredict's random initialisation")
         fast(p)
 
+    def solver(p):
+        p.add_argument("--nmf-method", choices=["brunet", "cd"], default="brunet",
+                       help="NMF solver: brunet (EcoTyper/R) or cd (scikit-learn coordinate descent, "
+                            "Frobenius loss; not R-equivalent)")
+
     def fast(p):
         p.add_argument("--fast", action="store_true",
                        help="fast mode (exact=False): BLAS NMF updates, not bit-identical to R")
@@ -54,6 +59,7 @@ def main(argv=None):
     d.add_argument("-o", "--output", default="ecotyper_out")
     d.add_argument("-t", "--threads", type=int, default=1)
     fast(d)
+    solver(d)
     r = sub.add_parser("discover-scrna", help="EcoTyper_discovery_scRNA.R")
     r.add_argument("-m", "--matrix", required=True)
     r.add_argument("-a", "--annotation", required=True)
@@ -67,6 +73,7 @@ def main(argv=None):
     r.add_argument("-o", "--output", default="ecotyper_out")
     r.add_argument("-t", "--threads", type=int, default=1)
     fast(r)
+    solver(r)
     a = ap.parse_args(argv)
     exact = not a.fast
 
@@ -84,14 +91,15 @@ def main(argv=None):
         wf.discover_files(a.input_dir, a.annotation, a.output, name=a.name, fractions=a.fractions,
                           scale_column=a.scale_column, max_states=a.max_states, restarts=a.restarts,
                           cophenetic_cutoff=a.cophenetic, min_states=a.min_states, n_jobs=a.threads,
-                          exact=exact)
+                          exact=exact, nmf_method=a.nmf_method)
     elif a.cmd == "discover-scrna":
         from .io import read_annotation, read_scrna_matrix
 
         res = wf.discover_scrna_frame(read_scrna_matrix(a.matrix), read_annotation(a.annotation),
                                       filter_genes=a.filter_genes, max_states=a.max_states, restarts=a.restarts,
                                       cophenetic_cutoff=a.cophenetic, p_value_cutoff=a.pvalue,
-                                      min_states=a.min_states, n_jobs=a.threads, exact=exact)
+                                      min_states=a.min_states, n_jobs=a.threads, exact=exact,
+                                      nmf_method=a.nmf_method)
         frac = {"cell type specific": "Cell_type_specific_genes", "no filter": "All_genes"}.get(
             a.filter_genes, f"Top_{a.filter_genes}")
         wf.write_discovery_scrna(res, a.output, a.name, frac)

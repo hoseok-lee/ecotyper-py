@@ -336,6 +336,34 @@ def nmf_brunet(V: np.ndarray, rank: int, seed: int, *, max_iter: int = MAX_ITER,
     return NMFFit(W=W, H=H, niter=niter, converged=conv, deviance=kl_divergence(V, W, H, exact), seed=seed)
 
 
+NMF_METHODS = ("brunet", "cd")
+
+
+def nmf_cd(V: np.ndarray, rank: int, seed: int, *, max_iter: int = MAX_ITER, tol: float = 1e-4) -> NMFFit:
+    """Alternative solver (``nmf_method="cd"``, **not** EcoTyper/R-equivalent): Frobenius-loss
+    NMF by coordinate descent (scikit-learn ``NMF(solver="cd")``), started from the same
+    ``rnmf`` initialisation as :func:`nmf_brunet` and stopped by scikit-learn's tolerance
+    rule instead of the connectivity rule. ``deviance`` is the Frobenius reconstruction error
+    (used to pick the best restart)."""
+    import warnings
+
+    try:
+        from sklearn.decomposition import NMF
+        from sklearn.exceptions import ConvergenceWarning
+    except ImportError as e:  # pragma: no cover
+        raise ImportError('nmf_method="cd" needs scikit-learn (pip install "ecotyper[sklearn]")') from e
+    V = np.asarray(V, dtype=np.float64)
+    _check_target(V)
+    W0, H0 = rnmf(rank, V, RRandom(seed))
+    m = NMF(n_components=rank, init="custom", solver="cd", beta_loss="frobenius", max_iter=max_iter, tol=tol,
+            shuffle=False)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", ConvergenceWarning)
+        W = m.fit_transform(V, W=np.ascontiguousarray(W0), H=np.ascontiguousarray(H0))
+    return NMFFit(W=np.ascontiguousarray(W), H=np.ascontiguousarray(m.components_), niter=int(m.n_iter_),
+                  converged=int(m.n_iter_) < max_iter, deviance=float(m.reconstruction_err_), seed=seed)
+
+
 def nmf_predict(W: np.ndarray, new_data: np.ndarray, rng: RRandom, *, max_iter: int = MAX_ITER,
                 exact: bool = True):
     """EcoTyper's ``NMFpredict(W, new_data)``.

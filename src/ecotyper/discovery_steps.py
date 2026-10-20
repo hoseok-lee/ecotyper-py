@@ -163,8 +163,16 @@ def nmf_input(top_scaled: pd.DataFrame, r_exact=True) -> np.ndarray:
     return posneg(_rt(top_scaled.to_numpy(dtype=np.float64), r_exact))
 
 
-def run_nmf(V: np.ndarray, rank: int, restart: int, exact: bool = True) -> NMFFit:
-    """``state_discovery_NMF.R``: ``nmf(V, rank, "brunet", seed = 1234 + restart)``."""
+def run_nmf(V: np.ndarray, rank: int, restart: int, exact: bool = True, method: str = "brunet") -> NMFFit:
+    """``state_discovery_NMF.R``: ``nmf(V, rank, "brunet", seed = 1234 + restart)``.
+
+    ``method="cd"``: the alternative solver :func:`ecotyper.nmf.nmf_cd` (not R-equivalent)."""
+    if method == "cd":
+        from .nmf import nmf_cd
+
+        return nmf_cd(V, rank, 1234 + restart)
+    if method != "brunet":
+        raise ValueError(f"unknown nmf_method {method!r} (use 'brunet' or 'cd')")
     return nmf_brunet(V, rank, 1234 + restart, exact=exact)
 
 
