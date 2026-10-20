@@ -3,6 +3,18 @@
 **Goal:** assign single cells to the cell states of a prebuilt model and, if cells come with a
 sample label, compute per-sample ecotype abundances. R equivalent: `EcoTyper_recovery_scRNA.R`.
 
+:::{tip}
+**In short, with the scverse API** (any AnnData of cells x genes, raw counts, sparse is fine):
+
+```python
+import ecotyper as et
+et.recovery(adata, "Carcinoma", cell_type_key="cell_type", sample_key="patient", n_jobs=8)
+adata.obs["ecotyper_state_Fibroblasts"]; adata.uns["ecotyper"]["ecotype_abundance"]
+```
+
+Only the model genes are densified, so sparse objects with many cells stay cheap.
+:::
+
 ## Input requirements
 
 - Expression: **genes x cells**, linear scale (counts, CPM or TPM; not log), gene symbols in the

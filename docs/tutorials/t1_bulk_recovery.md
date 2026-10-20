@@ -3,6 +3,18 @@
 **Goal:** assign bulk tumor samples to the cell states and ecotypes of a prebuilt model.
 R equivalent: `EcoTyper_recovery_bulk.R`.
 
+:::{tip}
+**In short, with the scverse API** (any AnnData of bulk samples x genes):
+
+```python
+import ecotyper as et
+et.recovery(adata, "Carcinoma", n_jobs=4)       # data type "bulk" is inferred
+adata.obs["ecotyper_ecotype"]; adata.obsm["ecotyper_ecotype_abundance"]
+```
+
+The steps below show the same run from the tutorial files, with every intermediate result.
+:::
+
 ## 1.1 Carcinoma model on TCGA lung samples
 
 ### Step 1: Load the data
@@ -53,8 +65,8 @@ pd.crosstab(adata.obs["Histology"], adata.obs["ecotyper_ecotype"])
 As in R, a sample gets its most abundant ecotype only if the enrichment is significant
 (BH-adjusted q < 0.25) and the sample is assigned to at least one of that ecotype's states.
 Otherwise `ecotyper_ecotype` is `Unassigned`. The full objects are in `states[cell_type]`
-({class}`~ecotyper.recovery.StateRecovery`: `abundances`, `assignment`, `H`,
-`heatmap_data`…) and `eco` ({class}`~ecotyper.recovery.EcotypeRecovery`).
+({class}`~ecotyper.recovery_steps.StateRecovery`: `abundances`, `assignment`, `H`,
+`heatmap_data`…) and `eco` ({class}`~ecotyper.recovery_steps.EcotypeRecovery`).
 
 ### Step 4 (optional): R-compatible output files
 
@@ -112,5 +124,5 @@ ecotyper-py recover-bulk -m ecotyper/example_data/bulk_lymphoma_data.txt \
 - **Seed.** Recovery uses `seed=42` for `NMFpredict`'s random start. R does not seed this step,
   so two R runs differ slightly. The port's result equals R's when R is started with `set.seed(42)`.
 - **Missing genes.** As in R, model genes that are missing from your matrix are set to 0
-  ({func}`~ecotyper.recovery.align_rows`). Use the same gene symbols as the model, or recovery
+  ({func}`~ecotyper.recovery_steps.align_rows`). Use the same gene symbols as the model, or recovery
   quality drops.

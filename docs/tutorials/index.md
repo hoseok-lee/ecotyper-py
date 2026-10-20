@@ -1,8 +1,8 @@
 # Tutorials
 
 These are the six tutorials of the [EcoTyper README](https://github.com/digitalcytometry/ecotyper#readme),
-run with the Python port on the example data bundled with the R repository. Each one gives the
-AnnData or pandas route, the file-based route that writes the same files as R, and what to look
+run with the Python port on the example data bundled with the R repository. Each one opens with the
+short scverse-API version (`et.recovery` / `et.discovery`), then gives the pandas route, the file-based route that writes the same files as R, and what to look
 at in the results.
 
 **Before you start:** install the package and clone the R repository for its example data and

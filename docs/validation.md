@@ -22,5 +22,5 @@ changes a state, ecotype, rank or gene set. The per-tutorial breakdown and a cha
 
 ```{include} ../VALIDATION.md
 :start-after: "ecotype, rank or gene set."
-:end-before: "- Benchmarks, `exact=False` fast mode"
+:end-before: "- `exact=False` fast mode"
 ```

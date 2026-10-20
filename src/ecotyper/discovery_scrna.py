@@ -18,14 +18,14 @@ from dataclasses import dataclass
 import numpy as np
 import pandas as pd
 
-from . import discovery as dsc
+from . import discovery_steps as dsc
 from .model import ecotype_levels
 from .rcompat.frame import factor_levels, r_match, r_order
 from .rcompat.rng import RRandom
 from .rcompat.stats import (TTestError, apply_mean_rows, col_normalize, cor_matrix, log2p1, p_adjust_bh,
                             phyper_upper, rank_average, row_var, row_wilcoxon_twosample, which_max,
                             welch_t_test_p)
-from .recovery import EcotypeRecovery, _ecotype_means, _sorted_ecotypes, _table_frac, read_clinical
+from .recovery_steps import EcotypeRecovery, _ecotype_means, _sorted_ecotypes, _table_frac, read_clinical
 
 
 def _rt(x, r_exact=True):

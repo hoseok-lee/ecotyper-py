@@ -1,13 +1,26 @@
 API reference
 =============
 
-Most users only need :mod:`ecotyper.workflows` (the high-level workflows) and
-:mod:`ecotyper.io` (readers and AnnData conversion). The other modules expose each
+Most users only need the scverse API (:func:`ecotyper.recovery`,
+:func:`ecotyper.discovery`, :class:`ecotyper.EcoTyperModel`). :mod:`ecotyper.workflows`
+mirrors the R wrapper scripts on pandas objects and files, and :mod:`ecotyper.io`
+reads the R pipeline's input files. The other modules expose each
 step of the R pipeline as a function, for custom pipelines and for checking
 intermediate results against R.
 
-High-level workflows
---------------------
+scverse API
+-----------
+
+.. autosummary::
+   :nosignatures:
+
+   ~ecotyper.recovery
+   ~ecotyper.discovery
+   ~ecotyper.infer_data_type
+   ~ecotyper.EcoTyperModel
+
+File-based and pandas workflows
+-------------------------------
 
 Recovery
 ~~~~~~~~
@@ -48,11 +61,13 @@ Modules
    :toctree: generated
    :recursive:
 
+   ecotyper.api
    ecotyper.workflows
    ecotyper.io
+   ecotyper.builtin
    ecotyper.model
-   ecotyper.recovery
-   ecotyper.discovery
+   ecotyper.recovery_steps
+   ecotyper.discovery_steps
    ecotyper.discovery_scrna
    ecotyper.nmf
    ecotyper.rlayout

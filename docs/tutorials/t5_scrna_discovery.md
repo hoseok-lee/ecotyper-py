@@ -4,6 +4,20 @@
 R equivalent: `EcoTyper_discovery_scRNA.R`. No CIBERSORTx is involved, so the whole pipeline
 runs in Python.
 
+:::{tip}
+**In short, with the scverse API:**
+
+```python
+import ecotyper as et
+model = et.discovery(adata, cell_type_key="cell_type", sample_key="patient", n_jobs=32)
+model.save("models/crc")                     # optional; R layout
+et.recovery(other_adata, model, cell_type_key="cell_type")
+```
+
+`model.discovery_result` holds every intermediate table described below;
+{func}`~ecotyper.workflows.write_discovery_scrna` writes R's complete output tree from it.
+:::
+
 ## How scRNA-seq discovery works
 
 1. **Cell-type-specific genes** (`filter_genes="cell type specific"`): genes significantly

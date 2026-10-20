@@ -7,7 +7,7 @@ from pathlib import Path
 import pandas as pd
 
 from .rcompat.io import write_matrix, write_table
-from .recovery import EcotypeRecovery, StateRecovery
+from .recovery_steps import EcotypeRecovery, StateRecovery
 
 
 def _wm(df: pd.DataFrame, path) -> None:

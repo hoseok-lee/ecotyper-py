@@ -39,10 +39,10 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from . import recovery as rec
+from . import recovery_steps as rec
 from .io import (annotation_from_anndata, from_anndata, read_annotation, read_bulk_matrix,
                  read_fractions, read_scrna_matrix)
-from .model import EcoTyperModel
+from .model import EcoTyperModel, model_ecotypes_table
 from .rcompat.rng import RRandom
 from .rlayout import _wm, write_ecotype_recovery, write_recovery_output, write_state_recovery
 
@@ -345,7 +345,7 @@ def ecotype_abundances_long(eco: pd.DataFrame) -> pd.DataFrame:
 # discovery (bulk downstream of CIBERSORTx, presorted)
 # ----------------------------------------------------------------------------
 def _nmf_rank_task(V, rank, restarts):
-    from . import discovery as dsc
+    from . import discovery_steps as dsc
 
     fits = [dsc.run_nmf(V, rank, r) for r in range(1, restarts + 1)]
     merged, metrics = dsc.rank_metrics(fits, rank)
@@ -367,7 +367,7 @@ def discover_from_profiles(profiles: dict, annotation: pd.DataFrame | None = Non
 
     ``profiles``: cell type → genes x samples DataFrame (values as read by
     ``read.delim(row.names = 1)``), in the order of ``classes.txt``."""
-    from . import discovery as dsc
+    from . import discovery_steps as dsc
 
     feats = {}
     for ct, raw in profiles.items():
@@ -502,7 +502,7 @@ def discover_scrna_frame(expr: pd.DataFrame, annotation: pd.DataFrame, *, filter
                          n_jobs: int = 1, r_exact: bool = True, verbose: bool = True):
     """``EcoTyper_discovery_scRNA.R`` on a genes x cells matrix (fread semantics)
     and a cell annotation with ``ID``, ``CellType`` and ``Sample``."""
-    from . import discovery as dsc
+    from . import discovery_steps as dsc
     from . import discovery_scrna as dsr
     from .rcompat.frame import factor_levels
 
@@ -642,11 +642,7 @@ def write_discovery_scrna(res, out_dir, name: str, fractions: str = "Cell_type_s
     _wm(eco.jaccard, ed / "jaccard_matrix.txt")
     write_table(pd.DataFrame({"x": [eco.silhouette_initial]}), ed / "silhouette_initial.txt", row_names=False)
     write_table(eco.initial_ecotypes, ed / "initial_ecotypes.txt")
-    # R (ecotypes_scRNA.R:152) adds a "Cell type" copy of CellType before ecotypes.txt is written
-    et = eco.ecotypes.copy()
-    if "Cell type" not in et.columns:
-        et.insert(list(et.columns).index("Ecotype"), "Cell type", et["CellType"])
-    write_table(et, ed / "ecotypes.txt", row_names=False)
+    write_table(model_ecotypes_table(res), ed / "ecotypes.txt", row_names=False)
     write_table(pd.DataFrame({"x": [eco.silhouette]}), ed / "silhouette.txt", row_names=False)
     write_ecotype_recovery(res.assignment, ed)
     return base

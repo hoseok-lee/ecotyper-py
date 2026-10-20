@@ -55,41 +55,46 @@ PyICU is optional; it is used to sort strings the way R does in a UTF-8 locale
 
 ## Usage
 
-### AnnData
-
-Samples or cells are `obs` and genes are `var`. Models (prebuilt or
-discovered) are folders in the R layout `EcoTyper/<discovery>/<fractions>/`;
-the prebuilt Carcinoma and Lymphoma models ship in the R repository's
-`EcoTyper/` folder.
+### AnnData (scverse style)
 
 ```python
-import anndata as ad
-from ecotyper import workflows as wf
-from ecotyper.io import read_bulk_matrix, read_annotation, to_anndata
+import ecotyper as et
 
-expr = read_bulk_matrix("example_data/bulk_lung_data.txt")        # genes x samples, R's parser
-ann = read_annotation("example_data/bulk_lung_annotation.txt")
-adata = to_anndata(expr, ann)                                       # samples x genes
-
-states, ecotypes = wf.recover_bulk(adata, "Carcinoma", discovery_root="ecotyper/EcoTyper", n_jobs=4)
-
-adata.obs["ecotyper_state_Fibroblasts"]           # S01, S02, ... (NaN = not assigned)
+# recovery: bulk, single-cell or Visium, inferred from the AnnData
+et.recovery(adata, "Carcinoma", cell_type_key="cell_type", sample_key="patient")
+adata.obs["ecotyper_state_Fibroblasts"]           # S01, S02, ... (NaN = other cell types)
+adata.obs["ecotyper_ecotype"]                     # CE1..CE10
 adata.obsm["ecotyper_abundance_Fibroblasts"]      # state abundances
-adata.obs["ecotyper_ecotype"]                     # CE1..CE10 or "Unassigned"
-adata.obsm["ecotyper_ecotype_abundance"]
+
+# discovery from annotated single cells -> in-memory model
+model = et.discovery(adata, cell_type_key="cell_type", sample_key="patient", n_jobs=16)
+et.recovery(new_adata, model, cell_type_key="cell_type")
+model.save("models/crc")                          # R layout, usable by R EcoTyper too
+model = et.EcoTyperModel.load("models/crc")
 ```
 
-`recover_scrna(adata, model)` (needs `obs["CellType"]`, and `obs["Sample"]`
-for ecotypes) and `recover_visium_frame(...)` work the same way. Discovery:
-`discover_from_profiles(profiles, annotation)` (purified CIBERSORTx HiRes or
-presorted profiles, one genes x samples table per cell type) and
-`discover_scrna(adata)`; `write_discovery(...)` writes a model folder that
-the recovery functions can load.
+- Data types: `bulk` (samples x genes), `scRNA` (cells x genes with cell type labels in
+  `obs`), `visium` (spots, with CIBERSORTx fractions passed as `fractions=`). Inferred
+  from `obsm["spatial"]` and the cell type column; override with `data_type=`.
+- `X` or `layer=` holds raw-scale expression; sparse matrices are accepted.
+- The built-in Carcinoma and Lymphoma models are downloaded (~5 MB each) from a pinned
+  commit of the R repository on first use and cached (`ECOTYPER_CACHE`; set
+  `ECOTYPER_MODELS` to a local `EcoTyper/` folder to skip the download).
+- Bulk discovery takes CIBERSORTx HiRes (or presorted) profiles:
+  `et.discovery({"B.cells": adata_b, "Fibroblasts": adata_fib, ...})`.
+
+Results are identical to the file-based workflows below (`tests/test_api.py`).
+
+### pandas and files (mirrors the R wrappers)
+
+`ecotyper.workflows` has `*_frame` functions (genes x samples DataFrames plus annotation,
+returning every intermediate table) and `*_files` functions that read the R wrappers'
+input files and write the R output layout file for file.
 
 ### Command line (mirrors the R wrappers, writes the R file layout)
 
 ```bash
-ecotyper-py recover-bulk  -m bulk_lung_data.txt -a bulk_lung_annotation.txt -d Carcinoma --models ecotyper/EcoTyper -o out
+ecotyper-py recover-bulk  -m bulk_lung_data.txt -a bulk_lung_annotation.txt -d Carcinoma -o out   # built-in model
 ecotyper-py recover-scrna -m scRNA_CRC_data.txt -a scRNA_CRC_annotation.txt -d Carcinoma --models ecotyper/EcoTyper -o out
 ecotyper-py recover-visium -i VisiumBreast -f visium_fractions_example.txt -n VisiumBreast -d Carcinoma --models ecotyper/EcoTyper -o out
 ecotyper-py discover -i Tutorial_6/PresortedDiscovery -a Tutorial_6/PresortedDiscovery_annotation.txt -n PresortedDiscovery -o out -t 8
@@ -113,10 +118,12 @@ the same output.
 |---|---|
 | `ecotyper.rcompat` | R semantics: RNG, `sample`, number parsing/formatting, `hclust`/`cutree`/`dist`/`silhouette`, `cor`/`var`/`mean`, quantiles, BH, t-test, Wilcoxon, collation, `merge`/`order` |
 | `ecotyper.nmf` | NMF package 0.28: Brunet updates, seeding, connectivity stopping, restarts merging, cophenetic/silhouette/dispersion, `NMFpredict` |
-| `ecotyper.recovery` | state and ecotype recovery (bulk, scRNA, Visium) |
-| `ecotyper.discovery`, `ecotyper.discovery_scrna` | state and ecotype discovery |
-| `ecotyper.workflows` | AnnData and file-based workflows mirroring the R wrappers |
-| `ecotyper.model`, `ecotyper.io`, `ecotyper.rlayout` | model loading, readers, R-format writers |
+| `ecotyper.recovery_steps` | state and ecotype recovery (bulk, scRNA, Visium) |
+| `ecotyper.discovery_steps`, `ecotyper.discovery_scrna` | state and ecotype discovery |
+| `ecotyper.api` | `recovery`, `discovery`, `infer_data_type` (scverse-style AnnData API) |
+| `ecotyper.workflows` | pandas and file-based workflows mirroring the R wrappers |
+| `ecotyper.model`, `ecotyper.builtin` | `EcoTyperModel` (load/save/from discovery), built-in model download |
+| `ecotyper.io`, `ecotyper.rlayout` | readers, R-format writers |
 | `ecotyper.validate` | file-by-file comparison with R outputs |
 
 Plots (heatmaps) are not ported.

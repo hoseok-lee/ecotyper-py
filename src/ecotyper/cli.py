@@ -11,9 +11,12 @@ def main(argv=None):
     sub = ap.add_subparsers(dest="cmd", required=True)
 
     def common(p):
-        p.add_argument("-d", "--discovery", default="Carcinoma", help="model name (folder under --models)")
-        p.add_argument("--models", required=True, help="folder containing EcoTyper/<discovery>/<fractions> models "
-                                                       "(e.g. the 'EcoTyper' folder of the R repository)")
+        p.add_argument("-d", "--discovery", default="Carcinoma",
+                       help="model: a built-in name (Carcinoma, Lymphoma), a model folder saved with "
+                            "EcoTyperModel.save, or a discovery name under --models")
+        p.add_argument("--models", default=None,
+                       help="folder containing <discovery>/<discovery>_Fractions models (e.g. the 'EcoTyper' "
+                            "folder of the R repository); default: built-in models, downloaded on first use")
         p.add_argument("-o", "--output", default="ecotyper_out")
         p.add_argument("-t", "--threads", type=int, default=1)
         p.add_argument("--seed", type=int, default=42, help="seed for NMFpredict's random initialisation")

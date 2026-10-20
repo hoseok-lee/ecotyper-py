@@ -9,12 +9,12 @@ that the recovery tutorials can use. R equivalent: `EcoTyper_discovery_bulk.R`.
 |---|---|---|
 | 1. cell type fractions | CIBERSORTx (closed source) | **not ported**: provide precomputed |
 | 2. cell-type-specific expression ("HiRes" purification) | CIBERSORTx HiRes | **not ported**: provide precomputed |
-| 3. feature extraction: log2, top 1,000 variable genes, scaling (per `scale_column` group) | `state_discovery_extract_features.R` | {func}`~ecotyper.discovery.extract_features` |
+| 3. feature extraction: log2, top 1,000 variable genes, scaling (per `scale_column` group) | `state_discovery_extract_features.R` | {func}`~ecotyper.discovery_steps.extract_features` |
 | 4. NMF for ranks 2…`max_states`, `restarts` runs each (Brunet, seeded `1234 + restart`) | `state_discovery_NMF.R` | {func}`~ecotyper.nmf.nmf_brunet` |
-| 5. rank selection from the cophenetic coefficient (`cophenetic_cutoff`) | `state_discovery_rank_selection.R` | {func}`~ecotyper.discovery.select_ranks` |
-| 6. initial states and QC filter | `state_discovery_initial_plots.R`, `..._first_filter.R` | {func}`~ecotyper.discovery.initial_states`, {func}`~ecotyper.discovery.first_filter` |
-| 7. ecotypes: Jaccard similarity of state assignments + hierarchical clustering (≥ `min_states` states) | `ecotypes.R` | {func}`~ecotyper.discovery.discover_ecotypes` |
-| 8. assign samples to ecotypes | `ecotypes_assign_samples.R` | {func}`~ecotyper.discovery.assign_samples` |
+| 5. rank selection from the cophenetic coefficient (`cophenetic_cutoff`) | `state_discovery_rank_selection.R` | {func}`~ecotyper.discovery_steps.select_ranks` |
+| 6. initial states and QC filter | `state_discovery_initial_plots.R`, `..._first_filter.R` | {func}`~ecotyper.discovery_steps.initial_states`, {func}`~ecotyper.discovery_steps.first_filter` |
+| 7. ecotypes: Jaccard similarity of state assignments + hierarchical clustering (≥ `min_states` states) | `ecotypes.R` | {func}`~ecotyper.discovery_steps.discover_ecotypes` |
+| 8. assign samples to ecotypes | `ecotypes_assign_samples.R` | {func}`~ecotyper.discovery_steps.assign_samples` |
 
 Steps 3–8 are ported and match R output for output (see [Validation](../validation.md)).
 

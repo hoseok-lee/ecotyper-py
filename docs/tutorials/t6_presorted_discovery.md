@@ -4,6 +4,15 @@
 separately for each cell type, e.g. FACS-sorted populations profiled by bulk RNA-seq.
 R equivalent: `EcoTyper_discovery_presorted.R`.
 
+:::{tip}
+**In short, with the scverse API** (one AnnData of samples x genes per cell type):
+
+```python
+import ecotyper as et
+model = et.discovery({"B.cells": adata_b, "Fibroblasts": adata_fib, ...}, n_jobs=32)
+```
+:::
+
 This is the discovery of [Tutorial 4](t4_bulk_discovery.md) without the CIBERSORTx steps: the
 per-cell-type profiles are your measured data rather than CIBERSORTx's purified estimates.
 

@@ -24,7 +24,7 @@ from .rcompat.parse import text_roundtrip
 from .rcompat.stats import (TTestError, apply_mean_rows, col_apply_mean, col_normalize, log2p1,
                             p_adjust_bh, phyper_upper, quantile7, r_mad, r_median, r_sum, row_means,
                             row_var, scale_rows, which_max, welch_t_test_p)
-from .recovery import read_clinical
+from .recovery_steps import read_clinical
 
 
 def _rt(x, r_exact=True):
@@ -481,7 +481,7 @@ def discover_ecotypes(initial: dict, states: dict, cell_types: list[str], min_st
 def assign_samples(states: dict, eco: pd.DataFrame, cell_types: list[str], annotation: pd.DataFrame | None,
                    r_exact=True):
     """``ecotypes_assign_samples.R`` (discovery cohort)."""
-    from .recovery import EcotypeRecovery, _ecotype_means, _sorted_ecotypes, _ttest_matrix
+    from .recovery_steps import EcotypeRecovery, _ecotype_means, _sorted_ecotypes, _ttest_matrix
 
     eco_sorted, levels = _sorted_ecotypes(eco)
     blocks, rown = [], []

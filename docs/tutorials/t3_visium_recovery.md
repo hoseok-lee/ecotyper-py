@@ -3,6 +3,17 @@
 **Goal:** map the Carcinoma cell states and ecotypes onto the spots of a 10x Visium array.
 R equivalent: `EcoTyper_recovery_visium.R`.
 
+:::{tip}
+**In short, with the scverse API** (an AnnData from `sc.read_visium`, plus CIBERSORTx fractions):
+
+```python
+import ecotyper as et
+adata.obsm["csx"] = fractions.loc[adata.obs_names]   # spots x cell types
+et.recovery(adata, "Carcinoma", fractions="csx", n_jobs=8)
+adata.obsm["ecotyper_ecotype_abundance"]; adata.obsm["ecotyper_state_abundance"]
+```
+:::
+
 Each Visium spot mixes several cells, so recovery runs on every spot as a small bulk sample.
 Each spot's state abundances are then weighted by the cell type fractions of the spot. Those
 fractions come from CIBERSORTx, which is not part of the port: you provide them precomputed,
@@ -41,7 +52,7 @@ states, long, wide, eco = wf.recover_visium_frame(
 
 | Returned | Contents |
 |---|---|
-| `states` | per cell type {class}`~ecotyper.recovery.StateRecovery` on the spots |
+| `states` | per cell type {class}`~ecotyper.recovery_steps.StateRecovery` on the spots |
 | `wide` | `state_abundances.txt`: one row per spot, `ID`, `X`, `Y`, `Sample`, `Malignant`, then one column per `<cell type>_<state>` |
 | `long` | the same in long format |
 | `eco` | `ecotype_abundances.txt`: one row per spot, `CE1`…`CE10` |
