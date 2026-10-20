@@ -163,9 +163,9 @@ def nmf_input(top_scaled: pd.DataFrame, r_exact=True) -> np.ndarray:
     return posneg(_rt(top_scaled.to_numpy(dtype=np.float64), r_exact))
 
 
-def run_nmf(V: np.ndarray, rank: int, restart: int) -> NMFFit:
+def run_nmf(V: np.ndarray, rank: int, restart: int, exact: bool = True) -> NMFFit:
     """``state_discovery_NMF.R``: ``nmf(V, rank, "brunet", seed = 1234 + restart)``."""
-    return nmf_brunet(V, rank, 1234 + restart)
+    return nmf_brunet(V, rank, 1234 + restart, exact=exact)
 
 
 def rank_metrics(fits: list[NMFFit], rank: int):

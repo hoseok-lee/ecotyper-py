@@ -73,8 +73,8 @@ def _run_parallel(fn, tasks, n_jobs):
         return [f.result() for f in futs]
 
 
-def _bulk_state_task(expr, ctm, seed, annotation, kind):
-    return rec.recover_states(expr, ctm, RRandom(seed), annotation, kind=kind)
+def _bulk_state_task(expr, ctm, seed, annotation, kind, exact=True):
+    return rec.recover_states(expr, ctm, RRandom(seed), annotation, kind=kind, exact=exact)
 
 
 def _store(adata, key, model, states, eco, seed, kind):
@@ -104,17 +104,20 @@ def _store(adata, key, model, states, eco, seed, kind):
 # bulk
 # ----------------------------------------------------------------------------
 def recover_bulk_frame(expr: pd.DataFrame, model: EcoTyperModel, annotation: pd.DataFrame | None = None, *,
-                       seed: int = 42, n_jobs: int = 1, r_exact: bool = True, kind: str = "bulk"):
+                       seed: int = 42, n_jobs: int = 1, r_exact: bool = True, kind: str = "bulk",
+                       exact: bool = True):
     """Bulk recovery on a genes x samples DataFrame (values as read by R).
 
-    Returns ``(state_results, ecotype_result)``."""
+    Returns ``(state_results, ecotype_result)``. ``exact=False`` is the fast mode (BLAS NMF
+    updates, no R text round trips; see the module docstring)."""
+    r_exact = r_exact and exact
     data = rec.prepare_bulk_expression(expr)
     clin = rec.read_clinical(list(data.columns), annotation)
     cts = model.cell_type_order
     # each worker gets only its cell type's model genes (recover_states starts with the same
     # align_rows, which is idempotent), not the whole matrix
     tasks = [(rec.align_rows(data, [str(g) for g in model.cell_types[ct].initial_gene_info["Gene"]]),
-              model.cell_types[ct], seed, clin, kind) for ct in cts]
+              model.cell_types[ct], seed, clin, kind, exact) for ct in cts]
     del data
     res = _run_parallel(_bulk_state_task, tasks, n_jobs)
     states = dict(zip(cts, res))
@@ -125,7 +128,7 @@ def recover_bulk_frame(expr: pd.DataFrame, model: EcoTyperModel, annotation: pd.
 
 
 def recover_bulk(adata, model, *, discovery_root=None, layer=None, seed: int = 42, n_jobs: int = 1,
-                 r_exact: bool = True, key: str = "ecotyper"):
+                 r_exact: bool = True, key: str = "ecotyper", exact: bool = True):
     """Recover cell states and ecotypes in bulk samples (``adata``: samples x genes).
 
     ``model`` is an :class:`EcoTyperModel`, a path to a model folder, or a
@@ -134,14 +137,14 @@ def recover_bulk(adata, model, *, discovery_root=None, layer=None, seed: int = 4
     model = _model(model, discovery_root)
     expr = from_anndata(adata, layer)
     ann = annotation_from_anndata(adata)
-    states, eco = recover_bulk_frame(expr, model, ann, seed=seed, n_jobs=n_jobs, r_exact=r_exact)
+    states, eco = recover_bulk_frame(expr, model, ann, seed=seed, n_jobs=n_jobs, r_exact=r_exact, exact=exact)
     _store(adata, key, model, states, eco, seed, "bulk")
     adata.uns[key]["results"] = {"states": states, "ecotypes": eco}
     return states, eco
 
 
 def recover_bulk_files(matrix, annotation, model, out_dir, *, discovery_root=None, recovery_name=None,
-                       seed: int = 42, n_jobs: int = 1, r_exact: bool = True):
+                       seed: int = 42, n_jobs: int = 1, r_exact: bool = True, exact: bool = True):
     """File-based equivalent of ``Rscript EcoTyper_recovery_bulk.R -m matrix -a annotation``.
 
     Writes the intermediate ``EcoTyper/<discovery>/<fractions>/{Cell_States,Ecotypes}/recovery``
@@ -155,7 +158,7 @@ def recover_bulk_files(matrix, annotation, model, out_dir, *, discovery_root=Non
                 recovery_name = recovery_name[: -len(suf)]
     expr = read_bulk_matrix(matrix)
     ann = read_annotation(annotation)
-    states, eco = recover_bulk_frame(expr, model, ann, seed=seed, n_jobs=n_jobs, r_exact=r_exact)
+    states, eco = recover_bulk_frame(expr, model, ann, seed=seed, n_jobs=n_jobs, r_exact=r_exact, exact=exact)
     out = Path(out_dir)
     base = out / "EcoTyper" / model.name / model.fractions
     for ct, r in states.items():
@@ -196,7 +199,7 @@ def _scrna_prepare(expr_all, annotation, ctm):
     return ann, rec.align_rows(expr, [str(g) for g in ctm.initial_gene_info["Gene"]])
 
 
-def _scrna_state_task(prepared, ctm, seed, subsample):
+def _scrna_state_task(prepared, ctm, seed, subsample, exact=True):
     """``state_recovery_scRNA.R`` for one cell type from :func:`_scrna_prepare`
     output (``None`` if the cell type has no cells)."""
     if prepared is None:
@@ -212,11 +215,11 @@ def _scrna_state_task(prepared, ctm, seed, subsample):
         pick = rng.sample_int(data.shape[1], subsample) - 1
         data = data.iloc[:, pick]
         ann = ann.iloc[[ids.index(c) for c in data.columns]]
-    return rec.recover_states(data, ctm, rng, ann, kind="scRNA")
+    return rec.recover_states(data, ctm, rng, ann, kind="scRNA", exact=exact)
 
 
 def recover_scrna_frame(expr_all: pd.DataFrame, annotation: pd.DataFrame, model: EcoTyperModel, *,
-                        seed: int = 42, subsample: int = -1, n_jobs: int = 1):
+                        seed: int = 42, subsample: int = -1, n_jobs: int = 1, exact: bool = True):
     """scRNA-seq recovery on a genes x cells DataFrame (``fread`` semantics) and a
     cell annotation with ``ID``, ``CellType`` and optionally ``Sample``.
 
@@ -224,8 +227,8 @@ def recover_scrna_frame(expr_all: pd.DataFrame, annotation: pd.DataFrame, model:
     50, e.g. the default ``-1``, keep all cells). Returns ``(state_results, ecotype_result)``; ``ecotype_result`` is
     ``None`` without a ``Sample`` column."""
     cts = model.cell_type_order
-    tasks = [(_scrna_prepare(expr_all, annotation, model.cell_types[ct]), model.cell_types[ct], seed, subsample)
-             for ct in cts]
+    tasks = [(_scrna_prepare(expr_all, annotation, model.cell_types[ct]), model.cell_types[ct], seed, subsample,
+              exact) for ct in cts]
     res = _run_parallel(_scrna_state_task, tasks, n_jobs)
     states = {ct: r for ct, r in zip(cts, res) if r is not None}
     eco = None
@@ -235,7 +238,7 @@ def recover_scrna_frame(expr_all: pd.DataFrame, annotation: pd.DataFrame, model:
 
 
 def recover_scrna(adata, model, *, discovery_root=None, layer=None, seed: int = 42, subsample: int = -1,
-                  n_jobs: int = 1, key: str = "ecotyper"):
+                  n_jobs: int = 1, key: str = "ecotyper", exact: bool = True):
     """Recover cell states in single cells (``adata``: cells x genes, raw-scale
     expression; ``obs`` must have ``CellType`` and, for ecotypes, ``Sample``).
 
@@ -243,14 +246,15 @@ def recover_scrna(adata, model, *, discovery_root=None, layer=None, seed: int = 
     model = _model(model, discovery_root)
     expr = from_anndata(adata, layer)
     ann = annotation_from_anndata(adata)
-    states, eco = recover_scrna_frame(expr, ann, model, seed=seed, subsample=subsample, n_jobs=n_jobs)
+    states, eco = recover_scrna_frame(expr, ann, model, seed=seed, subsample=subsample, n_jobs=n_jobs,
+                                      exact=exact)
     _store(adata, key, model, states, None, seed, "scRNA")
     adata.uns[key]["results"] = {"states": states, "ecotypes": eco}
     return states, eco
 
 
 def recover_scrna_files(matrix, annotation, model, out_dir, *, discovery_root=None, recovery_name=None,
-                        seed: int = 42, subsample: int = -1, n_jobs: int = 1):
+                        seed: int = 42, subsample: int = -1, n_jobs: int = 1, exact: bool = True):
     """File-based equivalent of ``Rscript EcoTyper_recovery_scRNA.R``."""
     model = _model(model, discovery_root)
     if recovery_name is None:
@@ -260,7 +264,8 @@ def recover_scrna_files(matrix, annotation, model, out_dir, *, discovery_root=No
                 recovery_name = recovery_name[: -len(suf)]
     expr = read_scrna_matrix(matrix)
     ann = read_annotation(annotation)
-    states, eco = recover_scrna_frame(expr, ann, model, seed=seed, subsample=subsample, n_jobs=n_jobs)
+    states, eco = recover_scrna_frame(expr, ann, model, seed=seed, subsample=subsample, n_jobs=n_jobs,
+                                      exact=exact)
     out = Path(out_dir)
     base = out / "EcoTyper" / model.name / model.fractions
     for ct, r in states.items():
@@ -313,9 +318,11 @@ def read_visium(matrix_dir):
 
 def recover_visium_frame(expr, spots, model: EcoTyperModel, fractions: pd.DataFrame, *, sample_name: str,
                          malignant_cell: str | None = "Epithelial.cells", seed: int = 42, n_jobs: int = 1,
-                         r_exact: bool = True):
+                         r_exact: bool = True, exact: bool = True):
     """Returns ``(state_results, state_abundances_long, state_abundances, ecotype_abundances)``."""
-    states, _ = recover_bulk_frame(expr, model, spots, seed=seed, n_jobs=n_jobs, r_exact=r_exact, kind="visium")
+    r_exact = r_exact and exact
+    states, _ = recover_bulk_frame(expr, model, spots, seed=seed, n_jobs=n_jobs, r_exact=r_exact, kind="visium",
+                                   exact=exact)
     # model.ecotypes is not needed for state recovery; bulk ecotype recovery is not run for Visium
     cts = model.cell_type_order
     long, wide = rec.spatial_states(states, cts, fractions, spots, model.cell_types, malignant_cell, sample_name,
@@ -326,7 +333,7 @@ def recover_visium_frame(expr, spots, model: EcoTyperModel, fractions: pd.DataFr
 
 def recover_visium_files(visium_dir, fractions_path, model, out_dir, *, recovery_name, discovery_root=None,
                          malignant_cell: str | None = "Epithelial.cells", seed: int = 42, n_jobs: int = 1,
-                         r_exact: bool = True):
+                         r_exact: bool = True, exact: bool = True):
     """File-based equivalent of ``Rscript EcoTyper_recovery_visium.R -c config.yml``
     with precomputed fractions."""
     from .rcompat.io import write_table
@@ -336,7 +343,7 @@ def recover_visium_files(visium_dir, fractions_path, model, out_dir, *, recovery
     frac = read_fractions(fractions_path)
     states, long, wide, eco = recover_visium_frame(expr, spots, model, frac, sample_name=recovery_name,
                                                    malignant_cell=malignant_cell, seed=seed, n_jobs=n_jobs,
-                                                   r_exact=r_exact)
+                                                   r_exact=r_exact, exact=exact)
     out = Path(out_dir)
     base = out / "EcoTyper" / model.name / model.fractions / "Cell_States" / "recovery" / recovery_name
     for ct, r in states.items():
@@ -376,10 +383,10 @@ def ecotype_abundances_long(eco: pd.DataFrame) -> pd.DataFrame:
 # ----------------------------------------------------------------------------
 # discovery (bulk downstream of CIBERSORTx, presorted)
 # ----------------------------------------------------------------------------
-def _nmf_rank_task(V, rank, restarts):
+def _nmf_rank_task(V, rank, restarts, exact=True):
     from . import discovery_steps as dsc
 
-    fits = [dsc.run_nmf(V, rank, r) for r in range(1, restarts + 1)]
+    fits = [dsc.run_nmf(V, rank, r, exact) for r in range(1, restarts + 1)]
     merged, metrics = dsc.rank_metrics(fits, rank)
     return merged, metrics, [int(f.niter) for f in fits]
 
@@ -392,14 +399,17 @@ class DiscoveryResult(dict):
 
 def discover_from_profiles(profiles: dict, annotation: pd.DataFrame | None = None, *, scale_column=None,
                            max_states: int = 20, restarts: int = 5, cophenetic_cutoff: float = 0.95,
-                           min_states: int = 3, n_jobs: int = 1, r_exact: bool = True, verbose: bool = True):
+                           min_states: int = 3, n_jobs: int = 1, r_exact: bool = True, verbose: bool = True,
+                           exact: bool = True):
     """Cell state + ecotype discovery from per-cell-type expression profiles
     (``EcoTyper_discovery_bulk.R`` steps 3–6 and 8 with CSx HiRes profiles as
     input, or ``EcoTyper_discovery_presorted.R`` with "no filter").
 
     ``profiles``: cell type → genes x samples DataFrame (values as read by
-    ``read.delim(row.names = 1)``), in the order of ``classes.txt``."""
+    ``read.delim(row.names = 1)``), in the order of ``classes.txt``. ``exact=False``: fast mode."""
     from . import discovery_steps as dsc
+
+    r_exact = r_exact and exact
 
     feats = {}
     for ct, raw in profiles.items():
@@ -413,7 +423,7 @@ def discover_from_profiles(profiles: dict, annotation: pd.DataFrame | None = Non
     for ct, f in feats.items():
         V = dsc.nmf_input(f.top_scaled, r_exact)
         for k in range(2, max_states + 1):
-            tasks.append((V, k, restarts))
+            tasks.append((V, k, restarts, exact))
             keys.append((ct, k))
     res = _run_parallel(_nmf_rank_task, tasks, n_jobs)
     merged = {key: r[0] for key, r in zip(keys, res)}
@@ -507,7 +517,7 @@ def write_discovery(res: DiscoveryResult, out_dir, name: str, fractions: str) ->
 
 def discover_files(input_dir, annotation_path, out_dir, *, name: str, fractions: str = "All_genes",
                    scale_column=None, max_states: int = 20, restarts: int = 5, cophenetic_cutoff: float = 0.95,
-                   min_states: int = 3, n_jobs: int = 1, r_exact: bool = True):
+                   min_states: int = 3, n_jobs: int = 1, r_exact: bool = True, exact: bool = True):
     """File-based discovery from a folder of per-cell-type profiles (CSx HiRes
     output or presorted profiles) and a sample annotation file."""
     from .rlayout import _wm  # noqa: F401
@@ -516,7 +526,7 @@ def discover_files(input_dir, annotation_path, out_dir, *, name: str, fractions:
     ann = read_annotation(annotation_path)
     res = discover_from_profiles(profiles, ann, scale_column=scale_column, max_states=max_states,
                                  restarts=restarts, cophenetic_cutoff=cophenetic_cutoff, min_states=min_states,
-                                 n_jobs=n_jobs, r_exact=r_exact)
+                                 n_jobs=n_jobs, r_exact=r_exact, exact=exact)
     write_discovery(res, out_dir, name, fractions)
     return res
 
@@ -524,16 +534,17 @@ def discover_files(input_dir, annotation_path, out_dir, *, name: str, fractions:
 # ----------------------------------------------------------------------------
 # scRNA-seq discovery
 # ----------------------------------------------------------------------------
-def _nmf_rank_task_cc(V, rank, restarts):
-    return _nmf_rank_task(V, rank, restarts)
+def _nmf_rank_task_cc(V, rank, restarts, exact=True):
+    return _nmf_rank_task(V, rank, restarts, exact)
 
 
 def discover_scrna_frame(expr: pd.DataFrame, annotation: pd.DataFrame, *, filter_genes="cell type specific",
                          scale_column=None, max_states: int = 20, restarts: int = 5,
                          cophenetic_cutoff: float = 0.975, p_value_cutoff: float = 1.0, min_states: int = 3,
-                         n_jobs: int = 1, r_exact: bool = True, verbose: bool = True):
+                         n_jobs: int = 1, r_exact: bool = True, verbose: bool = True, exact: bool = True):
     """``EcoTyper_discovery_scRNA.R`` on a genes x cells matrix (fread semantics)
-    and a cell annotation with ``ID``, ``CellType`` and ``Sample``."""
+    and a cell annotation with ``ID``, ``CellType`` and ``Sample``. ``exact=False``: fast mode."""
+    r_exact = r_exact and exact
     from . import discovery_steps as dsc
     from . import discovery_scrna as dsr
     from .rcompat.frame import factor_levels
@@ -556,7 +567,7 @@ def discover_scrna_frame(expr: pd.DataFrame, annotation: pd.DataFrame, *, filter
     for ct, c in cc.items():
         V = dsc.nmf_input(c.cor, r_exact)
         for k in range(2, max_states + 1):
-            tasks.append((V, k, restarts))
+            tasks.append((V, k, restarts, exact))
             keys.append((ct, k))
     res = _run_parallel(_nmf_rank_task_cc, tasks, n_jobs)
     merged = {key: r[0] for key, r in zip(keys, res)}
@@ -568,7 +579,8 @@ def discover_scrna_frame(expr: pd.DataFrame, annotation: pd.DataFrame, *, filter
         k = int(k)
         initial_cc[ct] = dsc.initial_states(merged[(ct, k)], cc[ct].cor, ct, k, r_exact, gene_info=False)
         feats[ct] = dsr.extract_features_scrna(cc[ct], initial_cc[ct].initial_assignment, r_exact)
-    tasks2 = [(dsc.nmf_input(feats[ct].top_scaled, r_exact), int(k), restarts) for ct, k in zip(cts, ranks["Chosen_Rank"])]
+    tasks2 = [(dsc.nmf_input(feats[ct].top_scaled, r_exact), int(k), restarts, exact)
+              for ct, k in zip(cts, ranks["Chosen_Rank"])]
     res2 = _run_parallel(_nmf_rank_task, tasks2, n_jobs)
     for (ct, k), r in zip(zip(cts, ranks["Chosen_Rank"]), res2):
         k = int(k)

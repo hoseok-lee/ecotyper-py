@@ -41,39 +41,39 @@ PAIRS = {
 }
 
 
-def run(tut: str, out: Path, jobs: int):
+def run(tut: str, out: Path, jobs: int, exact: bool = True):
     from ecotyper import workflows as wf
 
     ex = R_WORK / "example_data"
     models = R_WORK / "EcoTyper"
     if tut == "t1_lung":
         wf.recover_bulk_files(ex / "bulk_lung_data.txt", ex / "bulk_lung_annotation.txt", "Carcinoma", out,
-                              discovery_root=models, n_jobs=jobs)
+                              discovery_root=models, n_jobs=jobs, exact=exact)
     elif tut == "t1_lymphoma":
         wf.recover_bulk_files(ex / "bulk_lymphoma_data.txt", ex / "bulk_lymphoma_annotation.txt", "Lymphoma", out,
-                              discovery_root=models, n_jobs=jobs)
+                              discovery_root=models, n_jobs=jobs, exact=exact)
     elif tut == "t2_crc":
         wf.recover_scrna_files(ex / "scRNA_CRC_data.txt", ex / "scRNA_CRC_annotation.txt", "Carcinoma", out,
-                               discovery_root=models, n_jobs=jobs)
+                               discovery_root=models, n_jobs=jobs, exact=exact)
     elif tut == "t2_lymphoma":
         wf.recover_scrna_files(ex / "scRNA_lymphoma_data.txt", ex / "scRNA_lymphoma_annotation.txt", "Lymphoma", out,
-                               discovery_root=models, n_jobs=jobs)
+                               discovery_root=models, n_jobs=jobs, exact=exact)
     elif tut == "t3_visium":
         wf.recover_visium_files(ex / "VisiumBreast", ex / "visium_fractions_example.txt", "Carcinoma", out,
-                                recovery_name="VisiumBreast", discovery_root=models, n_jobs=jobs)
+                                recovery_name="VisiumBreast", discovery_root=models, n_jobs=jobs, exact=exact)
     elif tut == "t6_presorted":
         wf.discover_files(ex / "Tutorial_6" / "PresortedDiscovery", ex / "Tutorial_6" / "PresortedDiscovery_annotation.txt",
-                          out, name="PresortedDiscovery", fractions="All_genes", scale_column="Histology", n_jobs=jobs)
+                          out, name="PresortedDiscovery", fractions="All_genes", scale_column="Histology", n_jobs=jobs, exact=exact)
     elif tut == "t4_bulk":
         # CSx HiRes profiles: the Tutorial 6 inputs are the HiRes output of Tutorial 4
         wf.discover_files(ex / "Tutorial_6" / "PresortedDiscovery", ex / "bulk_lung_annotation.txt", out,
-                          name="MyDiscovery", fractions="Carcinoma_Fractions", scale_column="Histology", n_jobs=jobs)
+                          name="MyDiscovery", fractions="Carcinoma_Fractions", scale_column="Histology", n_jobs=jobs, exact=exact)
     elif tut == "t5_scrna":
         from ecotyper.io import read_annotation, read_scrna_matrix
 
         res = wf.discover_scrna_frame(read_scrna_matrix(ex / "scRNA_CRC_data.txt"),
                                       read_annotation(ex / "scRNA_CRC_annotation.txt"),
-                                      cophenetic_cutoff=0.975, n_jobs=jobs)
+                                      cophenetic_cutoff=0.975, n_jobs=jobs, exact=exact)
         wf.write_discovery_scrna(res, out, "discovery_scRNA_CRC", write_large=True)
     else:
         raise SystemExit(f"unknown tutorial {tut}")
@@ -97,18 +97,19 @@ def main(argv=None):
     ap.add_argument("--jobs", type=int, default=4)
     ap.add_argument("--compare-only", action="store_true")
     ap.add_argument("--no-compare", action="store_true", help="run only (used by benchmark.py)")
+    ap.add_argument("--fast", action="store_true", help="fast mode (exact=False); report <tutorial>_fast.tsv")
     a = ap.parse_args(argv)
     out = Path(a.out)
     if not a.compare_only:
         t = time.time()
-        run(a.tutorial, out, a.jobs)
+        run(a.tutorial, out, a.jobs, exact=not a.fast)
         print(f"{a.tutorial}: python run {time.time() - t:.0f} s", file=sys.stderr)
     if a.no_compare:
         return
     df = compare(a.tutorial, out)
     rep = ROOT / "validation" / "reports"
     rep.mkdir(parents=True, exist_ok=True)
-    df.to_csv(rep / f"{a.tutorial}.tsv", sep="\t", index=False)
+    df.to_csv(rep / f"{a.tutorial}{'_fast' if a.fast else ''}.tsv", sep="\t", index=False)
     n = len(df)
     print(f"{a.tutorial}: {n} files, {int(df['identical_bytes'].fillna(False).sum())} byte-identical, "
           f"{int(df['discrete_equal'].fillna(False).sum())} discrete-equal, missing {int(df['missing'].sum())}, "

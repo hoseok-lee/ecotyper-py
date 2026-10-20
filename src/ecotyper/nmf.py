@@ -246,12 +246,65 @@ def _check_target(V: np.ndarray) -> None:
         raise ValueError("NMF::nmf - Input matrix contains at least one null or NA-filled row.")
 
 
-def run_brunet(V, W0, H0, *, update_w=True, max_iter=MAX_ITER) -> tuple[np.ndarray, np.ndarray, int, bool]:
-    """Run Brunet multiplicative updates from (W0, H0) with the connectivity stop."""
+def _brunet_loop_fast(V, W, H, max_iter, update_w, stopconv, check_interval, eps):
+    """``exact=False``: the same algorithm as :func:`_brunet_loop` (Brunet updates, eps clamp
+    every 10 iterations, connectivity stop) with BLAS matrix products. The sums are accumulated
+    in a different order, so W and H differ from R's in the last bits."""
+    n, r = W.shape
+    p = H.shape[1]
+    WH = np.empty((n, p))
+    rt = np.empty((r, p))
+    wt = np.empty((n, r))
+    consold = None
+    inc = 0
+    i = 0
+    stop = False
+    while True:
+        if i > 0 and i % check_interval == 0:
+            idx = np.argmax(H, axis=0)  # first maximum, as which.max (H has no NaN here)
+            # equal partitions <=> equal labels after relabelling by first occurrence
+            _, first, inv = np.unique(idx, return_index=True, return_inverse=True)
+            lab = np.argsort(np.argsort(first))[inv]
+            if consold is not None and np.array_equal(lab, consold):
+                inc += 1
+            else:
+                consold = lab
+                inc = 0
+            if inc > stopconv:
+                stop = True
+        if stop or i >= max_iter:
+            break
+        i += 1
+        # H <- H * (t(W) %*% (V / (W %*% H))) / colSums(W)
+        np.matmul(W, H, out=WH)
+        np.divide(V, WH, out=WH)
+        np.matmul(W.T, WH, out=rt)
+        H *= rt
+        H /= W.sum(axis=0)[:, None]
+        if update_w:
+            # W <- W * ((V / (W %*% H)) %*% t(H)) / rowSums(H)
+            np.matmul(W, H, out=WH)
+            np.divide(V, WH, out=WH)
+            np.matmul(WH, H.T, out=wt)
+            W *= wt
+            W /= H.sum(axis=1)[None, :]
+        if i % 10 == 0:
+            np.maximum(H, eps, out=H)
+            if update_w:
+                np.maximum(W, eps, out=W)
+    return i, stop
+
+
+def run_brunet(V, W0, H0, *, update_w=True, max_iter=MAX_ITER,
+               exact: bool = True) -> tuple[np.ndarray, np.ndarray, int, bool]:
+    """Run Brunet multiplicative updates from (W0, H0) with the connectivity stop.
+
+    ``exact=False`` uses BLAS products (:func:`_brunet_loop_fast`) instead of the R-exact kernels."""
     V = np.ascontiguousarray(V, dtype=np.float64)
     W = np.ascontiguousarray(W0, dtype=np.float64).copy()
     H = np.ascontiguousarray(H0, dtype=np.float64).copy()
-    niter, stop = _brunet_loop(V, W, H, int(max_iter), bool(update_w), STOPCONV, CHECK_INTERVAL, EPS)
+    loop = _brunet_loop if exact else _brunet_loop_fast
+    niter, stop = loop(V, W, H, int(max_iter), bool(update_w), STOPCONV, CHECK_INTERVAL, EPS)
     return W, H, int(niter), bool(stop)
 
 
@@ -262,21 +315,29 @@ def fitted(W: np.ndarray, H: np.ndarray) -> np.ndarray:
     return blas.dgemm(1.0, np.asfortranarray(W, dtype=np.float64), np.asfortranarray(H, dtype=np.float64))
 
 
-def kl_divergence(V: np.ndarray, W: np.ndarray, H: np.ndarray) -> float:
-    return float(_kl(np.ascontiguousarray(V, dtype=np.float64), np.ascontiguousarray(fitted(W, H))))
+def kl_divergence(V: np.ndarray, W: np.ndarray, H: np.ndarray, exact: bool = True) -> float:
+    if exact:
+        return float(_kl(np.ascontiguousarray(V, dtype=np.float64), np.ascontiguousarray(fitted(W, H))))
+    WH = W @ H
+    with np.errstate(divide="ignore", invalid="ignore"):
+        dev = np.where(V == 0, WH, V * np.log(V / WH) - V + WH)
+    return float(dev.sum())
 
 
-def nmf_brunet(V: np.ndarray, rank: int, seed: int, *, max_iter: int = MAX_ITER) -> NMFFit:
-    """``nmf(V, rank, method="brunet", seed=seed, .opt="P1")`` (single run)."""
+def nmf_brunet(V: np.ndarray, rank: int, seed: int, *, max_iter: int = MAX_ITER, exact: bool = True) -> NMFFit:
+    """``nmf(V, rank, method="brunet", seed=seed, .opt="P1")`` (single run).
+
+    ``exact=False``: same initialisation and stopping rule, BLAS updates (not bit-identical to R)."""
     V = np.asarray(V, dtype=np.float64)
     _check_target(V)
     rng = RRandom(seed)
     W0, H0 = rnmf(rank, V, rng)
-    W, H, niter, conv = run_brunet(V, W0, H0, update_w=True, max_iter=max_iter)
-    return NMFFit(W=W, H=H, niter=niter, converged=conv, deviance=kl_divergence(V, W, H), seed=seed)
+    W, H, niter, conv = run_brunet(V, W0, H0, update_w=True, max_iter=max_iter, exact=exact)
+    return NMFFit(W=W, H=H, niter=niter, converged=conv, deviance=kl_divergence(V, W, H, exact), seed=seed)
 
 
-def nmf_predict(W: np.ndarray, new_data: np.ndarray, rng: RRandom, *, max_iter: int = MAX_ITER):
+def nmf_predict(W: np.ndarray, new_data: np.ndarray, rng: RRandom, *, max_iter: int = MAX_ITER,
+                exact: bool = True):
     """EcoTyper's ``NMFpredict(W, new_data)``.
 
     ``W`` has ``2g`` rows (``<gene>__pos`` then ``<gene>__neg``) and ``new_data``
@@ -293,7 +354,7 @@ def nmf_predict(W: np.ndarray, new_data: np.ndarray, rng: RRandom, *, max_iter: 
     to_predict = to_predict[keep]
     _, H0 = rnmf(W.shape[1], to_predict, rng)
     _check_target(to_predict)
-    _, H, niter, _ = run_brunet(to_predict, ws, H0, update_w=False, max_iter=max_iter)
+    _, H, niter, _ = run_brunet(to_predict, ws, H0, update_w=False, max_iter=max_iter, exact=exact)
     return H, niter, keep
 
 

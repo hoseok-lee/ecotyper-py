@@ -92,13 +92,15 @@ def _sort_assignment(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def recover_states(expr: pd.DataFrame, ct: CellTypeModel, rng: RRandom,
-                   annotation: pd.DataFrame | None = None, *, kind: str = "bulk") -> StateRecovery:
+                   annotation: pd.DataFrame | None = None, *, kind: str = "bulk",
+                   exact: bool = True) -> StateRecovery:
     """Recover the cell states of one cell type (``state_recovery_{bulk,visium,scRNA}.R``).
 
     ``expr`` is the genes x samples matrix after the dataset-level preparation
     (NA -> 0 and optional log2 for bulk/Visium via
     :func:`prepare_bulk_expression`; per-cell-type log2 for scRNA). ``rng`` is
-    consumed exactly as R consumes its RNG (one ``rnmf`` draw).
+    consumed exactly as R consumes its RNG (one ``rnmf`` draw). ``exact=False`` runs
+    NMFpredict with BLAS updates (see :func:`ecotyper.nmf.run_brunet`).
     ``annotation`` is the result of :func:`read_clinical` (bulk/Visium) or the
     cell annotation (scRNA).
     """
@@ -113,7 +115,7 @@ def recover_states(expr: pd.DataFrame, ct: CellTypeModel, rng: RRandom,
     wrows = [str(r) for r in ct.W.index]
     training = [r.replace("__pos", "") for r in wrows if "__pos" in r]
     new_data = align_rows(scaled_df, training).to_numpy()
-    H, niter, _ = nmf_predict(ct.W.to_numpy(), new_data, rng)
+    H, niter, _ = nmf_predict(ct.W.to_numpy(), new_data, rng, exact=exact)
     states0 = [str(c) for c in ct.W.columns]
     samples = list(data.columns)
     H_df = pd.DataFrame(H, index=states0, columns=samples)

@@ -202,7 +202,7 @@ def recovery(adata, model: EcoTyperModel | str = "Carcinoma", *, data_type: Data
              layer: str | None = None, cell_type_key: str = "CellType", sample_key: str | None = "Sample",
              fractions: pd.DataFrame | str | None = None, malignant_cell: str | None = "Epithelial.cells",
              library_id: str | None = None, subsample: int = -1, key_added: str = "ecotyper",
-             copy: bool = False, seed: int = 42, n_jobs: int = 1, r_exact: bool = True):
+             copy: bool = False, seed: int = 42, n_jobs: int = 1, r_exact: bool = True, exact: bool = True):
     """Recover cell states and ecotypes defined by ``model`` in new data.
 
     Parameters
@@ -245,6 +245,11 @@ def recovery(adata, model: EcoTyperModel | str = "Carcinoma", *, data_type: Data
     seed, n_jobs, r_exact
         Random seed of NMF prediction (R's ``set.seed``), number of worker
         processes, and R-exact arithmetic (keep ``True`` for results identical to R).
+    exact
+        ``False`` selects the fast mode: NMF with BLAS matrix products and no
+        emulation of R's text round trips. Results match R's to ~1e-12 relative
+        and state/ecotype assignments were identical on the tutorial data, but
+        bit-identity with R is not guaranteed (see the docs, "Fast mode").
 
     Returns
     -------
@@ -276,12 +281,13 @@ def recovery(adata, model: EcoTyperModel | str = "Carcinoma", *, data_type: Data
     dt = _resolve_type(adata, data_type, cell_type_key)
     model = _model(model)
     key = key_added
-    params = dict(model=model.name, fractions=model.fractions, data_type=dt, seed=seed, layer=layer)
+    params = dict(model=model.name, fractions=model.fractions, data_type=dt, seed=seed, layer=layer, exact=exact)
 
     if dt == "bulk":
         expr = _expr_frame(adata, layer)
         ann = _obs_annotation(adata, {})
-        states, eco = wf.recover_bulk_frame(expr, model, ann, seed=seed, n_jobs=n_jobs, r_exact=r_exact)
+        states, eco = wf.recover_bulk_frame(expr, model, ann, seed=seed, n_jobs=n_jobs, r_exact=r_exact,
+                                            exact=exact)
         _state_columns(adata, key, states)
         if eco is not None:
             ia = eco.initial_assignment.set_index("ID")
@@ -318,7 +324,8 @@ def recovery(adata, model: EcoTyperModel | str = "Carcinoma", *, data_type: Data
         for ctm in model.cell_types.values():
             genes.update(str(g) for g in ctm.initial_gene_info["Gene"])
         expr = _expr_frame(adata, layer, genes=genes)
-        states, eco = wf.recover_scrna_frame(expr, ann, model, seed=seed, subsample=subsample, n_jobs=n_jobs)
+        states, eco = wf.recover_scrna_frame(expr, ann, model, seed=seed, subsample=subsample, n_jobs=n_jobs,
+                                             exact=exact)
         _state_columns(adata, key, states)
         _cell_ecotypes(adata, key, model, list(states))
         ea = asg = None
@@ -361,7 +368,7 @@ def recovery(adata, model: EcoTyperModel | str = "Carcinoma", *, data_type: Data
         expr = _expr_frame(adata, layer, obs_names=ids)
         states, long, wide, eco = wf.recover_visium_frame(expr, spots, model, frac, sample_name=library_id,
                                                           malignant_cell=malignant_cell, seed=seed,
-                                                          n_jobs=n_jobs, r_exact=r_exact)
+                                                          n_jobs=n_jobs, r_exact=r_exact, exact=exact)
         _state_columns(adata, key, states, id_to_obs)
         fixed = ["ID", "X", "Y", "Sample", "Malignant"]
         for name, tab in ((f"{key}_state_abundance", wide), (f"{key}_ecotype_abundance", eco)):
@@ -388,7 +395,7 @@ def discovery(data, *, data_type: DataType | None = None, layer: str | None = No
               name: str = "custom", filter_genes: str | int = "cell type specific", scale_column: str | None = None,
               max_states: int = 20, restarts: int = 5, cophenetic_cutoff: float | None = None,
               p_value_cutoff: float = 1.0, min_states: int = 3, key_added: str = "ecotyper", n_jobs: int = 1,
-              r_exact: bool = True, verbose: bool = True) -> EcoTyperModel:
+              r_exact: bool = True, verbose: bool = True, exact: bool = True) -> EcoTyperModel:
     """Discover cell states and ecotypes; returns an in-memory :class:`EcoTyperModel`.
 
     Parameters
@@ -416,6 +423,9 @@ def discovery(data, *, data_type: DataType | None = None, layer: str | None = No
         ``cophenetic_cutoff`` defaults to 0.975 (scRNA) and 0.95 (profiles).
     key_added
         scRNA: prefix of the per-cell results written to ``data.obs``.
+    exact
+        ``False`` selects the fast mode (BLAS NMF updates, no R text round
+        trips); see :func:`recovery`.
 
     Notes
     -----
@@ -448,7 +458,7 @@ def discovery(data, *, data_type: DataType | None = None, layer: str | None = No
                                       max_states=max_states, restarts=restarts,
                                       cophenetic_cutoff=0.975 if cophenetic_cutoff is None else cophenetic_cutoff,
                                       p_value_cutoff=p_value_cutoff, min_states=min_states, n_jobs=n_jobs,
-                                      r_exact=r_exact, verbose=verbose)
+                                      r_exact=r_exact, verbose=verbose, exact=exact)
         model = EcoTyperModel.from_discovery(res, name)
         key = key_added
         for ct, st in res.states.items():
@@ -459,7 +469,7 @@ def discovery(data, *, data_type: DataType | None = None, layer: str | None = No
         _cell_ecotypes(adata, key, model, list(res.states))
         _uns(adata, key, params=dict(data_type="scRNA", name=name, filter_genes=str(filter_genes),
                                      max_states=max_states, restarts=restarts, layer=layer,
-                                     cell_type_key=cell_type_key, sample_key=sample_key),
+                                     cell_type_key=cell_type_key, sample_key=sample_key, exact=exact),
              n_states=model.n_states)
         return model
     # profiles
@@ -478,5 +488,6 @@ def discovery(data, *, data_type: DataType | None = None, layer: str | None = No
     res = wf.discover_from_profiles(profiles, annotation, scale_column=scale_column, max_states=max_states,
                                     restarts=restarts,
                                     cophenetic_cutoff=0.95 if cophenetic_cutoff is None else cophenetic_cutoff,
-                                    min_states=min_states, n_jobs=n_jobs, r_exact=r_exact, verbose=verbose)
+                                    min_states=min_states, n_jobs=n_jobs, r_exact=r_exact, verbose=verbose,
+                                    exact=exact)
     return EcoTyperModel.from_discovery(res, name)
