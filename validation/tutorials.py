@@ -102,6 +102,7 @@ def main(argv=None):
     ap.add_argument("--no-compare", action="store_true", help="run only (used by benchmark.py)")
     ap.add_argument("--fast", action="store_true", help="fast mode (exact=False); report <tutorial>_fast.tsv")
     ap.add_argument("--nmf-method", default="brunet", help="discovery NMF solver; report <tutorial>_<method>.tsv")
+    ap.add_argument("--report", default=None, help="report path (default validation/reports/<tutorial>[_fast][_<method>].tsv)")
     a = ap.parse_args(argv)
     out = Path(a.out)
     if not a.compare_only:
@@ -113,7 +114,8 @@ def main(argv=None):
     df = compare(a.tutorial, out)
     rep = ROOT / "validation" / "reports"
     rep.mkdir(parents=True, exist_ok=True)
-    df.to_csv(rep / f"{a.tutorial}{'_fast' if a.fast else ''}{'' if a.nmf_method == 'brunet' else '_' + a.nmf_method}.tsv", sep="\t", index=False)
+    path = a.report or rep / f"{a.tutorial}{'_fast' if a.fast else ''}{'' if a.nmf_method == 'brunet' else '_' + a.nmf_method}.tsv"
+    df.to_csv(path, sep="\t", index=False)
     n = len(df)
     print(f"{a.tutorial}: {n} files, {int(df['identical_bytes'].fillna(False).sum())} byte-identical, "
           f"{int(df['discrete_equal'].fillna(False).sum())} discrete-equal, missing {int(df['missing'].sum())}, "

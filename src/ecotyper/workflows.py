@@ -65,12 +65,16 @@ def _mp_context():
     return multiprocessing.get_context(m) if m else None
 
 
-def _run_parallel(fn, tasks, n_jobs):
+def _run_parallel(fn, tasks, n_jobs, cost=None):
+    """``[fn(*t) for t in tasks]`` in ``n_jobs`` worker processes. With ``cost`` (one estimate
+    per task) the tasks are submitted most expensive first, so the longest ones do not start
+    last and leave the other workers idle; results keep the order of ``tasks``."""
     if n_jobs is None or n_jobs <= 1 or len(tasks) <= 1:
         return [fn(*t) for t in tasks]
+    order = range(len(tasks)) if cost is None else sorted(range(len(tasks)), key=lambda i: -cost[i])
     with ProcessPoolExecutor(max_workers=min(n_jobs, len(tasks)), mp_context=_mp_context()) as ex:
-        futs = [ex.submit(fn, *t) for t in tasks]
-        return [f.result() for f in futs]
+        futs = {i: ex.submit(fn, *tasks[i]) for i in order}
+        return [futs[i].result() for i in range(len(tasks))]
 
 
 def _bulk_state_task(expr, ctm, seed, annotation, kind, exact=True):
@@ -119,7 +123,7 @@ def recover_bulk_frame(expr: pd.DataFrame, model: EcoTyperModel, annotation: pd.
     tasks = [(rec.align_rows(data, [str(g) for g in model.cell_types[ct].initial_gene_info["Gene"]]),
               model.cell_types[ct], seed, clin, kind, exact) for ct in cts]
     del data
-    res = _run_parallel(_bulk_state_task, tasks, n_jobs)
+    res = _run_parallel(_bulk_state_task, tasks, n_jobs, [t[0].size * t[1].W.shape[1] for t in tasks])
     states = dict(zip(cts, res))
     eco = None
     if model.ecotypes is not None:
@@ -229,7 +233,8 @@ def recover_scrna_frame(expr_all: pd.DataFrame, annotation: pd.DataFrame, model:
     cts = model.cell_type_order
     tasks = [(_scrna_prepare(expr_all, annotation, model.cell_types[ct]), model.cell_types[ct], seed, subsample,
               exact) for ct in cts]
-    res = _run_parallel(_scrna_state_task, tasks, n_jobs)
+    res = _run_parallel(_scrna_state_task, tasks, n_jobs,
+                        [0 if t[0] is None else t[0][1].size * t[1].W.shape[1] for t in tasks])
     states = {ct: r for ct, r in zip(cts, res) if r is not None}
     eco = None
     if model.ecotypes is not None and "Sample" in annotation.columns:
@@ -383,12 +388,36 @@ def ecotype_abundances_long(eco: pd.DataFrame) -> pd.DataFrame:
 # ----------------------------------------------------------------------------
 # discovery (bulk downstream of CIBERSORTx, presorted)
 # ----------------------------------------------------------------------------
-def _nmf_rank_task(V, rank, restarts, exact=True, method="brunet"):
+def _nmf_fit_task(V, rank, restart, exact=True, method="brunet"):
     from . import discovery_steps as dsc
 
-    fits = [dsc.run_nmf(V, rank, r, exact, method) for r in range(1, restarts + 1)]
+    return dsc.run_nmf(V, rank, restart, exact, method)
+
+
+def _rank_metrics_task(fits, rank):
+    from . import discovery_steps as dsc
+
     merged, metrics = dsc.rank_metrics(fits, rank)
     return merged, metrics, [int(f.niter) for f in fits]
+
+
+def _nmf_grid(inputs, restarts, exact, method, n_jobs):
+    """``state_discovery_NMF.R`` + ``state_discovery_combine_NMF_restarts.R`` for every
+    ``(key, V, rank)`` in ``inputs``. Each restart is a separate task (as in R's job queue),
+    longest first (cost ~ size of V x rank); then the per-rank metrics (consensus, cophenetic,
+    silhouettes) run in parallel. Returns ``{key: (merged, metrics, niters)}``."""
+    tasks, owner, cost = [], [], []
+    for key, V, k in inputs:
+        for r in range(1, restarts + 1):
+            tasks.append((V, k, r, exact, method))
+            owner.append(key)
+            cost.append(V.shape[0] * V.shape[1] * k)
+    fits = {}
+    for key, f in zip(owner, _run_parallel(_nmf_fit_task, tasks, n_jobs, cost)):
+        fits.setdefault(key, []).append(f)  # restarts 1..R in order
+    res = _run_parallel(_rank_metrics_task, [(fits[key], k) for key, _, k in inputs], n_jobs,
+                        [V.shape[1] ** 2 for _, V, _ in inputs])
+    return {key: r for (key, _, _), r in zip(inputs, res)}
 
 
 class DiscoveryResult(dict):
@@ -420,16 +449,14 @@ def discover_from_profiles(profiles: dict, annotation: pd.DataFrame | None = Non
                 print(f"Only {raw.shape[0]} genes are available for '{ct}'; skipping (need >= 50).")
             continue
         feats[ct] = f
-    tasks, keys = [], []
+    inputs = []
     for ct, f in feats.items():
         V = dsc.nmf_input(f.top_scaled, r_exact)
-        for k in range(2, max_states + 1):
-            tasks.append((V, k, restarts, exact, nmf_method))
-            keys.append((ct, k))
-    res = _run_parallel(_nmf_rank_task, tasks, n_jobs)
-    merged = {key: r[0] for key, r in zip(keys, res)}
-    metrics = {key: r[1] for key, r in zip(keys, res)}
-    niter = {key: r[2] for key, r in zip(keys, res)}
+        inputs += [((ct, k), V, k) for k in range(2, max_states + 1)]
+    res = _nmf_grid(inputs, restarts, exact, nmf_method, n_jobs)
+    merged = {key: r[0] for key, r in res.items()}
+    metrics = {key: r[1] for key, r in res.items()}
+    niter = {key: r[2] for key, r in res.items()}
     rank_tables = {ct: pd.DataFrame([metrics[(ct, k)] for k in range(2, max_states + 1)]) for ct in feats}
     ranks = dsc.select_ranks(rank_tables, max_states, cophenetic_cutoff, r_exact)
     initial, states = {}, {}
@@ -537,10 +564,6 @@ def discover_files(input_dir, annotation_path, out_dir, *, name: str, fractions:
 # ----------------------------------------------------------------------------
 # scRNA-seq discovery
 # ----------------------------------------------------------------------------
-def _nmf_rank_task_cc(V, rank, restarts, exact=True, method="brunet"):
-    return _nmf_rank_task(V, rank, restarts, exact, method)
-
-
 def discover_scrna_frame(expr: pd.DataFrame, annotation: pd.DataFrame, *, filter_genes="cell type specific",
                          scale_column=None, max_states: int = 20, restarts: int = 5,
                          cophenetic_cutoff: float = 0.975, p_value_cutoff: float = 1.0, min_states: int = 3,
@@ -567,15 +590,13 @@ def discover_scrna_frame(expr: pd.DataFrame, annotation: pd.DataFrame, *, filter
         except ValueError as e:
             if verbose:
                 print(e)
-    tasks, keys = [], []
+    inputs = []
     for ct, c in cc.items():
         V = dsc.nmf_input(c.cor, r_exact)
-        for k in range(2, max_states + 1):
-            tasks.append((V, k, restarts, exact, nmf_method))
-            keys.append((ct, k))
-    res = _run_parallel(_nmf_rank_task_cc, tasks, n_jobs)
-    merged = {key: r[0] for key, r in zip(keys, res)}
-    rank_tables = {ct: pd.DataFrame([res[keys.index((ct, k))][1] for k in range(2, max_states + 1)]) for ct in cc}
+        inputs += [((ct, k), V, k) for k in range(2, max_states + 1)]
+    res = _nmf_grid(inputs, restarts, exact, nmf_method, n_jobs)
+    merged = {key: r[0] for key, r in res.items()}
+    rank_tables = {ct: pd.DataFrame([res[(ct, k)][1] for k in range(2, max_states + 1)]) for ct in cc}
     ranks = dsc.select_ranks(rank_tables, max_states, cophenetic_cutoff, r_exact)
     cts = [str(c) for c in ranks["CellType"]]
     initial_cc, feats, initial, states, merged2, rank2 = {}, {}, {}, {}, {}, {}
@@ -583,11 +604,10 @@ def discover_scrna_frame(expr: pd.DataFrame, annotation: pd.DataFrame, *, filter
         k = int(k)
         initial_cc[ct] = dsc.initial_states(merged[(ct, k)], cc[ct].cor, ct, k, r_exact, gene_info=False)
         feats[ct] = dsr.extract_features_scrna(cc[ct], initial_cc[ct].initial_assignment, r_exact)
-    tasks2 = [(dsc.nmf_input(feats[ct].top_scaled, r_exact), int(k), restarts, exact,
-               nmf_method) for ct, k in zip(cts, ranks["Chosen_Rank"])]
-    res2 = _run_parallel(_nmf_rank_task, tasks2, n_jobs)
-    for (ct, k), r in zip(zip(cts, ranks["Chosen_Rank"]), res2):
-        k = int(k)
+    inputs2 = [(ct, dsc.nmf_input(feats[ct].top_scaled, r_exact), int(k)) for ct, k in zip(cts, ranks["Chosen_Rank"])]
+    res2 = _nmf_grid(inputs2, restarts, exact, nmf_method, n_jobs)
+    for ct, _, k in inputs2:
+        r = res2[ct]
         merged2[ct], rank2[ct] = r[0], r[1]
         initial[ct] = dsc.initial_states(r[0], feats[ct].top_scaled, ct, k, r_exact)
         f = dsc.Features(ct, None, None, feats[ct].top_scaled, feats[ct].full_scaled)
