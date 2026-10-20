@@ -78,3 +78,19 @@ def test_c_kernel_threads_identical():
     for th in (2, 3, 8):
         got = nmf._run_c(nmf_lib(), V, W0.copy(), H0.copy(), True, 80, th)
         assert got[2:] == ref[2:] and np.array_equal(got[0], ref[0]) and np.array_equal(got[1], ref[1])
+
+
+def test_reorder_dendrogram_order_deep_chain():
+    """A chain-like tree (depth > recursion limit) must not overflow the stack."""
+    from ecotyper.nmf import reorder_dendrogram_order
+
+    n = 3000
+    merge = np.zeros((n - 1, 2), dtype=np.int64)
+    merge[0] = (-1, -2)
+    for k in range(1, n - 1):
+        merge[k] = (k, -(k + 2))
+    order = reorder_dendrogram_order(merge, np.arange(n, dtype=float))
+    assert sorted(order.tolist()) == list(range(1, n + 1))
+    # small tree: ascending weights keep merge order, descending swaps children
+    m = np.array([[-1, -2], [-3, 1]])
+    assert reorder_dendrogram_order(m, np.array([3.0, 2.0, 1.0])).tolist() == [3, 2, 1]

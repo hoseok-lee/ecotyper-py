@@ -533,12 +533,13 @@ def reorder_dendrogram_order(merge: np.ndarray, wts: np.ndarray) -> np.ndarray:
             vals = [vals[1], vals[0]]
         nodes[k + 1] = ("node", kids, (0.0 + vals[0]) + vals[1])
 
-    def leaves(nd, acc):
+    # iterative depth-first walk (degenerate chain-like trees exceed the recursion limit)
+    acc: list[int] = []
+    stack = [nodes[n - 1]]
+    while stack:
+        nd = stack.pop()
         if nd[0] == "leaf":
             acc.append(nd[1])
         else:
-            for c in nd[1]:
-                leaves(c, acc)
-        return acc
-
-    return np.array(leaves(nodes[n - 1], []), dtype=np.int64)
+            stack.extend(reversed(nd[1]))
+    return np.array(acc, dtype=np.int64)
