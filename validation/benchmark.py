@@ -6,7 +6,9 @@ Run on the compute server (needs work/dock.sh, work/dock_r.sh and the two docker
 
 Each run starts in a fresh container, one BLAS/OpenMP thread per process, parallelism from the job
 queue (R: `Number of threads`, Python: `n_jobs`). Python timings include numba JIT warm-up (cold
-cache). Results go to validation/bench/<impl>_<tutorial>.json and are summarised with `--table`.
+cache). `--impl pyfast` runs the fast mode (`exact=False`). Results go to
+validation/bench/<impl>_<tutorial>.json (wall time, peak summed RSS and PSS) and are summarised
+with `--table`.
 Reference outputs are not touched: R writes into work/ecotyper-r-src, Python into work/bench_py/.
 """
 import argparse
@@ -38,12 +40,12 @@ def run_impl(impl, tut, jobs):
         env = dict(os.environ, ECOTYPER_R_THREADS=str(jobs))
         cmd = ["work/dock_r.sh", "python3", "validation/bench_wrap.py", f"r_{tut}", out, "--",
                "bash", "validation/r_reference/run_r_reference.sh", tut]
-    else:
+    else:  # py (exact, default) or pyfast (exact=False)
         env = dict(os.environ, ECOTYPER_NO_FMA="1", ECOTYPER_R_REF="/work/work/r_ref_x86")
-        shutil.rmtree(ROOT / "work" / "bench_py" / tut, ignore_errors=True)
-        cmd = ["work/dock.sh", "python", "validation/bench_wrap.py", f"py_{tut}", out, "--",
-               "python", "validation/tutorials.py", tut, "--out", f"work/bench_py/{tut}",
-               "--jobs", str(jobs), "--no-compare"]
+        shutil.rmtree(ROOT / "work" / f"bench_{impl}" / tut, ignore_errors=True)
+        cmd = ["work/dock.sh", "python", "validation/bench_wrap.py", f"{impl}_{tut}", out, "--",
+               "python", "validation/tutorials.py", tut, "--out", f"work/bench_{impl}/{tut}",
+               "--jobs", str(jobs), "--no-compare"] + (["--fast"] if impl == "pyfast" else [])
     log = ROOT / "work" / "logs" / f"bench_{impl}_{tut}.log"
     with open(log, "w") as f:
         subprocess.call(cmd, cwd=ROOT, env=env, stdout=f, stderr=subprocess.STDOUT)
@@ -53,19 +55,25 @@ def fmt(s):
     return f"{s / 60:.1f} min" if s >= 100 else f"{s:.0f} s"
 
 
+def _load(impl, t):
+    try:
+        d = json.load(open(BENCH / f"{impl}_{t}.json"))
+    except FileNotFoundError:
+        return None
+    return None if d["rc"] else d
+
+
 def table():
-    rows = ["| Tutorial | R wall | Python wall | Speed-up (R/Py) | R peak RSS | Python peak RSS |",
-            "|---|---|---|---|---|---|"]
+    rows = ["| Tutorial | R wall | Python wall | R/Py | Python fast wall | R/fast | R peak RSS | Python peak PSS (RSS) |",
+            "|---|---|---|---|---|---|---|---|"]
     for t in ORDER:
-        try:
-            r = json.load(open(BENCH / f"r_{t}.json"))
-            p = json.load(open(BENCH / f"py_{t}.json"))
-        except FileNotFoundError:
+        r, p, f = _load("r", t), _load("py", t), _load("pyfast", t)
+        if r is None or p is None:
             continue
-        if r["rc"] or p["rc"]:
-            continue
+        mem = f"{p['peak_pss_gb']} GB ({p['peak_rss_gb']} GB)" if "peak_pss_gb" in p else f"– ({p['peak_rss_gb']} GB)"
         rows.append(f"| {t} | {fmt(r['wall_s'])} | {fmt(p['wall_s'])} | {r['wall_s'] / p['wall_s']:.2f}x | "
-                    f"{r['peak_rss_gb']} GB | {p['peak_rss_gb']} GB |")
+                    + (f"{fmt(f['wall_s'])} | {r['wall_s'] / f['wall_s']:.2f}x | " if f else "– | – | ")
+                    + f"{r['peak_rss_gb']} GB | {mem} |")
     print("\n".join(rows))
 
 
@@ -73,7 +81,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("tutorials", nargs="*")
     ap.add_argument("--jobs", type=int, default=32)
-    ap.add_argument("--impl", choices=["r", "py", "both"], default="both")
+    ap.add_argument("--impl", choices=["r", "py", "pyfast", "both"], default="both")
     ap.add_argument("--table", action="store_true")
     a = ap.parse_args()
     if a.table:
