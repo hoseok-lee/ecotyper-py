@@ -33,6 +33,7 @@ unseeded); the port reseeds ``RRandom(seed)`` for every cell type the same way.
 """
 from __future__ import annotations
 
+import os
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 
@@ -55,10 +56,19 @@ def _model(model, discovery_root=None) -> EcoTyperModel:
     return EcoTyperModel.load(model)
 
 
+def _mp_context():
+    """Process start method for worker pools: ``ECOTYPER_MP_CONTEXT`` (``fork``, ``forkserver``,
+    ``spawn``) or the platform default."""
+    import multiprocessing
+
+    m = os.environ.get("ECOTYPER_MP_CONTEXT")
+    return multiprocessing.get_context(m) if m else None
+
+
 def _run_parallel(fn, tasks, n_jobs):
     if n_jobs is None or n_jobs <= 1 or len(tasks) <= 1:
         return [fn(*t) for t in tasks]
-    with ProcessPoolExecutor(max_workers=min(n_jobs, len(tasks))) as ex:
+    with ProcessPoolExecutor(max_workers=min(n_jobs, len(tasks)), mp_context=_mp_context()) as ex:
         futs = [ex.submit(fn, *t) for t in tasks]
         return [f.result() for f in futs]
 

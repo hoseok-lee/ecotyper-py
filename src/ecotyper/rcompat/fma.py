@@ -21,6 +21,17 @@ from numba.extending import intrinsic
 
 USE_FMA = os.environ.get("ECOTYPER_NO_FMA", "0") != "1"
 
+if not USE_FMA:
+    # numba's on-disk cache keys kernels by their own source only, so a kernel compiled with
+    # FMAs would be reused after switching ECOTYPER_NO_FMA on. Keep the two builds apart.
+    # (Kernels are defined after this module is imported, so the cache dir is picked up.)
+    import tempfile
+
+    import numba.core.config as _nbcfg
+
+    _nbcfg.CACHE_DIR = os.path.join(_nbcfg.CACHE_DIR or os.path.join(tempfile.gettempdir(), "ecotyper_numba"),
+                                    "nofma")
+
 
 @intrinsic
 def _fma_intrinsic(typingctx, a, b, c):
