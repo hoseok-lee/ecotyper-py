@@ -58,7 +58,7 @@ def _model(model, discovery_root=None) -> EcoTyperModel:
 def _run_parallel(fn, tasks, n_jobs):
     if n_jobs is None or n_jobs <= 1 or len(tasks) <= 1:
         return [fn(*t) for t in tasks]
-    with ProcessPoolExecutor(max_workers=n_jobs) as ex:
+    with ProcessPoolExecutor(max_workers=min(n_jobs, len(tasks))) as ex:
         futs = [ex.submit(fn, *t) for t in tasks]
         return [f.result() for f in futs]
 
@@ -101,7 +101,12 @@ def recover_bulk_frame(expr: pd.DataFrame, model: EcoTyperModel, annotation: pd.
     data = rec.prepare_bulk_expression(expr)
     clin = rec.read_clinical(list(data.columns), annotation)
     cts = model.cell_type_order
-    res = _run_parallel(_bulk_state_task, [(data, model.cell_types[ct], seed, clin, kind) for ct in cts], n_jobs)
+    # each worker gets only its cell type's model genes (recover_states starts with the same
+    # align_rows, which is idempotent), not the whole matrix
+    tasks = [(rec.align_rows(data, [str(g) for g in model.cell_types[ct].initial_gene_info["Gene"]]),
+              model.cell_types[ct], seed, clin, kind) for ct in cts]
+    del data
+    res = _run_parallel(_bulk_state_task, tasks, n_jobs)
     states = dict(zip(cts, res))
     eco = None
     if model.ecotypes is not None:
