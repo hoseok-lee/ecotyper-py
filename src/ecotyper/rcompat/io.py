@@ -196,6 +196,49 @@ def format_real(x: float, digits: int = 15) -> str:
     return f"{mant}e{sign}{ev}"
 
 
+def _load_fmt():
+    """``_fmt.c`` (vectorised :func:`format_real`), or ``None`` (pure Python fallback,
+    also forced by ``ECOTYPER_FMT=python``)."""
+    import os
+    import warnings
+
+    if os.environ.get("ECOTYPER_FMT", "c") == "python":
+        return None
+    try:
+        from .._ckernel import build
+
+        lib = C.CDLL(str(build(Path(__file__).with_name("_fmt.c"), ["-O2", "-ffp-contract=off", "-fPIC", "-shared"])))
+    except Exception as e:  # pragma: no cover
+        warnings.warn(f"C number formatter unavailable ({e}); writing tables is slower")
+        return None
+    lib.fmt_matrix.restype = C.c_int64
+    lib.fmt_matrix.argtypes = [C.POINTER(C.c_double), C.c_int64, C.c_int64, C.c_int, C.c_int, C.c_char_p,
+                               C.c_int64]
+    return lib
+
+
+_FMT = _load_fmt()
+
+
+def format_rows(mat: np.ndarray, digits: int = 15) -> list[str]:
+    """Rows of a float matrix formatted as :func:`format_real` (NaN as ``NA``), cells joined
+    by tabs."""
+    X = np.ascontiguousarray(mat, dtype=np.float64)
+    if X.ndim == 1:
+        X = X[:, None]
+    nr, nc = X.shape
+    if nr == 0:
+        return []
+    if _FMT is None or digits >= 16 or nc == 0:
+        return ["\t".join("NA" if np.isnan(v) else format_real(float(v), digits) for v in row) for row in X]
+    cap = 48 * nr * max(nc, 1) + 16
+    buf = C.create_string_buffer(cap)
+    n = _FMT.fmt_matrix(X.ctypes.data_as(C.POINTER(C.c_double)), nr, nc, digits, int(_LD is not None), buf, cap)
+    if n < 0:  # pragma: no cover
+        raise RuntimeError("fmt_matrix: buffer too small")
+    return buf.raw[:n].decode("ascii").split("\n")
+
+
 _NA_BITS = 1954  # R's NA_real_ payload (lower word)
 
 
@@ -229,10 +272,14 @@ def write_table(df: pd.DataFrame, path, row_names: bool = True, col_names: bool 
     lines = []
     if col_names:
         lines.append("\t".join('"' + str(c) + '"' for c in df.columns))
-    cols = [df[c].to_numpy(dtype=object) for c in df.columns]
+    cols = []
+    for c in df.columns:
+        v = df[c].to_numpy()
+        # float columns: formatted at once (same strings as _fmt_cell)
+        cols.append(format_rows(v) if v.dtype.kind == "f" else v.astype(object))
     idx = [str(i) for i in df.index]
     for r in range(len(df)):
-        cells = [_fmt_cell(c[r]) for c in cols]
+        cells = [c[r] if isinstance(c, list) else _fmt_cell(c[r]) for c in cols]
         if row_names:
             cells = ['"' + idx[r] + '"'] + cells
         lines.append("\t".join(cells))
@@ -246,5 +293,9 @@ def write_matrix(mat: np.ndarray, rows, cols, path) -> None:
     mat = np.asarray(mat)
     with open(path, "w") as fh:
         fh.write("\t".join('"' + str(c) + '"' for c in cols) + "\n")
+        if mat.dtype.kind == "f" and mat.ndim == 2:
+            body = format_rows(mat)
+            fh.writelines('"' + str(rn) + '"\t' + b + "\n" for rn, b in zip(rows, body))
+            return
         for i, rn in enumerate(rows):
             fh.write('"' + str(rn) + '"\t' + "\t".join(_fmt_cell(v) for v in mat[i]) + "\n")

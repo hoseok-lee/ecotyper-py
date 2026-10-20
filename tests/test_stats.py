@@ -57,3 +57,17 @@ def test_r_merge_factor_key_keeps_unmatched_y_after_matched():
     assert out["State"].tolist() == ["IS02", "IS03", "IS01", "IS04"]
     out2 = r_merge(x, y, "State", all_y=True)
     assert out2["State"].tolist() == ["IS01", "IS02", "IS03", "IS04"]
+
+
+def test_format_rows_c_matches_python():
+    from ecotyper.rcompat import io as rio
+
+    vals = hexread(S / "fmt_in.txt")
+    ref = (S / "fmt_out.txt").read_text().split("\n")[: len(vals)]
+    assert rio.format_rows(np.asarray(vals, dtype=float)) == ref
+    rng = np.random.default_rng(0)
+    x = np.concatenate([rng.standard_normal(5000), rng.standard_normal(5000) * 10.0 ** rng.integers(-320, 308, 5000),
+                        np.log2(np.arange(1, 3001)), [0.0, -0.0, np.nan, np.inf, -np.inf, 5e-324, 1e15, 1e16]])
+    got = rio.format_rows(x.reshape(-1, 2))
+    want = ["\t".join("NA" if np.isnan(v) else rio.format_real(float(v)) for v in row) for row in x.reshape(-1, 2)]
+    assert got == want

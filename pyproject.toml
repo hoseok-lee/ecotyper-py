@@ -30,7 +30,7 @@ docs = ["sphinx>=7", "furo", "myst-parser>=2", "sphinx-copybutton", "sphinx-desi
 ecotyper-py = "ecotyper.cli:main"
 
 [tool.setuptools.package-data]
-ecotyper = ["rcompat/*.c"]
+ecotyper = ["*.c", "rcompat/*.c"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

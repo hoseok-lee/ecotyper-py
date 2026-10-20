@@ -303,9 +303,32 @@ def run_brunet(V, W0, H0, *, update_w=True, max_iter=MAX_ITER,
     V = np.ascontiguousarray(V, dtype=np.float64)
     W = np.ascontiguousarray(W0, dtype=np.float64).copy()
     H = np.ascontiguousarray(H0, dtype=np.float64).copy()
+    if exact:
+        from ._ckernel import nmf_lib
+
+        lib = nmf_lib()
+        if lib is not None:
+            return _run_c(lib, V, W, H, bool(update_w), int(max_iter))
     loop = _brunet_loop if exact else _brunet_loop_fast
     niter, stop = loop(V, W, H, int(max_iter), bool(update_w), STOPCONV, CHECK_INTERVAL, EPS)
     return W, H, int(niter), bool(stop)
+
+
+def _run_c(lib, V, W, H, update_w, max_iter):
+    """:func:`_brunet_loop` in ``_nmfk.c`` (same operations, vectorised across columns)."""
+    import ctypes as C
+
+    n, r = W.shape
+    p = H.shape[1]
+    VT = np.ascontiguousarray(V.T) if update_w else V
+    dp = C.POINTER(C.c_double)
+    stopped = C.c_int64(0)
+    niter = lib.brunet_loop(V.ctypes.data_as(dp), VT.ctypes.data_as(dp), W.ctypes.data_as(dp),
+                            H.ctypes.data_as(dp), n, r, p, max_iter, int(update_w), STOPCONV, CHECK_INTERVAL, EPS,
+                            C.byref(stopped))
+    if niter < 0:
+        raise MemoryError("brunet_loop: allocation failed")
+    return W, H, int(niter), bool(stopped.value)
 
 
 def fitted(W: np.ndarray, H: np.ndarray) -> np.ndarray:
