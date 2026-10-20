@@ -154,8 +154,13 @@ def recover_bulk_files(matrix, annotation, model, out_dir, *, discovery_root=Non
 # ----------------------------------------------------------------------------
 # scRNA-seq
 # ----------------------------------------------------------------------------
-def _scrna_state_task(expr_all, annotation, ctm, seed, subsample):
-    """``state_recovery_scRNA.R`` for one cell type (``None`` if no cells)."""
+def _scrna_prepare(expr_all, annotation, ctm):
+    """Parent-side half of ``state_recovery_scRNA.R`` for one cell type: select the
+    cell type's cells and keep only the model genes, so workers receive a small
+    slice instead of the whole matrix. Returns ``(ann, aligned_raw)`` or ``None``.
+
+    The non-negativity check runs here on all genes of the selected cells; the
+    log2 transform is elementwise, so it commutes with the row selection."""
     ct = ctm.cell_type
     ann = annotation[annotation["CellType"].astype(str) == ct]
     if len(ann) == 0:
@@ -169,13 +174,24 @@ def _scrna_state_task(expr_all, annotation, ctm, seed, subsample):
     X = expr.to_numpy(dtype=np.float64)
     if not (X >= 0).all():
         raise ValueError("Not all values in the expression matrix are positive. Could not take log2!")
-    from .rcompat.stats import log2p1
-
-    expr = pd.DataFrame(log2p1(X), index=expr.index, columns=ids)
+    del X
     ann = ann.copy()
     ann.index = pd.Index(ids, dtype=object)
+    expr.columns = pd.Index(ids, dtype=object)
+    return ann, rec.align_rows(expr, [str(g) for g in ctm.initial_gene_info["Gene"]])
+
+
+def _scrna_state_task(prepared, ctm, seed, subsample):
+    """``state_recovery_scRNA.R`` for one cell type from :func:`_scrna_prepare`
+    output (``None`` if the cell type has no cells)."""
+    if prepared is None:
+        return None
+    ann, data = prepared
+    from .rcompat.stats import log2p1
+
+    ids = list(data.columns)
+    data = pd.DataFrame(log2p1(data.to_numpy(dtype=np.float64)), index=data.index, columns=data.columns)
     rng = RRandom(seed)
-    data = rec.align_rows(expr, [str(g) for g in ctm.initial_gene_info["Gene"]])
     if subsample >= 50 and data.shape[1] > subsample:
         rng.set_seed(1234)
         pick = rng.sample_int(data.shape[1], subsample) - 1
@@ -193,8 +209,9 @@ def recover_scrna_frame(expr_all: pd.DataFrame, annotation: pd.DataFrame, model:
     50, e.g. the default ``-1``, keep all cells). Returns ``(state_results, ecotype_result)``; ``ecotype_result`` is
     ``None`` without a ``Sample`` column."""
     cts = model.cell_type_order
-    res = _run_parallel(_scrna_state_task, [(expr_all, annotation, model.cell_types[ct], seed, subsample)
-                                            for ct in cts], n_jobs)
+    tasks = [(_scrna_prepare(expr_all, annotation, model.cell_types[ct]), model.cell_types[ct], seed, subsample)
+             for ct in cts]
+    res = _run_parallel(_scrna_state_task, tasks, n_jobs)
     states = {ct: r for ct, r in zip(cts, res) if r is not None}
     eco = None
     if model.ecotypes is not None and "Sample" in annotation.columns:
