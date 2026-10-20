@@ -46,34 +46,36 @@ def run(tut: str, out: Path, jobs: int, exact: bool = True):
 
     ex = R_WORK / "example_data"
     models = R_WORK / "EcoTyper"
+    # exact is passed only when False, so this script also drives older package versions
+    kw = dict(n_jobs=jobs) if exact else dict(n_jobs=jobs, exact=False)
     if tut == "t1_lung":
         wf.recover_bulk_files(ex / "bulk_lung_data.txt", ex / "bulk_lung_annotation.txt", "Carcinoma", out,
-                              discovery_root=models, n_jobs=jobs, exact=exact)
+                              discovery_root=models, **kw)
     elif tut == "t1_lymphoma":
         wf.recover_bulk_files(ex / "bulk_lymphoma_data.txt", ex / "bulk_lymphoma_annotation.txt", "Lymphoma", out,
-                              discovery_root=models, n_jobs=jobs, exact=exact)
+                              discovery_root=models, **kw)
     elif tut == "t2_crc":
         wf.recover_scrna_files(ex / "scRNA_CRC_data.txt", ex / "scRNA_CRC_annotation.txt", "Carcinoma", out,
-                               discovery_root=models, n_jobs=jobs, exact=exact)
+                               discovery_root=models, **kw)
     elif tut == "t2_lymphoma":
         wf.recover_scrna_files(ex / "scRNA_lymphoma_data.txt", ex / "scRNA_lymphoma_annotation.txt", "Lymphoma", out,
-                               discovery_root=models, n_jobs=jobs, exact=exact)
+                               discovery_root=models, **kw)
     elif tut == "t3_visium":
         wf.recover_visium_files(ex / "VisiumBreast", ex / "visium_fractions_example.txt", "Carcinoma", out,
-                                recovery_name="VisiumBreast", discovery_root=models, n_jobs=jobs, exact=exact)
+                                recovery_name="VisiumBreast", discovery_root=models, **kw)
     elif tut == "t6_presorted":
         wf.discover_files(ex / "Tutorial_6" / "PresortedDiscovery", ex / "Tutorial_6" / "PresortedDiscovery_annotation.txt",
-                          out, name="PresortedDiscovery", fractions="All_genes", scale_column="Histology", n_jobs=jobs, exact=exact)
+                          out, name="PresortedDiscovery", fractions="All_genes", scale_column="Histology", **kw)
     elif tut == "t4_bulk":
         # CSx HiRes profiles: the Tutorial 6 inputs are the HiRes output of Tutorial 4
         wf.discover_files(ex / "Tutorial_6" / "PresortedDiscovery", ex / "bulk_lung_annotation.txt", out,
-                          name="MyDiscovery", fractions="Carcinoma_Fractions", scale_column="Histology", n_jobs=jobs, exact=exact)
+                          name="MyDiscovery", fractions="Carcinoma_Fractions", scale_column="Histology", **kw)
     elif tut == "t5_scrna":
         from ecotyper.io import read_annotation, read_scrna_matrix
 
         res = wf.discover_scrna_frame(read_scrna_matrix(ex / "scRNA_CRC_data.txt"),
                                       read_annotation(ex / "scRNA_CRC_annotation.txt"),
-                                      cophenetic_cutoff=0.975, n_jobs=jobs, exact=exact)
+                                      cophenetic_cutoff=0.975, **kw)
         wf.write_discovery_scrna(res, out, "discovery_scRNA_CRC", write_large=True)
     else:
         raise SystemExit(f"unknown tutorial {tut}")
