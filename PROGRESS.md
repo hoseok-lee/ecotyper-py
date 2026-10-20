@@ -199,3 +199,8 @@ make ecotyper-py feel like a native scverse / `scanpy.external` tool (reference:
 - **`discovery()` returns an in-memory model object** (`EcoTyperModel`) instead of writing the R directory layout. Saving is optional: `model.save(path)` / `EcoTyperModel.load(path)` (plus loading the R layout and built-in models such as Carcinoma/Lymphoma by name). The R-layout writers stay available for validation.
 - Exactness must be preserved: the new API wraps the existing exact engine. Add tests showing the new API gives identical results to the current file-based workflows on small tutorials (t2_lymphoma, t1_lymphoma, t3 subset).
 - Update docs (quickstart and tutorials in scanpy style), README and CLI.
+
+## STEP 2026-10-19 23:10 (benchmark complete)
+- R t5 rerun finished (283.5 min, 82.5 GB); copied `validation/bench/r_t5_scrna.json`. Full table: t5_scrna R 283.5 min / Py 261.3 min = 1.09x (Py peak summed RSS 369 GB vs 82.5 GB; memory is a known gap: workers each copy the matrix).
+- Added table to VALIDATION.md and R-discovery note + discovery bullet to docs/benchmarks.md (removed "Pending rows"). Docs rebuild not rerun this step (charts regenerate at build time).
+- NEXT: Objective 2 (scverse API) per "PLAN ADDED 2026-10-19 16:45": start with design of `ecotyper.recovery/discovery`, data-type inference and `EcoTyperModel`. Then fast mode and alt solver.

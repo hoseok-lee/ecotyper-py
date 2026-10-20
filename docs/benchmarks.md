@@ -15,13 +15,13 @@ include numba's just-in-time compilation (cold cache).
 ```{include} _generated/benchmark_table.md
 ```
 
-**Pending rows.** In the first benchmark run, R's discovery tutorials (4–6) reused NMF results
-cached on disk by earlier runs: R skips every restart whose `estim.RData` already exists. So
-their R times were not real. Those three R runs are being repeated with an empty cache, and
-their rows will be filled in when the runs finish.
+**Note on R discovery timings.** R skips every NMF restart whose `estim.RData` already exists, so the R discovery runs (tutorials 4–6) were repeated with an emptied cache; the rows above are from those clean runs.
 
 ## Reading the results
 
+- **Discovery (T4–T6)**: Python is 1.7× (bulk), 4.2× (presorted) and 1.1× (the large scRNA-seq
+  tutorial, 4.7 h in R vs 4.4 h in Python) faster. NMF dominates the large run, and both
+  implementations use the same algorithm.
 - **Recovery (T1–T3)**: Python is 1.1–4.5× faster than R. The gain is largest on the small bulk
   inputs, where fixed costs dominate: R starts an `Rscript` process per cell type and passes
   results between steps through text files.
