@@ -232,11 +232,12 @@ def format_rows(mat: np.ndarray, digits: int = 15) -> list[str]:
     if _FMT is None or digits >= 16 or nc == 0:
         return ["\t".join("NA" if np.isnan(v) else format_real(float(v), digits) for v in row) for row in X]
     cap = 48 * nr * max(nc, 1) + 16
-    buf = C.create_string_buffer(cap)
-    n = _FMT.fmt_matrix(X.ctypes.data_as(C.POINTER(C.c_double)), nr, nc, digits, int(_LD is not None), buf, cap)
+    buf = np.empty(cap, dtype=np.uint8)  # not zero-filled (create_string_buffer would be)
+    n = _FMT.fmt_matrix(X.ctypes.data_as(C.POINTER(C.c_double)), nr, nc, digits, int(_LD is not None),
+                        buf.ctypes.data_as(C.c_char_p), cap)
     if n < 0:  # pragma: no cover
         raise RuntimeError("fmt_matrix: buffer too small")
-    return buf.raw[:n].decode("ascii").split("\n")
+    return buf[:n].tobytes().decode("ascii").split("\n")
 
 
 _NA_BITS = 1954  # R's NA_real_ payload (lower word)

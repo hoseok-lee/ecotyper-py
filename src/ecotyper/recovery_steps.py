@@ -93,7 +93,7 @@ def _sort_assignment(df: pd.DataFrame) -> pd.DataFrame:
 
 def recover_states(expr: pd.DataFrame, ct: CellTypeModel, rng: RRandom,
                    annotation: pd.DataFrame | None = None, *, kind: str = "bulk",
-                   exact: bool = True) -> StateRecovery:
+                   exact: bool = True, threads: int = 1) -> StateRecovery:
     """Recover the cell states of one cell type (``state_recovery_{bulk,visium,scRNA}.R``).
 
     ``expr`` is the genes x samples matrix after the dataset-level preparation
@@ -115,7 +115,7 @@ def recover_states(expr: pd.DataFrame, ct: CellTypeModel, rng: RRandom,
     wrows = [str(r) for r in ct.W.index]
     training = [r.replace("__pos", "") for r in wrows if "__pos" in r]
     new_data = align_rows(scaled_df, training).to_numpy()
-    H, niter, _ = nmf_predict(ct.W.to_numpy(), new_data, rng, exact=exact)
+    H, niter, _ = nmf_predict(ct.W.to_numpy(), new_data, rng, exact=exact, threads=threads)
     states0 = [str(c) for c in ct.W.columns]
     samples = list(data.columns)
     H_df = pd.DataFrame(H, index=states0, columns=samples)
@@ -469,8 +469,9 @@ def spatial_states(state_results: dict, cell_types: list[str], fractions: pd.Dat
         out.append(m)
     long = pd.concat(out, ignore_index=True)
     ci = r_match(long["ID"].tolist(), coords["ID"].tolist())
-    long["X"] = [coords["X"].iloc[k] if k >= 0 else np.nan for k in ci]
-    long["Y"] = [coords["Y"].iloc[k] if k >= 0 else np.nan for k in ci]
+    for c in ("X", "Y"):
+        v = coords[c].to_numpy()
+        long[c] = np.where(ci >= 0, v[np.maximum(ci, 0)], np.nan) if len(v) else np.nan
     long["State_ID"] = long["CellType"] + "_" + long["State"]
     # dcast(ID + X + Y + Sample + Malignant ~ State_ID, value.var = "Abundance")
     keys = ["ID", "X", "Y", "Sample", "Malignant"]

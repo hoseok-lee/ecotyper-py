@@ -77,8 +77,17 @@ def _run_parallel(fn, tasks, n_jobs, cost=None):
         return [futs[i].result() for i in range(len(tasks))]
 
 
-def _bulk_state_task(expr, ctm, seed, annotation, kind, exact=True):
-    return rec.recover_states(expr, ctm, RRandom(seed), annotation, kind=kind, exact=exact)
+def _thread_shares(cost, n_jobs):
+    """OpenMP threads per task when there are fewer tasks than jobs: the idle cores go to the
+    tasks in proportion to their cost (results do not depend on the thread count)."""
+    if n_jobs is None or n_jobs <= len(cost) or not cost:
+        return [1] * len(cost)
+    tot = float(sum(cost)) or 1.0
+    return [max(1, int(n_jobs * c / tot)) for c in cost]
+
+
+def _bulk_state_task(expr, ctm, seed, annotation, kind, exact=True, threads=1):
+    return rec.recover_states(expr, ctm, RRandom(seed), annotation, kind=kind, exact=exact, threads=threads)
 
 
 def _store(adata, key, model, states, eco, seed, kind):
@@ -123,7 +132,9 @@ def recover_bulk_frame(expr: pd.DataFrame, model: EcoTyperModel, annotation: pd.
     tasks = [(rec.align_rows(data, [str(g) for g in model.cell_types[ct].initial_gene_info["Gene"]]),
               model.cell_types[ct], seed, clin, kind, exact) for ct in cts]
     del data
-    res = _run_parallel(_bulk_state_task, tasks, n_jobs, [t[0].size * t[1].W.shape[1] for t in tasks])
+    cost = [t[0].size * t[1].W.shape[1] for t in tasks]
+    tasks = [t + (th,) for t, th in zip(tasks, _thread_shares(cost, n_jobs))]
+    res = _run_parallel(_bulk_state_task, tasks, n_jobs, cost)
     states = dict(zip(cts, res))
     eco = None
     if model.ecotypes is not None:
@@ -203,7 +214,7 @@ def _scrna_prepare(expr_all, annotation, ctm):
     return ann, rec.align_rows(expr, [str(g) for g in ctm.initial_gene_info["Gene"]])
 
 
-def _scrna_state_task(prepared, ctm, seed, subsample, exact=True):
+def _scrna_state_task(prepared, ctm, seed, subsample, exact=True, threads=1):
     """``state_recovery_scRNA.R`` for one cell type from :func:`_scrna_prepare`
     output (``None`` if the cell type has no cells)."""
     if prepared is None:
@@ -219,7 +230,7 @@ def _scrna_state_task(prepared, ctm, seed, subsample, exact=True):
         pick = rng.sample_int(data.shape[1], subsample) - 1
         data = data.iloc[:, pick]
         ann = ann.iloc[[ids.index(c) for c in data.columns]]
-    return rec.recover_states(data, ctm, rng, ann, kind="scRNA", exact=exact)
+    return rec.recover_states(data, ctm, rng, ann, kind="scRNA", exact=exact, threads=threads)
 
 
 def recover_scrna_frame(expr_all: pd.DataFrame, annotation: pd.DataFrame, model: EcoTyperModel, *,
@@ -233,8 +244,9 @@ def recover_scrna_frame(expr_all: pd.DataFrame, annotation: pd.DataFrame, model:
     cts = model.cell_type_order
     tasks = [(_scrna_prepare(expr_all, annotation, model.cell_types[ct]), model.cell_types[ct], seed, subsample,
               exact) for ct in cts]
-    res = _run_parallel(_scrna_state_task, tasks, n_jobs,
-                        [0 if t[0] is None else t[0][1].size * t[1].W.shape[1] for t in tasks])
+    cost = [0 if t[0] is None else t[0][1].size * t[1].W.shape[1] for t in tasks]
+    tasks = [t + (th,) for t, th in zip(tasks, _thread_shares(cost, n_jobs))]
+    res = _run_parallel(_scrna_state_task, tasks, n_jobs, cost)
     states = {ct: r for ct, r in zip(cts, res) if r is not None}
     eco = None
     if model.ecotypes is not None and "Sample" in annotation.columns:

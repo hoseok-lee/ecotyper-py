@@ -3,10 +3,15 @@ import pytest
 
 from conftest import DATA, hexmatrix
 from ecotyper.nmf import nmf_brunet
+from ecotyper.rcompat.fma import USE_FMA
 
 N = DATA / "nmf_small"
 
+# the hex references come from R on Apple silicon, where NMF's C++ kernels use fused multiply-adds
+pytestmark_fma = pytest.mark.skipif(not USE_FMA, reason="R reference built with FMA (Apple silicon)")
 
+
+@pytestmark_fma
 @pytest.mark.parametrize("it", [1, 2, 10, 11, 25])
 def test_brunet_iterations_bit_exact(it):
     X = hexmatrix(N / "X.txt")
@@ -15,6 +20,7 @@ def test_brunet_iterations_bit_exact(it):
     assert np.array_equal(fit.H, hexmatrix(N / f"H_it{it}.txt"))
 
 
+@pytestmark_fma
 def test_brunet_full_run():
     X = hexmatrix(N / "X.txt")
     fit = nmf_brunet(X, 4, 123)
@@ -25,6 +31,7 @@ def test_brunet_full_run():
     assert np.array_equal(fit.H, hexmatrix(N / "H_full.txt"))
 
 
+@pytestmark_fma
 @pytest.mark.parametrize("seed", [1235, 1236, 1237])
 def test_brunet_discovery_like(seed):
     X2 = hexmatrix(N / "X2.txt")
@@ -56,3 +63,18 @@ def test_c_kernel_matches_numba(update_w):
         Wb, Hb, ib, sb = nmf._run_c(nmf_lib(), V, W0.copy(), H0.copy(), update_w, it)
         assert (ia, sa) == (ib, sb)
         assert np.array_equal(Wa, Wb) and np.array_equal(Ha, Hb), (n, p, r)
+
+
+def test_c_kernel_threads_identical():
+    from ecotyper import nmf
+    from ecotyper._ckernel import nmf_lib
+
+    if nmf_lib() is None:
+        pytest.skip("no C compiler")
+    rng = np.random.default_rng(11)
+    V = np.abs(rng.standard_normal((150, 300)))
+    W0, H0 = rng.random((150, 5)), rng.random((5, 300))
+    ref = nmf._run_c(nmf_lib(), V, W0.copy(), H0.copy(), True, 80, 1)
+    for th in (2, 3, 8):
+        got = nmf._run_c(nmf_lib(), V, W0.copy(), H0.copy(), True, 80, th)
+        assert got[2:] == ref[2:] and np.array_equal(got[0], ref[0]) and np.array_equal(got[1], ref[1])

@@ -47,8 +47,9 @@ def _flags() -> list[str]:
     return f
 
 
-def build(src: Path, flags: list[str]) -> Path:
-    """Compile ``src`` into a shared library (cached by source, flags and machine)."""
+def build(src: Path, flags: list[str], optional: tuple = ()) -> Path:
+    """Compile ``src`` into a shared library (cached by source, flags and machine), with the
+    ``optional`` flags (e.g. ``-fopenmp``) if the compiler accepts them."""
     cc = _compiler()
     if cc is None:
         raise RuntimeError("no C compiler found")
@@ -60,15 +61,16 @@ def build(src: Path, flags: list[str]) -> Path:
     if so.exists():
         return so
     tmp = cache / f"{src.stem}_{tag}.{os.getpid()}.so"
-    r = subprocess.run([cc, *flags, str(src), "-o", str(tmp), "-lm"], capture_output=True, text=True)
-    if r.returncode != 0:
-        raise RuntimeError(f"building {src.name} failed:\n{r.stderr}")
-    os.replace(tmp, so)
-    return so
+    for extra in ([list(optional)] if optional else []) + [[]]:
+        r = subprocess.run([cc, *flags, *extra, str(src), "-o", str(tmp), "-lm"], capture_output=True, text=True)
+        if r.returncode == 0:
+            os.replace(tmp, so)
+            return so
+    raise RuntimeError(f"building {src.name} failed:\n{r.stderr}")
 
 
 def _build() -> Path:
-    return build(_SRC, _flags())
+    return build(_SRC, _flags(), ("-fopenmp",))
 
 
 def _load():
@@ -82,7 +84,8 @@ def _load():
     dp = C.POINTER(C.c_double)
     i64 = C.c_int64
     lib.brunet_loop.restype = i64
-    lib.brunet_loop.argtypes = [dp, dp, dp, dp, i64, i64, i64, i64, C.c_int, i64, i64, C.c_double, C.POINTER(i64)]
+    lib.brunet_loop.argtypes = [dp, dp, dp, dp, i64, i64, i64, i64, C.c_int, i64, i64, C.c_double, C.POINTER(i64),
+                                C.c_int]
     return lib
 
 

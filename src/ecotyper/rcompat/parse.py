@@ -293,8 +293,8 @@ def text_roundtrip(x: np.ndarray, mode: str = "r") -> np.ndarray:
     finite = np.isfinite(flat)
     out = flat.copy()
     if finite.any():
-        from .io import format_real
+        from .io import format_rows
 
-        toks = [format_real(float(v)) for v in flat[finite]]
+        toks = format_rows(flat[finite])
         out[finite] = r_parse(toks, mode)
     return out.reshape(x.shape)

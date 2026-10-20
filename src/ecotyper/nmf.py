@@ -295,11 +295,12 @@ def _brunet_loop_fast(V, W, H, max_iter, update_w, stopconv, check_interval, eps
     return i, stop
 
 
-def run_brunet(V, W0, H0, *, update_w=True, max_iter=MAX_ITER,
-               exact: bool = True) -> tuple[np.ndarray, np.ndarray, int, bool]:
+def run_brunet(V, W0, H0, *, update_w=True, max_iter=MAX_ITER, exact: bool = True,
+               threads: int = 1) -> tuple[np.ndarray, np.ndarray, int, bool]:
     """Run Brunet multiplicative updates from (W0, H0) with the connectivity stop.
 
-    ``exact=False`` uses BLAS products (:func:`_brunet_loop_fast`) instead of the R-exact kernels."""
+    ``exact=False`` uses BLAS products (:func:`_brunet_loop_fast`) instead of the R-exact kernels.
+    ``threads``: OpenMP threads for the C kernel (same result for any value)."""
     V = np.ascontiguousarray(V, dtype=np.float64)
     W = np.ascontiguousarray(W0, dtype=np.float64).copy()
     H = np.ascontiguousarray(H0, dtype=np.float64).copy()
@@ -308,13 +309,13 @@ def run_brunet(V, W0, H0, *, update_w=True, max_iter=MAX_ITER,
 
         lib = nmf_lib()
         if lib is not None:
-            return _run_c(lib, V, W, H, bool(update_w), int(max_iter))
+            return _run_c(lib, V, W, H, bool(update_w), int(max_iter), threads)
     loop = _brunet_loop if exact else _brunet_loop_fast
     niter, stop = loop(V, W, H, int(max_iter), bool(update_w), STOPCONV, CHECK_INTERVAL, EPS)
     return W, H, int(niter), bool(stop)
 
 
-def _run_c(lib, V, W, H, update_w, max_iter):
+def _run_c(lib, V, W, H, update_w, max_iter, threads=1):
     """:func:`_brunet_loop` in ``_nmfk.c`` (same operations, vectorised across columns)."""
     import ctypes as C
 
@@ -325,7 +326,7 @@ def _run_c(lib, V, W, H, update_w, max_iter):
     stopped = C.c_int64(0)
     niter = lib.brunet_loop(V.ctypes.data_as(dp), VT.ctypes.data_as(dp), W.ctypes.data_as(dp),
                             H.ctypes.data_as(dp), n, r, p, max_iter, int(update_w), STOPCONV, CHECK_INTERVAL, EPS,
-                            C.byref(stopped))
+                            C.byref(stopped), int(threads))
     if niter < 0:
         raise MemoryError("brunet_loop: allocation failed")
     return W, H, int(niter), bool(stopped.value)
@@ -388,7 +389,7 @@ def nmf_cd(V: np.ndarray, rank: int, seed: int, *, max_iter: int = MAX_ITER, tol
 
 
 def nmf_predict(W: np.ndarray, new_data: np.ndarray, rng: RRandom, *, max_iter: int = MAX_ITER,
-                exact: bool = True):
+                exact: bool = True, threads: int = 1):
     """EcoTyper's ``NMFpredict(W, new_data)``.
 
     ``W`` has ``2g`` rows (``<gene>__pos`` then ``<gene>__neg``) and ``new_data``
@@ -405,7 +406,8 @@ def nmf_predict(W: np.ndarray, new_data: np.ndarray, rng: RRandom, *, max_iter: 
     to_predict = to_predict[keep]
     _, H0 = rnmf(W.shape[1], to_predict, rng)
     _check_target(to_predict)
-    _, H, niter, _ = run_brunet(to_predict, ws, H0, update_w=False, max_iter=max_iter, exact=exact)
+    _, H, niter, _ = run_brunet(to_predict, ws, H0, update_w=False, max_iter=max_iter, exact=exact,
+                                threads=threads)
     return H, niter, keep
 
 

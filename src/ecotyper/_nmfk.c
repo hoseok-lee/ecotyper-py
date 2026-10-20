@@ -11,11 +11,17 @@
  *
  * Also: eps clamp every 10 iterations and nmf.stop.connectivity (check every check_interval
  * iterations, stop when the partition is unchanged for more than stopconv checks).
+ *
+ * With OpenMP (-fopenmp) the column blocks of a half-step can be split over nthreads threads;
+ * each column still gets exactly the same operations, so the result does not depend on it.
  */
 #include <math.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
+#ifdef _OPENMP
+#include <omp.h>
+#endif
 
 #ifdef USE_FMA
 #define MADD(a, b, c) fma((a), (b), (c))
@@ -37,10 +43,20 @@ static void col_sums(const double *A, int64_t n, int64_t r, double *sums) {
 }
 
 /* B[i, j] = B[i, j] * (sum_u A[u, i] * V[u, j] / (sum_k A[u, k] B[k, j])) / sumA[i]
- * V: n x p, A: n x r, B: r x p (row-major). whb: n * BW scratch. */
+ * V: n x p, A: n x r, B: r x p (row-major). whb_all: nthreads * n * BW scratch. */
 static void mult_update(const double *V, const double *A, double *B, const double *sumA, int64_t n, int64_t r,
-                        int64_t p, double *whb) {
-    for (int64_t j0 = 0; j0 < p; j0 += BW) {
+                        int64_t p, double *whb_all, int nthreads) {
+    const int64_t nblk = (p + BW - 1) / BW;
+#ifdef _OPENMP
+#pragma omp parallel for schedule(static) num_threads(nthreads) if (nthreads > 1)
+#endif
+    for (int64_t b = 0; b < nblk; b++) {
+#ifdef _OPENMP
+        double *whb = whb_all + (int64_t)omp_get_thread_num() * n * BW;
+#else
+        double *whb = whb_all;
+#endif
+        const int64_t j0 = b * BW;
         const int64_t jb = (p - j0 < BW) ? p - j0 : BW;
         for (int64_t u = 0; u < n; u++) {
             double s[BW];
@@ -141,9 +157,13 @@ static void partition(const double *H, int64_t r, int64_t p, int64_t *idx, int64
  * connectivity rule stopped the run. VT (p x n) is only used when update_w. */
 int64_t brunet_loop(const double *V, const double *VT, double *W, double *H, int64_t n, int64_t r, int64_t p,
                     int64_t max_iter, int update_w, int64_t stopconv, int64_t check_interval, double eps,
-                    int64_t *stopped) {
+                    int64_t *stopped, int nthreads) {
     const int64_t nm = n > p ? n : p;
-    double *whb = malloc(sizeof(double) * nm * BW);
+#ifndef _OPENMP
+    nthreads = 1;
+#endif
+    if (nthreads < 1) nthreads = 1;
+    double *whb = malloc(sizeof(double) * nm * BW * nthreads);
     double *sums = malloc(sizeof(double) * r);
     double *WT = update_w ? malloc(sizeof(double) * r * n) : NULL;
     double *HT = update_w ? malloc(sizeof(double) * p * r) : NULL;
@@ -177,12 +197,12 @@ int64_t brunet_loop(const double *V, const double *VT, double *W, double *H, int
         if (stop || it >= max_iter) break;
         it++;
         col_sums(W, n, r, sums);
-        mult_update(V, W, H, sums, n, r, p, whb);
+        mult_update(V, W, H, sums, n, r, p, whb, nthreads);
         if (update_w) {
             transpose(H, r, p, HT);
             transpose(W, n, r, WT);
             col_sums(HT, p, r, sums);
-            mult_update(VT, HT, WT, sums, p, r, n, whb);
+            mult_update(VT, HT, WT, sums, p, r, n, whb, nthreads);
             transpose(WT, r, n, W);
         }
         if (it % 10 == 0) {
