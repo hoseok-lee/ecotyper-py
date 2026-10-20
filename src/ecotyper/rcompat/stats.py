@@ -721,6 +721,62 @@ def _wilcox_rows(X, nx, out_stat, out_ties):
         out_ties[r] = tsum
 
 
+@nb.njit(cache=True, error_model="numpy")
+def _rank_rows(X, ranks, out_ties):
+    """Average ranks of each row of X and sum(t^3 - t) over its tie groups (as in
+    :func:`_wilcox_rows`; both depend only on the values, not on the column order)."""
+    nr, nc = X.shape
+    for r in range(nr):
+        row = X[r]
+        order = np.argsort(row, kind="mergesort")
+        tsum = 0.0
+        i = 0
+        while i < nc:
+            j = i
+            while j + 1 < nc and row[order[j + 1]] == row[order[i]]:
+                j += 1
+            avg = (i + 1 + j + 1) / 2.0
+            for k in range(i, j + 1):
+                ranks[r, order[k]] = avg
+            t = j - i + 1
+            if t > 1:
+                tsum += float(t) ** 3 - t
+            i = j + 1
+        out_ties[r] = tsum
+
+
+@nb.njit(cache=True, error_model="numpy")
+def _rank_sums(ranks, idx, out):
+    """out[r] = sum of ranks[r, idx] in the order of idx."""
+    for r in range(ranks.shape[0]):
+        s = 0.0
+        for k in idx:
+            s += ranks[r, k]
+        out[r] = s
+
+
+def row_ranks(X: np.ndarray):
+    """Per-row average ranks and tie sums of ``X`` for :func:`row_wilcoxon_from_ranks`."""
+    X = np.ascontiguousarray(X, dtype=np.float64)
+    if np.isnan(X).any():
+        raise NotImplementedError("NA values are not supported")
+    ranks = np.empty(X.shape)
+    ties = np.empty(X.shape[0])
+    _rank_rows(X, ranks, ties)
+    return ranks, ties
+
+
+def row_wilcoxon_from_ranks(ranks: np.ndarray, ties: np.ndarray, in_x: np.ndarray, correct: bool = True) -> np.ndarray:
+    """``row_wilcoxon_twosample(X[:, in_x], X[:, ~in_x])`` from :func:`row_ranks` of ``X``:
+    identical results (the ranks of a row do not depend on how its columns are split, and the
+    rank sum runs over the x columns in their original order), without re-ranking ``X`` for
+    every split."""
+    idx = np.flatnonzero(in_x)
+    stat = np.empty(ranks.shape[0])
+    _rank_sums(ranks, idx, stat)
+    return _wilcoxon_p(stat, ties, len(idx), ranks.shape[1] - len(idx), correct)
+
+
 def row_wilcoxon_twosample(x: np.ndarray, y: np.ndarray, correct: bool = True) -> np.ndarray:
     """p-values of ``matrixTests::row_wilcoxon_twosample(x, y)`` (two-sided).
 
@@ -738,12 +794,16 @@ def row_wilcoxon_twosample(x: np.ndarray, y: np.ndarray, correct: bool = True) -
     stat = np.empty(X.shape[0])
     ties = np.empty(X.shape[0])
     _wilcox_rows(X, nx, stat, ties)
+    return _wilcoxon_p(stat, ties, nx, ny, correct)
+
+
+def _wilcoxon_p(stat, ties, nx, ny, correct):
     statistic = stat - nx * (nx + 1) * 0.5
-    out = np.full(X.shape[0], np.nan)
+    out = np.full(stat.shape[0], np.nan)
     if nx < 1 or ny < 1:
         return out
     exact = (nx < 50) and (ny < 50)
-    for r in range(X.shape[0]):
+    for r in range(stat.shape[0]):
         if exact and ties[r] == 0:
             out[r] = _pwilcox_two_sided(statistic[r], nx, ny)
             continue

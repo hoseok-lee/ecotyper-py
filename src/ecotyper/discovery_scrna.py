@@ -23,7 +23,8 @@ from .model import ecotype_levels
 from .rcompat.frame import factor_levels, r_match, r_order
 from .rcompat.rng import RRandom
 from .rcompat.stats import (TTestError, apply_mean_rows, col_normalize, cor_matrix, log2p1, p_adjust_bh,
-                            phyper_upper, rank_average, row_var, row_wilcoxon_twosample, which_max,
+                            phyper_upper, rank_average, row_ranks, row_var, row_wilcoxon_from_ranks,
+                            row_wilcoxon_twosample, which_max,
                             welch_t_test_p)
 from .recovery_steps import EcotypeRecovery, _ecotype_means, _sorted_ecotypes, _table_frac, read_clinical
 
@@ -35,14 +36,18 @@ def _rt(x, r_exact=True):
 # ----------------------------------------------------------------------------
 # 1. cell type specific genes
 # ----------------------------------------------------------------------------
-def do_de(data: pd.DataFrame, variable, value: str) -> pd.DataFrame:
+def do_de(data: pd.DataFrame, variable, value: str, ranks=None) -> pd.DataFrame:
     """``doDE(data, variable, value)`` (lib/misc.R): Wilcoxon rank-sum test of
-    one group against all other samples."""
+    one group against all other samples. ``ranks``: :func:`row_ranks` of ``data``, reused
+    across groups (same result)."""
     variable = np.array([str(v) for v in variable], dtype=object)
     X = data.to_numpy(dtype=np.float64)
     inc = variable == value
     fc = apply_mean_rows(X[:, inc], na_rm=True) - apply_mean_rows(X[:, ~inc], na_rm=True)
-    p = row_wilcoxon_twosample(X[:, inc], X[:, ~inc])
+    if ranks is not None:
+        p = row_wilcoxon_from_ranks(ranks[0], ranks[1], inc)
+    else:
+        p = row_wilcoxon_twosample(X[:, inc], X[:, ~inc])
     q = p_adjust_bh(p)
     df = pd.DataFrame({"Gene": [str(g) for g in data.index], "State": value, "FC": fc, "P": p, "Q": q})
     df["P"] = np.where(np.isnan(df["P"]), 1.0, df["P"])
@@ -98,6 +103,7 @@ def cell_type_specific_genes(expr: pd.DataFrame, annotation: pd.DataFrame, cell_
     by = None if scale_column in (None, "NULL") else [str(v) for v in clinical[scale_column]]
     out = {}
     scaled = None
+    ranks = None
     for ct in cell_types:
         if counts.get(ct, 0) < 50:
             continue
@@ -106,7 +112,8 @@ def cell_type_specific_genes(expr: pd.DataFrame, annotation: pd.DataFrame, cell_
                 scaled = dsc.scale_data(log_data, by=by)
                 scaled = pd.DataFrame(np.nan_to_num(scaled.to_numpy(), nan=0.0), index=scaled.index,
                                       columns=scaled.columns)
-            gi = do_de(scaled, clinical["CellType"].tolist(), ct)
+                ranks = row_ranks(scaled.to_numpy(dtype=np.float64))  # once for all cell types
+            gi = do_de(scaled, clinical["CellType"].tolist(), ct, ranks)
             gi = gi.rename(columns={"State": "CellType"})
             filt = gi[(gi["Q"] <= 0.05) & (gi["FC"] > 0)]
         else:

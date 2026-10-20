@@ -564,6 +564,15 @@ def discover_files(input_dir, annotation_path, out_dir, *, name: str, fractions:
 # ----------------------------------------------------------------------------
 # scRNA-seq discovery
 # ----------------------------------------------------------------------------
+def _cross_cor_task(expr, annotation, ct, genes, scale_column):
+    from . import discovery_scrna as dsr
+
+    try:
+        return dsr.cross_correlation(expr, annotation, ct, genes, scale_column)
+    except ValueError as e:
+        return str(e)
+
+
 def discover_scrna_frame(expr: pd.DataFrame, annotation: pd.DataFrame, *, filter_genes="cell type specific",
                          scale_column=None, max_states: int = 20, restarts: int = 5,
                          cophenetic_cutoff: float = 0.975, p_value_cutoff: float = 1.0, min_states: int = 3,
@@ -580,16 +589,23 @@ def discover_scrna_frame(expr: pd.DataFrame, annotation: pd.DataFrame, *, filter
     specific = None
     if filter_genes != "no filter":
         specific = dsr.cell_type_specific_genes(expr, annotation, cell_types, filter_genes, scale_column)
-    cc = {}
+    tasks, cc_cts = [], []
     for ct in cell_types:
         if specific is not None and ct not in specific:
             continue
-        try:
-            genes = None if specific is None else specific[ct].filtered["Gene"].tolist()
-            cc[ct] = dsr.cross_correlation(expr, annotation, ct, genes, scale_column)
-        except ValueError as e:
+        genes = None if specific is None else specific[ct].filtered["Gene"].tolist()
+        # the worker gets only this cell type's cells (cross_correlation selects the same columns
+        # from the slice, in the same order)
+        ids = set(annotation.loc[annotation["CellType"].astype(str) == ct, "ID"].astype(str))
+        tasks.append((expr.loc[:, [str(c) in ids for c in expr.columns]], annotation, ct, genes, scale_column))
+        cc_cts.append(ct)
+    cc = {}
+    for ct, r in zip(cc_cts, _run_parallel(_cross_cor_task, tasks, n_jobs, [t[0].shape[1] ** 2 for t in tasks])):
+        if isinstance(r, str):
             if verbose:
-                print(e)
+                print(r)
+        else:
+            cc[ct] = r
     inputs = []
     for ct, c in cc.items():
         V = dsc.nmf_input(c.cor, r_exact)

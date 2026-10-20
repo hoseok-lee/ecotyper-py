@@ -71,3 +71,17 @@ def test_format_rows_c_matches_python():
     got = rio.format_rows(x.reshape(-1, 2))
     want = ["\t".join("NA" if np.isnan(v) else rio.format_real(float(v)) for v in row) for row in x.reshape(-1, 2)]
     assert got == want
+
+
+def test_wilcoxon_from_ranks_matches_direct():
+    from ecotyper.rcompat.stats import row_ranks, row_wilcoxon_from_ranks, row_wilcoxon_twosample
+
+    rng = np.random.default_rng(3)
+    X = np.round(rng.standard_normal((200, 180)), 1)  # many ties
+    X[:5] = 0.0
+    rk = row_ranks(X)
+    for g in range(3):
+        inc = rng.random(180) < (0.2 + 0.3 * g)
+        a = row_wilcoxon_twosample(X[:, inc], X[:, ~inc])
+        b = row_wilcoxon_from_ranks(*rk, inc)
+        assert np.array_equal(a, b, equal_nan=True)
