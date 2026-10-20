@@ -1,11 +1,14 @@
 """Build the charts and tables of the Benchmarks page from the raw results.
 
 Inputs (committed):
-    validation/bench/{r,py}_<tutorial>.json   wall time / peak RSS (validation/benchmark.py)
-    validation/reports/<tutorial>.tsv          per-file comparison with R (validation/tutorials.py)
+    validation/bench/{r,py,pyfast}_<tutorial>.json  wall time / peak RSS, PSS (validation/benchmark.py)
+    validation/reports/<tutorial>.tsv               per-file comparison with R (validation/tutorials.py)
+    validation/reports/<tutorial>_fast.tsv          the same for the fast mode (--fast)
+    validation/reports/<tutorial>_cd_agreement.tsv  ranks/ARI of the cd solver (solver_agreement.py)
 Outputs (generated, not committed):
     docs/_generated/benchmark_charts.html      self-contained HTML/SVG charts with hover tooltips
     docs/_generated/benchmark_table.md         the same numbers as Markdown tables
+    docs/_generated/fast_table.md, solver_table.md  tables of the Performance page
 
 Run by ``docs/conf.py`` on every build, so the page always reflects the committed results.
 A tutorial whose R or Python result is missing is shown as "pending".
@@ -91,12 +94,13 @@ def time_chart(rows):
     xf = lambda v: _x_log(v, lo, hi)  # noqa: E731
     svg += _grid([10, 30, 60, 300, 600, 1800, 3600, 3 * 3600], xf, h,
                  lambda t: _fmt_time(t).replace(".0 ", " "))
-    for i, (tut, label, r, p) in enumerate(rows):
+    for i, (tut, label, r, p, f) in enumerate(rows):
         y = TOP + i * ROW_H + ROW_H / 2
         svg.append(_row_label(i, label))
-        pts = [(v, cls, name) for v, cls, name in ((r and r["wall_s"], "s1", "R"), (p and p["wall_s"], "s2", "Python")) if v]
-        if len(pts) == 2:
-            x1, x2 = sorted(xf(v) for v, _, _ in pts)
+        pts = [(v, cls, name) for v, cls, name in ((r and r["wall_s"], "s1", "R"), (p and p["wall_s"], "s2", "Python"),
+                                                   (f and f["wall_s"], "s3", "Python fast")) if v]
+        if len(pts) >= 2:
+            x1, x2 = min(xf(v) for v, _, _ in pts), max(xf(v) for v, _, _ in pts)
             svg.append(f'<line class="conn" x1="{x1:.1f}" x2="{x2:.1f}" y1="{y}" y2="{y}"/>')
         for v, cls, name in pts:
             x = xf(v)
@@ -106,10 +110,9 @@ def time_chart(rows):
                        f'<circle class="dot {cls}" cx="{x:.1f}" cy="{y}" r="6"/></g>')
         if r and p:
             sp = r["wall_s"] / p["wall_s"]
-            word = "faster" if sp >= 1 else "slower"
-            mag = sp if sp >= 1 else 1 / sp
-            x = max(xf(r["wall_s"]), xf(p["wall_s"])) + 14
-            svg.append(f'<text class="val" x="{x:.1f}" y="{y + 4:.1f}">Python {mag:.1f}× {word}</text>')
+            txt = f"{sp:.1f}×" + (f" · fast {r['wall_s'] / f['wall_s']:.1f}×" if f else "")
+            x = max(xf(v) for v, _, _ in pts) + 14
+            svg.append(f'<text class="val" x="{x:.1f}" y="{y + 4:.1f}">{txt}</text>')
         else:
             missing = "R and Python runs" if not (r or p) else ("R run" if not r else "Python run")
             x = (xf(p["wall_s"]) if p else xf(r["wall_s"]) if r else LABEL_W) + 14
@@ -128,8 +131,14 @@ def _hbar(x0, x1, y, t, cls, tip):
             f'<path class="bar {cls}" d="{d}"/></g>')
 
 
+def _mem(d):
+    """Peak memory: summed PSS where recorded (counts fork-shared pages once), else summed RSS."""
+    return d.get("peak_pss_gb", d["peak_rss_gb"])
+
+
 def memory_chart(rows):
-    hi = max([d["peak_rss_gb"] for _, _, r, p in rows for d in (r, p) if d] + [10])
+    rows = [(t, lab, r, p) for t, lab, r, p, _ in rows]
+    hi = max([_mem(d) for _, _, r, p in rows for d in (r, p) if d] + [10])
     hi = math.ceil(hi / 40) * 40
     svg, h = _svg_open(len(rows), "Peak memory, R vs Python")
     xf = lambda v: _x_lin(v, hi)  # noqa: E731
@@ -141,12 +150,12 @@ def memory_chart(rows):
         for j, (d, cls, name) in enumerate(((r, "s1", "R"), (p, "s2", "Python"))):
             y = y0 + j * (t + 2)
             if d:
-                svg.append(_hbar(LABEL_W, xf(d["peak_rss_gb"]), y, t, cls, f"{d['peak_rss_gb']:.1f} GB|{name} · {label}"))
+                svg.append(_hbar(LABEL_W, xf(_mem(d)), y, t, cls, f"{_mem(d):.1f} GB|{name} · {label}"))
             else:
                 svg.append(f'<text class="muted small" x="{LABEL_W + 6}" y="{y + t - 1:.1f}">{name} pending</text>')
-        vals = [d["peak_rss_gb"] for d in (r, p) if d]
+        vals = [_mem(d) for d in (r, p) if d]
         if vals:
-            txt = " / ".join(f"{d['peak_rss_gb']:.0f}" if d else "–" for d in (r, p))
+            txt = " / ".join(f"{_mem(d):.0f}" if d else "–" for d in (r, p))
             svg.append(f'<text class="val" x="{xf(max(vals)) + 8:.1f}" y="{y0 + t + 5:.1f}">{txt} GB</text>')
     svg.append("</svg>")
     return "\n".join(svg)
@@ -174,10 +183,10 @@ def parity_chart(rep):
     return "\n".join(svg)
 
 
-def parity_rows():
+def parity_rows(suffix=""):
     out = []
     for tut, label in TUTORIALS:
-        p = REPORTS / f"{tut}.tsv"
+        p = REPORTS / f"{tut}{suffix}.tsv"
         if not p.exists():
             continue
         df = pd.read_csv(p, sep="\t")
@@ -191,13 +200,13 @@ def parity_rows():
 CSS = """
 <style>
 .viz-root{--surface:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#7a7974;--grid:#e6e5e0;
-  --s1:#2a78d6;--s2:#eb6834;--tip-bg:#ffffff;--tip-border:#dddcd6;
+  --s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--tip-bg:#ffffff;--tip-border:#dddcd6;
   position:relative;color:var(--ink2);font-family:var(--font-stack,system-ui,sans-serif);margin:0 0 2rem}
 body[data-theme="dark"] .viz-root{--surface:#1a1a19;--ink:#f0efec;--ink2:#c3c2b7;--muted:#97968e;--grid:#33332f;
-  --s1:#3987e5;--s2:#d95926;--tip-bg:#262624;--tip-border:#3d3d39}
+  --s1:#3987e5;--s2:#d95926;--s3:#199e70;--tip-bg:#262624;--tip-border:#3d3d39}
 @media (prefers-color-scheme: dark){body:not([data-theme="light"]):not([data-theme="dark"]) .viz-root,
   body[data-theme="auto"] .viz-root{--surface:#1a1a19;--ink:#f0efec;--ink2:#c3c2b7;--muted:#97968e;--grid:#33332f;
-  --s1:#3987e5;--s2:#d95926;--tip-bg:#262624;--tip-border:#3d3d39}}
+  --s1:#3987e5;--s2:#d95926;--s3:#199e70;--tip-bg:#262624;--tip-border:#3d3d39}}
 .viz-root .card{background:var(--surface);border:1px solid var(--grid);border-radius:10px;padding:16px 18px 8px;margin:0 0 18px}
 .viz-root h4{margin:0;color:var(--ink);font-size:1rem;font-weight:600}
 .viz-root .sub{margin:2px 0 8px;font-size:.85rem;color:var(--ink2)}
@@ -209,7 +218,7 @@ body[data-theme="dark"] .viz-root{--surface:#1a1a19;--ink:#f0efec;--ink2:#c3c2b7
 .viz-root .target{stroke:var(--ink2);stroke-width:1}
 .viz-root .conn{stroke:var(--grid);stroke-width:2;stroke-linecap:round}
 .viz-root .dot{stroke:var(--surface);stroke-width:2}
-.viz-root .s1{fill:var(--s1)} .viz-root .s2{fill:var(--s2)}
+.viz-root .s1{fill:var(--s1)} .viz-root .s2{fill:var(--s2)} .viz-root .s3{fill:var(--s3)}
 .viz-root .hit{fill:transparent}
 .viz-root .mark{cursor:default;outline:none}
 .viz-root .mark:hover .dot,.viz-root .mark:focus .dot,.viz-root .mark:hover .bar,.viz-root .mark:focus .bar{filter:brightness(1.15)}
@@ -255,10 +264,10 @@ JS = """
 
 def build():
     OUT.mkdir(parents=True, exist_ok=True)
-    rows = [(t, lab, _load("r", t), _load("py", t)) for t, lab in TUTORIALS]
+    rows = [(t, lab, _load("r", t), _load("py", t), _load("pyfast", t)) for t, lab in TUTORIALS]
     rep = parity_rows()
 
-    both = [(r, p) for _, _, r, p in rows if r and p]
+    both = [(r, p) for _, _, r, p, _ in rows if r and p]
     speedups = [r["wall_s"] / p["wall_s"] for r, p in both]
     n_files = sum(x["files"] for x in rep)
     n_discrete = sum(x["discrete"] for x in rep)
@@ -273,15 +282,19 @@ def build():
         tiles.append((f"{min(speedups):.1f}–{max(speedups):.1f}×", f"Python faster than R ({len(both)} tutorials timed)"))
 
     legend = ('<div class="legend"><span style="--c:var(--s1)">R (EcoTyper, R 4.4.3)</span>'
-              '<span style="--c:var(--s2)">Python port</span></div>')
+              '<span style="--c:var(--s2)">Python (exact, default)</span>'
+              '<span style="--c:var(--s3)">Python fast mode</span></div>')
+    legend2 = ('<div class="legend"><span style="--c:var(--s1)">R (EcoTyper, R 4.4.3)</span>'
+               '<span style="--c:var(--s2)">Python (exact, default)</span></div>')
     parts = [CSS, '<div class="viz-root">', '<div class="tiles">']
     parts += [f'<div class="tile"><b>{_esc(v)}</b><span>{_esc(k)}</span></div>' for v, k in tiles]
     parts.append("</div>")
     parts.append('<div class="card"><h4>Wall time</h4><p class="sub">Same server, 32 parallel jobs, '
                  'one BLAS thread per process. Log scale; hover a dot for the value.</p>'
                  + legend + time_chart(rows) + "</div>")
-    parts.append('<div class="card"><h4>Peak memory</h4><p class="sub">Summed resident memory of all '
-                 'processes in the container (R first, Python second).</p>' + legend + memory_chart(rows) + "</div>")
+    parts.append('<div class="card"><h4>Peak memory</h4><p class="sub">Summed over all processes in the '
+                 'container: PSS for Python (pages shared by forked workers counted once), RSS for R '
+                 '(separate processes).</p>' + legend2 + memory_chart(rows) + "</div>")
     if rep:
         parts.append('<div class="card"><h4>Agreement with R</h4><p class="sub">Largest relative difference '
                      'of any numeric cell, per tutorial (log scale). Every discrete output is identical.</p>'
@@ -289,18 +302,41 @@ def build():
     parts += ['<div class="tip" role="tooltip"></div>', JS, "</div>"]
     (OUT / "benchmark_charts.html").write_text("\n".join(parts))
 
-    md = ["| Tutorial | R wall | Python wall | R / Python | R peak RSS | Python peak RSS |",
-          "|---|---:|---:|---:|---:|---:|"]
-    for _, lab, r, p in rows:
-        cell = lambda d, k, f: f(d[k]) if d else "pending"  # noqa: E731
+    md = ["| Tutorial | R wall | Python wall | R / Python | Python fast wall | R / fast | R peak RSS | Python peak PSS (RSS) |",
+          "|---|---:|---:|---:|---:|---:|---:|---:|"]
+    for _, lab, r, p, f in rows:
+        cell = lambda d, k, fn: fn(d[k]) if d else "pending"  # noqa: E731
         ratio = f"{r['wall_s'] / p['wall_s']:.2f}×" if r and p else "–"
+        fratio = f"{r['wall_s'] / f['wall_s']:.2f}×" if r and f else "–"
+        pm = f"{_mem(p):.1f} GB ({p['peak_rss_gb']:.1f} GB)" if p else "pending"
         md.append(f"| {lab} | {cell(r, 'wall_s', _fmt_time)} | {cell(p, 'wall_s', _fmt_time)} | {ratio} | "
-                  f"{cell(r, 'peak_rss_gb', lambda v: f'{v:.1f} GB')} | {cell(p, 'peak_rss_gb', lambda v: f'{v:.1f} GB')} |")
+                  f"{cell(f, 'wall_s', _fmt_time) if f else '–'} | {fratio} | "
+                  f"{cell(r, 'peak_rss_gb', lambda v: f'{v:.1f} GB')} | {pm} |")
     md += ["", "| Tutorial | Files | Byte-identical | Discrete-equal | Missing | Max rel. diff |",
            "|---|---:|---:|---:|---:|---:|"]
     for x in rep:
         md.append(f"| {x['label']} | {x['files']} | {x['identical']} | {x['discrete']} | {x['missing']} | {x['max_rel']:.2g} |")
     (OUT / "benchmark_table.md").write_text("\n".join(md) + "\n")
+
+    fast = parity_rows("_fast")
+    md = ["| Tutorial | Files | Byte-identical | Discrete-equal | Missing | Max rel. diff |", "|---|---:|---:|---:|---:|---:|"]
+    md += [f"| {x['label']} | {x['files']} | {x['identical']} | {x['discrete']} | {x['missing']} | {x['max_rel']:.2g} |"
+           for x in fast] or ["| (no fast-mode reports yet) | | | | | |"]
+    (OUT / "fast_table.md").write_text("\n".join(md) + "\n")
+
+    md = ["| Tutorial | Cell type | Rank (R) | Rank (cd) | ARI states | ARI initial states |", "|---|---|---:|---:|---:|---:|"]
+    for tut, label in TUTORIALS:
+        q = REPORTS / f"{tut}_cd_agreement.tsv"
+        if not q.exists():
+            continue
+        for _, x in pd.read_csv(q, sep="\t").iterrows():
+            fmt = lambda v: "–" if pd.isna(v) else f"{v:.2f}"  # noqa: E731
+            rk = lambda v: "–" if pd.isna(v) else str(int(v))  # noqa: E731
+            md.append(f"| {label} | {x['cell_type']} | {rk(x['rank_r'])} | {rk(x['rank_py'])} | "
+                      f"{fmt(x.get('ari_states'))} | {fmt(x.get('ari_initial'))} |")
+    if len(md) == 2:
+        md.append("| (no solver runs yet) | | | | | |")
+    (OUT / "solver_table.md").write_text("\n".join(md) + "\n")
 
 
 if __name__ == "__main__":
