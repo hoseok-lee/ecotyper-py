@@ -19,18 +19,18 @@ include numba's just-in-time compilation (cold cache).
 
 ## Reading the results
 
-- **Discovery (T4–T6)**: Python is 1.7× (bulk), 4.2× (presorted) and 1.1× (the large scRNA-seq
-  tutorial, 4.7 h in R vs 4.4 h in Python) faster. NMF dominates the large run, and both
+- **Discovery (T4–T6)**: Python is 1.2× (bulk), 4.0× (presorted) and 1.2× (the large scRNA-seq
+  tutorial, 4.7 h in R vs 4.0 h in Python) faster. NMF dominates the large run, and both
   implementations use the same algorithm.
-- **Recovery (T1–T3)**: Python is 1.1–4.5× faster than R. The gain is largest on the small bulk
+- **Recovery (T1–T3)**: Python is 2.8–7.4× faster than R. The gain is largest on the small bulk
   inputs, where fixed costs dominate: R starts an `Rscript` process per cell type and passes
   results between steps through text files.
-- **Memory**: on the larger scRNA-seq and Visium inputs, Python uses 2–3× more peak memory than
-  R, because each worker process receives its own copy of the full expression matrix. This is
-  a known area for improvement.
+- **Memory**: summed RSS double-counts pages shared between forked workers; on t5 Python's
+  summed RSS is 380 GB but the real footprint (summed PSS) is 15 GB, versus 83 GB summed RSS for R.
+  Starting workers with `ECOTYPER_MP_CONTEXT=forkserver` makes summed RSS equal PSS.
 - **Exactness costs little**: these timings are in the default R-exact mode (long-double
-  reductions, R's number formatting and text round-trips). A faster opt-in mode
-  (`exact=False`) is planned.
+  reductions, R's number formatting and text round-trips). The opt-in fast mode
+  (`exact=False`) is described on the Performance page.
 
 ## Reproduce
 

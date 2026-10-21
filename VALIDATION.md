@@ -50,19 +50,19 @@ ecotype, rank or gene set.
 - `ECOTYPER_NO_FMA=1` is needed on CPUs where numba would otherwise emit FMA, to match R's non-FMA
   conda build.
 - CIBERSORTx is not reimplemented and was not tested.
-- `exact=False` fast mode and the alternative NMF solver: see PROGRESS.md (not yet done).
+- `exact=False` fast mode and the alternative NMF solver: see docs/performance.md (done; fast mode is discrete-equal except t5, where 5 of 11 cell types land in a different NMF partition).
 
 ## Benchmarks (R vs Python, x86-64, 32 jobs)
 
-See docs/benchmarks.md for charts and method. Python includes numba cold JIT; peak RSS is summed over all processes (double-counts shared pages).
+See docs/benchmarks.md for charts and method. Exact mode, current checkout (C Brunet kernel, vectorised number formatting, per-restart scheduling), shared lab server under varying load (t4 was slower than an earlier run for that reason). Python includes numba cold JIT; peak RSS is summed over all processes (double-counts shared pages), PSS counts them once.
 
 | Tutorial | R wall | Python wall | Speed-up (R/Py) | R peak RSS | Python peak RSS |
 |---|---|---|---|---|---|
-| t1_lung | 2.4 min | 36 s | 4.06x | 11.46 GB | 8.72 GB |
-| t1_lymphoma | 89 s | 20 s | 4.52x | 7.88 GB | 7.19 GB |
-| t2_lymphoma | 48 s | 27 s | 1.75x | 1.23 GB | 8.79 GB |
-| t2_crc | 3.1 min | 2.8 min | 1.12x | 28.65 GB | 85.91 GB |
-| t3_visium | 10.3 min | 5.5 min | 1.89x | 37.09 GB | 81.83 GB |
-| t6_presorted | 44.7 min | 10.7 min | 4.17x | 8.72 GB | 14.7 GB |
-| t4_bulk | 18.2 min | 10.7 min | 1.69x | 10.43 GB | 14.68 GB |
-| t5_scrna | 283.5 min | 261.3 min | 1.09x | 82.52 GB | 368.76 GB |
+| t1_lung | 2.4 min | 20 s | 7.41x | 11.46 GB | 3.74 GB (1.38 GB PSS) |
+| t1_lymphoma | 89 s | 12 s | 7.12x | 7.88 GB | 3.85 GB (1.41 GB PSS) |
+| t2_lymphoma | 48 s | 17 s | 2.79x | 1.23 GB | 3.92 GB (0.51 GB PSS) |
+| t2_crc | 3.1 min | 66 s | 2.86x | 28.65 GB | 30.98 GB (5.63 GB PSS) |
+| t3_visium | 10.3 min | 2.8 min | 3.73x | 37.09 GB | 19.25 GB (3.82 GB PSS) |
+| t6_presorted | 44.7 min | 11.1 min | 4.04x | 8.72 GB | 17.48 GB (3.67 GB PSS) |
+| t4_bulk | 18.2 min | 15.2 min | 1.20x | 10.43 GB | 17.48 GB (3.12 GB PSS) |
+| t5_scrna | 283.5 min | 240.5 min | 1.18x | 82.52 GB | 380.16 GB (14.97 GB PSS) |
