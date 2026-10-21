@@ -1,0 +1,763 @@
+tree	file	missing	identical_bytes	shape_equal	discrete_equal	n_numeric	n_diff_numeric	max_abs	max_rel	n_diff_other	rows	cols
+discovery_scRNA_CRC/Cell_type_specific_genes	Analysis/Cell_type_specific_genes/B.cells_cell_type_specific_genes.txt	False	True	True	True	1578.0	0.0	0.0	0.0	0.0	526.0	5.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Analysis/Cell_type_specific_genes/B.cells_cell_type_specific_genes_raw.txt	False	True	True	True	59253.0	0.0	0.0	0.0	0.0	19751.0	5.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Analysis/Cell_type_specific_genes/CD4.T.cells_cell_type_specific_genes.txt	False	True	True	True	1191.0	0.0	0.0	0.0	0.0	397.0	5.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Analysis/Cell_type_specific_genes/CD4.T.cells_cell_type_specific_genes_raw.txt	False	True	True	True	59253.0	0.0	0.0	0.0	0.0	19751.0	5.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Analysis/Cell_type_specific_genes/CD8.T.cells_cell_type_specific_genes.txt	False	True	True	True	1119.0	0.0	0.0	0.0	0.0	373.0	5.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Analysis/Cell_type_specific_genes/CD8.T.cells_cell_type_specific_genes_raw.txt	False	True	True	True	59253.0	0.0	0.0	0.0	0.0	19751.0	5.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Analysis/Cell_type_specific_genes/Dendritic.cells_cell_type_specific_genes.txt	False	True	True	True	12576.0	0.0	0.0	0.0	0.0	4192.0	5.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Analysis/Cell_type_specific_genes/Dendritic.cells_cell_type_specific_genes_raw.txt	False	True	True	True	59253.0	0.0	0.0	0.0	0.0	19751.0	5.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Analysis/Cell_type_specific_genes/Endothelial.cells_cell_type_specific_genes.txt	False	True	True	True	27237.0	0.0	0.0	0.0	0.0	9079.0	5.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Analysis/Cell_type_specific_genes/Endothelial.cells_cell_type_specific_genes_raw.txt	False	True	True	True	59253.0	0.0	0.0	0.0	0.0	19751.0	5.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Analysis/Cell_type_specific_genes/Epithelial.cells_cell_type_specific_genes.txt	False	True	True	True	34929.0	0.0	0.0	0.0	0.0	11643.0	5.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Analysis/Cell_type_specific_genes/Epithelial.cells_cell_type_specific_genes_raw.txt	False	True	True	True	59253.0	0.0	0.0	0.0	0.0	19751.0	5.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Analysis/Cell_type_specific_genes/Fibroblasts_cell_type_specific_genes.txt	False	True	True	True	25911.0	0.0	0.0	0.0	0.0	8637.0	5.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Analysis/Cell_type_specific_genes/Fibroblasts_cell_type_specific_genes_raw.txt	False	True	True	True	59253.0	0.0	0.0	0.0	0.0	19751.0	5.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Analysis/Cell_type_specific_genes/Mast.cells_cell_type_specific_genes.txt	False	True	True	True	960.0	0.0	0.0	0.0	0.0	320.0	5.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Analysis/Cell_type_specific_genes/Mast.cells_cell_type_specific_genes_raw.txt	False	True	True	True	59253.0	0.0	0.0	0.0	0.0	19751.0	5.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Analysis/Cell_type_specific_genes/Monocytes.and.Macrophages_cell_type_specific_genes.txt	False	True	True	True	4341.0	0.0	0.0	0.0	0.0	1447.0	5.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Analysis/Cell_type_specific_genes/Monocytes.and.Macrophages_cell_type_specific_genes_raw.txt	False	True	True	True	59253.0	0.0	0.0	0.0	0.0	19751.0	5.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Analysis/Cell_type_specific_genes/NK.cells_cell_type_specific_genes.txt	False	True	True	True	1275.0	0.0	0.0	0.0	0.0	425.0	5.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Analysis/Cell_type_specific_genes/NK.cells_cell_type_specific_genes_raw.txt	False	True	True	True	59253.0	0.0	0.0	0.0	0.0	19751.0	5.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Analysis/Cell_type_specific_genes/PCs_cell_type_specific_genes.txt	False	True	True	True	4821.0	0.0	0.0	0.0	0.0	1607.0	5.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Analysis/Cell_type_specific_genes/PCs_cell_type_specific_genes_raw.txt	False	True	True	True	59253.0	0.0	0.0	0.0	0.0	19751.0	5.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Analysis/rank_selection/rank_data.txt	False	False	True	False	11.0	11.0	11.0	1.8333333333333333	10.0	11.0	3.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Analysis/rank_selection/rank_data_cutoff_0.975.txt	False	False	True	False	11.0	11.0	11.0	1.8333333333333333	10.0	11.0	3.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/B.cells/expression_full_matrix_log2.txt	False	True	True	True	789000.0	0.0	0.0	0.0	0.0	526.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/B.cells/expression_full_matrix_scaled.txt	False	True	True	True	789000.0	0.0	0.0	0.0	0.0	526.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/B.cells/expression_top_genes_log2.txt	False	False	True	False	789000.0	326175.0	7.35755200461808	inf	526.0	526.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/B.cells/expression_top_genes_scaled.txt	False	False	True	False	789000.0	789000.0	40.8292163848131	2441.513751389347	526.0	526.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/B.cells/full_FCs.txt	False	False	False	False	0.0					526.0	12.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/B.cells/top_FCs.txt	False	False	False	False	0.0					526.0	12.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/B.cells/7/H.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/B.cells/7/W.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/B.cells/7/first_filter_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/B.cells/7/gene_info.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/B.cells/7/heatmap_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/B.cells/7/heatmap_top_ann.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/B.cells/7/initial_gene_info.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/B.cells/7/initial_state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/B.cells/7/initial_state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/B.cells/7/mapping_to_initial_states.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/B.cells/7/rank_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/B.cells/7/state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/B.cells/7/state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/B.cells/7/used.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD4.T.cells/expression_full_matrix_log2.txt	False	True	True	True	595500.0	0.0	0.0	0.0	0.0	397.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD4.T.cells/expression_full_matrix_scaled.txt	False	True	True	True	595500.0	0.0	0.0	0.0	0.0	397.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD4.T.cells/expression_top_genes_log2.txt	False	False	True	False	595500.0	211711.0	7.39231742277876	inf	393.0	397.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD4.T.cells/expression_top_genes_scaled.txt	False	False	True	False	595500.0	585006.0	39.64776186839324	1500.0000000000027	393.0	397.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD4.T.cells/full_FCs.txt	False	False	False	False	0.0					397.0	9.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD4.T.cells/top_FCs.txt	False	False	False	False	0.0					397.0	9.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD4.T.cells/4/H.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD4.T.cells/4/W.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD4.T.cells/4/first_filter_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD4.T.cells/4/gene_info.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD4.T.cells/4/heatmap_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD4.T.cells/4/heatmap_top_ann.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD4.T.cells/4/initial_gene_info.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD4.T.cells/4/initial_state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD4.T.cells/4/initial_state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD4.T.cells/4/mapping_to_initial_states.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD4.T.cells/4/rank_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD4.T.cells/4/state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD4.T.cells/4/state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD4.T.cells/4/used.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD8.T.cells/expression_full_matrix_log2.txt	False	True	True	True	559500.0	0.0	0.0	0.0	0.0	373.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD8.T.cells/expression_full_matrix_scaled.txt	False	True	True	True	559500.0	0.0	0.0	0.0	0.0	373.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD8.T.cells/expression_top_genes_log2.txt	False	False	True	False	559500.0	214196.0	7.22881869049588	inf	369.0	373.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD8.T.cells/expression_top_genes_scaled.txt	False	False	True	False	559500.0	552002.0	40.08302800979298	1500.0000000000027	369.0	373.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD8.T.cells/full_FCs.txt	False	False	False	False	0.0					373.0	12.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD8.T.cells/top_FCs.txt	False	False	False	False	0.0					373.0	12.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD8.T.cells/7/H.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD8.T.cells/7/W.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD8.T.cells/7/first_filter_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD8.T.cells/7/gene_info.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD8.T.cells/7/heatmap_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD8.T.cells/7/heatmap_top_ann.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD8.T.cells/7/initial_gene_info.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD8.T.cells/7/initial_state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD8.T.cells/7/initial_state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD8.T.cells/7/mapping_to_initial_states.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD8.T.cells/7/rank_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD8.T.cells/7/state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD8.T.cells/7/state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/CD8.T.cells/7/used.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Dendritic.cells/expression_full_matrix_log2.txt	False	True	True	True	2020544.0	0.0	0.0	0.0	0.0	4192.0	483.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Dendritic.cells/expression_full_matrix_scaled.txt	False	True	True	True	2020544.0	0.0	0.0	0.0	0.0	4192.0	483.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Dendritic.cells/expression_top_genes_log2.txt	False	False	True	False	482000.0	361388.0	10.5362472156881	inf	1000.0	1000.0	483.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Dendritic.cells/expression_top_genes_scaled.txt	False	False	True	False	482000.0	481526.0	23.19078318770174	11942.997336773478	1000.0	1000.0	483.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Dendritic.cells/full_FCs.txt	False	False	False	False	0.0					4192.0	12.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Dendritic.cells/top_FCs.txt	False	False	False	False	0.0					1000.0	12.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Dendritic.cells/7/H.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Dendritic.cells/7/W.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Dendritic.cells/7/first_filter_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Dendritic.cells/7/gene_info.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Dendritic.cells/7/heatmap_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Dendritic.cells/7/heatmap_top_ann.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Dendritic.cells/7/initial_gene_info.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Dendritic.cells/7/initial_state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Dendritic.cells/7/initial_state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Dendritic.cells/7/mapping_to_initial_states.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Dendritic.cells/7/rank_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Dendritic.cells/7/state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Dendritic.cells/7/state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Dendritic.cells/7/used.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Endothelial.cells/expression_full_matrix_log2.txt	False	True	True	True	13618500.0	0.0	0.0	0.0	0.0	9079.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Endothelial.cells/expression_full_matrix_scaled.txt	False	True	True	True	13618500.0	0.0	0.0	0.0	0.0	9079.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Endothelial.cells/expression_top_genes_log2.txt	False	False	True	False	1500000.0	1029371.0	10.1661630826461	inf	1000.0	1000.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Endothelial.cells/expression_top_genes_scaled.txt	False	False	True	False	1500000.0	1500000.0	40.13712584210634	2710.4399578550065	1000.0	1000.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Endothelial.cells/full_FCs.txt	False	False	False	False	0.0					9079.0	14.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Endothelial.cells/top_FCs.txt	False	False	False	False	0.0					1000.0	14.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Endothelial.cells/9/H.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Endothelial.cells/9/W.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Endothelial.cells/9/first_filter_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Endothelial.cells/9/gene_info.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Endothelial.cells/9/heatmap_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Endothelial.cells/9/heatmap_top_ann.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Endothelial.cells/9/initial_gene_info.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Endothelial.cells/9/initial_state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Endothelial.cells/9/initial_state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Endothelial.cells/9/mapping_to_initial_states.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Endothelial.cells/9/rank_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Endothelial.cells/9/state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Endothelial.cells/9/state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Endothelial.cells/9/used.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Epithelial.cells/expression_full_matrix_log2.txt	False	True	True	True	17464500.0	0.0	0.0	0.0	0.0	11643.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Epithelial.cells/expression_full_matrix_scaled.txt	False	True	True	True	17464500.0	0.0	0.0	0.0	0.0	11643.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Epithelial.cells/expression_top_genes_log2.txt	False	False	True	False	1500000.0	879699.0	10.9844184588011	inf	1000.0	1000.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Epithelial.cells/expression_top_genes_scaled.txt	False	False	True	False	1500000.0	1498508.0	40.73097559457283	14313.168889200359	1000.0	1000.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Epithelial.cells/full_FCs.txt	False	False	False	False	0.0					11643.0	11.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Epithelial.cells/top_FCs.txt	False	False	False	False	0.0					1000.0	11.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Epithelial.cells/6/H.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Epithelial.cells/6/W.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Epithelial.cells/6/first_filter_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Epithelial.cells/6/gene_info.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Epithelial.cells/6/heatmap_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Epithelial.cells/6/heatmap_top_ann.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Epithelial.cells/6/initial_gene_info.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Epithelial.cells/6/initial_state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Epithelial.cells/6/initial_state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Epithelial.cells/6/mapping_to_initial_states.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Epithelial.cells/6/rank_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Epithelial.cells/6/state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Epithelial.cells/6/state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Epithelial.cells/6/used.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Fibroblasts/expression_full_matrix_log2.txt	False	True	True	True	12955500.0	0.0	0.0	0.0	0.0	8637.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Fibroblasts/expression_full_matrix_scaled.txt	False	True	True	True	12955500.0	0.0	0.0	0.0	0.0	8637.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Fibroblasts/expression_top_genes_log2.txt	False	False	True	False	1500000.0	768874.0	11.3185428097027	inf	999.0	1000.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Fibroblasts/expression_top_genes_scaled.txt	False	False	True	False	1500000.0	1494018.0	39.96188374013886	16016.022705590342	999.0	1000.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Fibroblasts/full_FCs.txt	False	False	False	False	0.0					8637.0	13.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Fibroblasts/top_FCs.txt	False	False	False	False	0.0					1000.0	13.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Fibroblasts/8/H.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Fibroblasts/8/W.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Fibroblasts/8/first_filter_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Fibroblasts/8/gene_info.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Fibroblasts/8/heatmap_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Fibroblasts/8/heatmap_top_ann.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Fibroblasts/8/initial_gene_info.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Fibroblasts/8/initial_state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Fibroblasts/8/initial_state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Fibroblasts/8/mapping_to_initial_states.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Fibroblasts/8/rank_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Fibroblasts/8/state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Fibroblasts/8/state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Fibroblasts/8/used.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Mast.cells/expression_full_matrix_log2.txt	False	True	True	True	59840.0	0.0	0.0	0.0	0.0	320.0	188.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Mast.cells/expression_full_matrix_scaled.txt	False	True	True	True	59840.0	0.0	0.0	0.0	0.0	320.0	188.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Mast.cells/expression_top_genes_log2.txt	False	False	True	False	59840.0	23056.0	8.48381577726426	inf	320.0	320.0	188.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Mast.cells/expression_top_genes_scaled.txt	False	False	True	False	59840.0	59488.0	15.60407560992157	336.10760068511786	320.0	320.0	188.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Mast.cells/full_FCs.txt	False	False	False	False	0.0					320.0	10.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Mast.cells/top_FCs.txt	False	False	False	False	0.0					320.0	10.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Mast.cells/5/H.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Mast.cells/5/W.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Mast.cells/5/first_filter_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Mast.cells/5/gene_info.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Mast.cells/5/heatmap_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Mast.cells/5/heatmap_top_ann.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Mast.cells/5/initial_gene_info.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Mast.cells/5/initial_state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Mast.cells/5/initial_state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Mast.cells/5/mapping_to_initial_states.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Mast.cells/5/rank_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Mast.cells/5/state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Mast.cells/5/state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Mast.cells/5/used.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Monocytes.and.Macrophages/expression_full_matrix_log2.txt	False	True	True	True	2170500.0	0.0	0.0	0.0	0.0	1447.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Monocytes.and.Macrophages/expression_full_matrix_scaled.txt	False	True	True	True	2170500.0	0.0	0.0	0.0	0.0	1447.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Monocytes.and.Macrophages/expression_top_genes_log2.txt	False	False	True	False	1500000.0	746207.0	11.7598881832218	inf	999.0	1000.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Monocytes.and.Macrophages/expression_top_genes_scaled.txt	False	False	True	False	1500000.0	1495504.0	39.638078265496524	9949.612125784543	999.0	1000.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Monocytes.and.Macrophages/full_FCs.txt	False	False	False	False	0.0					1447.0	12.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Monocytes.and.Macrophages/top_FCs.txt	False	False	False	False	0.0					1000.0	12.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Monocytes.and.Macrophages/7/H.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Monocytes.and.Macrophages/7/W.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Monocytes.and.Macrophages/7/first_filter_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Monocytes.and.Macrophages/7/gene_info.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Monocytes.and.Macrophages/7/heatmap_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Monocytes.and.Macrophages/7/heatmap_top_ann.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Monocytes.and.Macrophages/7/initial_gene_info.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Monocytes.and.Macrophages/7/initial_state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Monocytes.and.Macrophages/7/initial_state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Monocytes.and.Macrophages/7/mapping_to_initial_states.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Monocytes.and.Macrophages/7/rank_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Monocytes.and.Macrophages/7/state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Monocytes.and.Macrophages/7/state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/Monocytes.and.Macrophages/7/used.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/NK.cells/expression_full_matrix_log2.txt	False	True	True	True	472175.0	0.0	0.0	0.0	0.0	425.0	1112.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/NK.cells/expression_full_matrix_scaled.txt	False	True	True	True	472175.0	0.0	0.0	0.0	0.0	425.0	1112.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/NK.cells/expression_top_genes_log2.txt	False	False	True	False	472175.0	155423.0	8.07681559705083	inf	420.0	425.0	1112.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/NK.cells/expression_top_genes_scaled.txt	False	False	True	False	472175.0	458885.0	34.27455981115161	8717.675139590725	420.0	425.0	1112.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/NK.cells/full_FCs.txt	False	False	False	False	0.0					425.0	12.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/NK.cells/top_FCs.txt	False	False	False	False	0.0					425.0	12.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/NK.cells/7/H.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/NK.cells/7/W.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/NK.cells/7/first_filter_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/NK.cells/7/gene_info.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/NK.cells/7/heatmap_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/NK.cells/7/heatmap_top_ann.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/NK.cells/7/initial_gene_info.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/NK.cells/7/initial_state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/NK.cells/7/initial_state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/NK.cells/7/mapping_to_initial_states.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/NK.cells/7/rank_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/NK.cells/7/state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/NK.cells/7/state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/NK.cells/7/used.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/PCs/expression_full_matrix_log2.txt	False	True	True	True	2410500.0	0.0	0.0	0.0	0.0	1607.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/PCs/expression_full_matrix_scaled.txt	False	True	True	True	2410500.0	0.0	0.0	0.0	0.0	1607.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/PCs/expression_top_genes_log2.txt	False	False	True	False	1500000.0	872626.0	11.9985904297453	inf	1000.0	1000.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/PCs/expression_top_genes_scaled.txt	False	False	True	False	1500000.0	1498504.0	40.37162569227149	20194.47826805818	1000.0	1000.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/PCs/full_FCs.txt	False	False	False	False	0.0					1607.0	11.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/PCs/top_FCs.txt	False	False	False	False	0.0					1000.0	11.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/PCs/6/H.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/PCs/6/W.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/PCs/6/first_filter_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/PCs/6/gene_info.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/PCs/6/heatmap_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/PCs/6/heatmap_top_ann.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/PCs/6/initial_gene_info.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/PCs/6/initial_state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/PCs/6/initial_state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/PCs/6/mapping_to_initial_states.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/PCs/6/rank_data.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/PCs/6/state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/PCs/6/state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery/PCs/6/used.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/expression_full_matrix_log2.txt	False	True	True	True	29626500.0	0.0	0.0	0.0	0.0	19751.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/expression_full_matrix_scaled.txt	False	True	True	True	29626500.0	0.0	0.0	0.0	0.0	19751.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/expression_top_genes_scaled.txt	False	True	True	True	2250000.0	0.0	0.0	0.0	0.0	1500.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/expression_top_genes_scaled_filt.txt	False	True	True	True	789000.0	0.0	0.0	0.0	0.0	526.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/10/rank_data.txt	False	False	True	True	7.0	6.0	0.31311444494665797	0.7642122586416186	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/10/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/11/rank_data.txt	False	False	True	True	7.0	6.0	0.28924148916923204	0.7551282614192616	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/11/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/12/rank_data.txt	False	False	True	True	7.0	6.0	0.275834878319826	0.7344616580643252	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/12/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/13/rank_data.txt	False	False	True	True	7.0	6.0	0.329190521631172	0.9567492699807959	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/13/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/14/rank_data.txt	False	False	True	True	7.0	6.0	0.35333499267598095	1.091703691984323	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/14/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/15/rank_data.txt	False	False	True	True	7.0	6.0	0.33213128137973197	1.079821835001633	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/15/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/16/rank_data.txt	False	False	True	True	7.0	6.0	0.367408026986412	1.2357931195609848	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/16/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/17/rank_data.txt	False	False	True	True	7.0	6.0	0.32114331244654803	1.0977666998735773	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/17/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/18/rank_data.txt	False	False	True	True	7.0	6.0	0.33252851389389504	1.1889188172191962	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/18/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/19/rank_data.txt	False	False	True	True	7.0	6.0	0.41253180194027306	1.53593323449812	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/19/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/2/rank_data.txt	False	False	True	True	7.0	4.0	0.06365041777777702	0.06405934072162761	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/2/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/20/rank_data.txt	False	False	True	True	7.0	6.0	0.444638768674319	1.7360304266957782	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/20/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/3/rank_data.txt	False	False	True	True	7.0	6.0	0.492823893333328	0.4962187529803849	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/3/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/4/rank_data.txt	False	False	True	True	7.0	6.0	0.3344031288888859	0.3391107701005502	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/4/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/5/rank_data.txt	False	False	True	True	7.0	6.0	0.412348576997546	0.4317675054273453	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/5/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/6/rank_data.txt	False	False	True	True	7.0	6.0	0.536567665167976	0.5884333002073154	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/6/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/7/H.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/7/W.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/7/initial_state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/7/initial_state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/7/rank_data.txt	False	False	True	True	7.0	6.0	0.36600502836881904	0.4602210402924929	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/7/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/8/rank_data.txt	False	False	True	True	7.0	6.0	0.30410567003690303	0.6150263044113997	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/8/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/9/rank_data.txt	False	False	True	True	7.0	6.0	0.25464671927416194	0.5963010576347065	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/B.cells/9/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/expression_full_matrix_log2.txt	False	True	True	True	29626500.0	0.0	0.0	0.0	0.0	19751.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/expression_full_matrix_scaled.txt	False	True	True	True	29626500.0	0.0	0.0	0.0	0.0	19751.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/expression_top_genes_scaled.txt	False	True	True	True	2250000.0	0.0	0.0	0.0	0.0	1500.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/expression_top_genes_scaled_filt.txt	False	True	True	True	595500.0	0.0	0.0	0.0	0.0	397.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/10/rank_data.txt	False	False	True	True	7.0	6.0	0.306685965150049	0.6706060620239201	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/10/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/11/rank_data.txt	False	False	True	True	7.0	6.0	0.33480820236604497	0.6981637912655625	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/11/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/12/rank_data.txt	False	False	True	True	7.0	6.0	0.32577784345572497	0.7809200572005905	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/12/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/13/rank_data.txt	False	False	True	True	7.0	6.0	0.2966645935808361	0.8597140277829814	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/13/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/14/rank_data.txt	False	False	True	True	7.0	6.0	0.33022718914420995	1.033753031914183	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/14/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/15/rank_data.txt	False	False	True	True	7.0	6.0	0.33254910484134903	1.1558219472368743	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/15/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/16/rank_data.txt	False	False	True	True	7.0	6.0	0.33420809798620393	1.184978770989678	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/16/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/17/rank_data.txt	False	False	True	True	7.0	6.0	0.30594099937623703	1.1455437904399421	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/17/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/18/rank_data.txt	False	False	True	True	7.0	6.0	0.34314498600414806	1.3544107885453565	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/18/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/19/rank_data.txt	False	False	True	True	7.0	6.0	0.24302698854518598	0.9833512133439553	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/19/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/2/rank_data.txt	False	False	True	True	7.0	4.0	0.03756373333333296	0.03777274115804335	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/2/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/20/rank_data.txt	False	False	True	True	7.0	6.0	0.380748521287819	1.6147860679997303	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/20/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/3/rank_data.txt	False	False	True	True	7.0	6.0	0.652655502222217	0.6591382824942325	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/3/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/4/H.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/4/W.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/4/initial_state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/4/initial_state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/4/rank_data.txt	False	False	True	True	7.0	6.0	0.366260622222222	0.3690676622853252	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/4/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/5/rank_data.txt	False	False	True	True	7.0	6.0	0.38641806222221403	0.506778498962929	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/5/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/6/rank_data.txt	False	False	True	True	7.0	6.0	0.421020065537371	0.4884154630755453	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/6/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/7/rank_data.txt	False	False	True	True	7.0	6.0	0.420756186516654	0.49661979554173313	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/7/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/8/rank_data.txt	False	False	True	True	7.0	6.0	0.324964109321348	0.4442193055019801	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/8/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/9/rank_data.txt	False	False	True	True	7.0	6.0	0.27754952500060004	0.677562635095757	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD4.T.cells/9/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/expression_full_matrix_log2.txt	False	True	True	True	29626500.0	0.0	0.0	0.0	0.0	19751.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/expression_full_matrix_scaled.txt	False	True	True	True	29626500.0	0.0	0.0	0.0	0.0	19751.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/expression_top_genes_scaled.txt	False	True	True	True	2250000.0	0.0	0.0	0.0	0.0	1500.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/expression_top_genes_scaled_filt.txt	False	True	True	True	559500.0	0.0	0.0	0.0	0.0	373.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/10/rank_data.txt	False	False	True	True	7.0	6.0	0.353666111735771	0.5553504232073521	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/10/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/11/rank_data.txt	False	False	True	True	7.0	6.0	0.32475550436467093	0.7190506551805906	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/11/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/12/rank_data.txt	False	False	True	True	7.0	6.0	0.37292140183476596	0.6934713668144985	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/12/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/13/rank_data.txt	False	False	True	True	7.0	6.0	0.24625165560192502	0.7233146956762833	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/13/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/14/rank_data.txt	False	False	True	True	7.0	6.0	0.280046131022071	0.860165649185324	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/14/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/15/rank_data.txt	False	False	True	True	7.0	6.0	0.296897286800614	0.9305279287020403	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/15/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/16/rank_data.txt	False	False	True	True	7.0	6.0	0.271312768371457	0.9159401002018526	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/16/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/17/rank_data.txt	False	False	True	True	7.0	6.0	0.320803025711512	1.1938551217203681	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/17/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/18/rank_data.txt	False	False	True	True	7.0	6.0	0.29869155237645606	1.127099873351059	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/18/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/19/rank_data.txt	False	False	True	True	7.0	6.0	0.346329303351084	1.3236461774271757	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/19/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/2/rank_data.txt	False	False	True	True	7.0	4.0	0.498777884444441	0.5062928728126491	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/2/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/20/rank_data.txt	False	False	True	True	7.0	6.0	0.29531559610014396	1.1487113953138957	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/20/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/3/rank_data.txt	False	False	True	True	7.0	6.0	0.5849958399999939	0.5921251744740382	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/3/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/4/rank_data.txt	False	False	True	True	7.0	6.0	0.59421923555555	0.6041806874647286	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/4/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/5/rank_data.txt	False	False	True	True	7.0	6.0	0.45461117252402994	0.4589845199982352	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/5/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/6/rank_data.txt	False	False	True	True	7.0	6.0	0.48903654868412005	0.5055931430568867	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/6/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/7/H.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/7/W.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/7/initial_state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/7/initial_state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/7/rank_data.txt	False	False	True	True	7.0	6.0	0.35524380444444004	0.4678536300863053	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/7/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/8/rank_data.txt	False	False	True	True	7.0	6.0	0.262160679005873	0.3890534223296632	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/8/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/9/rank_data.txt	False	False	True	True	7.0	6.0	0.434361187158405	0.5617130665243434	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/CD8.T.cells/9/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/expression_full_matrix_log2.txt	False	True	True	True	9519982.0	0.0	0.0	0.0	0.0	19751.0	483.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/expression_full_matrix_scaled.txt	False	True	True	True	9519982.0	0.0	0.0	0.0	0.0	19751.0	483.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/expression_top_genes_scaled.txt	False	True	True	True	232324.0	0.0	0.0	0.0	0.0	482.0	483.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/expression_top_genes_scaled_filt.txt	False	True	True	True	2020544.0	0.0	0.0	0.0	0.0	4192.0	483.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/10/rank_data.txt	False	False	True	True	7.0	6.0	0.241296120934557	0.38133326809189627	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/10/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/11/rank_data.txt	False	False	True	True	7.0	6.0	0.28008810451715294	0.43995458390639613	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/11/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/12/rank_data.txt	False	False	True	True	7.0	6.0	0.17495347240282894	0.3914832860453587	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/12/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/13/rank_data.txt	False	False	True	True	7.0	6.0	0.21015153210976095	0.477735204227265	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/13/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/14/rank_data.txt	False	False	True	True	7.0	6.0	0.23137103322723002	0.4715997881854407	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/14/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/15/rank_data.txt	False	False	True	True	7.0	6.0	0.25056358848630006	0.6318911411339785	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/15/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/16/rank_data.txt	False	False	True	True	7.0	6.0	0.163121083030422	0.4215568998389917	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/16/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/17/rank_data.txt	False	False	True	True	7.0	6.0	0.27220146623154706	0.7169065334138836	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/17/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/18/rank_data.txt	False	False	True	True	7.0	6.0	0.16779898496321105	0.44247422501162437	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/18/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/19/rank_data.txt	False	False	True	True	7.0	6.0	0.19864376061203898	0.38690499792702904	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/19/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/2/rank_data.txt	False	False	True	True	7.0	4.0	0.015592018043766975	0.015863973434852068	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/2/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/20/rank_data.txt	False	False	True	True	7.0	6.0	0.287506396908608	0.8158066910631022	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/20/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/3/rank_data.txt	False	False	True	True	7.0	6.0	0.492760110879634	0.49622129736035253	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/3/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/4/rank_data.txt	False	False	True	True	7.0	6.0	0.461408033608237	0.4666009687540266	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/4/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/5/rank_data.txt	False	False	True	True	7.0	6.0	0.407829186412497	0.4135834358831817	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/5/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/6/rank_data.txt	False	False	True	True	7.0	6.0	0.554234294896987	0.5592978512043615	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/6/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/7/H.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/7/W.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/7/initial_state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/7/initial_state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/7/rank_data.txt	False	False	True	True	7.0	6.0	0.43679923630836304	0.49391877012239166	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/7/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/8/rank_data.txt	False	False	True	True	7.0	6.0	0.30962086839679703	0.41413486109142433	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/8/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/9/rank_data.txt	False	False	True	True	7.0	6.0	0.220033161907999	0.34833116832606337	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Dendritic.cells/9/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/expression_full_matrix_log2.txt	False	True	True	True	29626500.0	0.0	0.0	0.0	0.0	19751.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/expression_full_matrix_scaled.txt	False	True	True	True	29626500.0	0.0	0.0	0.0	0.0	19751.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/expression_top_genes_scaled.txt	False	True	True	True	2250000.0	0.0	0.0	0.0	0.0	1500.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/expression_top_genes_scaled_filt.txt	False	True	True	True	13618500.0	0.0	0.0	0.0	0.0	9079.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/10/rank_data.txt	False	False	True	True	7.0	6.0	0.269391474474146	0.3612576460205838	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/10/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/11/rank_data.txt	False	False	True	True	7.0	6.0	0.15630562480354404	0.28616323957731316	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/11/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/12/rank_data.txt	False	False	True	True	7.0	6.0	0.20116282697792198	0.3584549675789427	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/12/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/13/rank_data.txt	False	False	True	True	7.0	6.0	0.25919788908851504	0.594597993118982	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/13/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/14/rank_data.txt	False	False	True	True	7.0	6.0	0.15213966356347597	0.3166310944678416	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/14/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/15/rank_data.txt	False	False	True	True	7.0	6.0	0.21728107870451696	0.5261044195247536	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/15/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/16/rank_data.txt	False	False	True	True	7.0	6.0	0.231237452951622	0.5604281959275947	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/16/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/17/rank_data.txt	False	False	True	True	7.0	6.0	0.37557524379621393	1.0967462661382188	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/17/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/18/rank_data.txt	False	False	True	True	7.0	6.0	0.23789291565960002	0.6536488034597651	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/18/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/19/rank_data.txt	False	False	True	True	7.0	6.0	0.30591420701128	0.9072882350702194	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/19/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/2/rank_data.txt	False	False	True	True	7.0	4.0	0.026512782222221976	0.02658073818305093	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/2/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/20/rank_data.txt	False	False	True	True	7.0	6.0	0.296285820679383	0.8188008223003027	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/20/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/3/rank_data.txt	False	False	True	True	7.0	6.0	0.19804586666666502	0.2021527773341966	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/3/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/4/rank_data.txt	False	False	True	True	7.0	6.0	0.359204398723586	0.3610808485229213	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/4/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/5/rank_data.txt	False	False	True	True	7.0	6.0	0.21222666668059498	0.2143347298163542	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/5/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/6/rank_data.txt	False	False	True	True	7.0	6.0	0.35458057587259506	0.3566532820707327	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/6/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/7/rank_data.txt	False	False	True	True	7.0	6.0	0.34691048872404096	0.37306861131029834	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/7/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/8/rank_data.txt	False	False	True	True	7.0	6.0	0.18550027595031304	0.21993382313414855	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/8/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/9/H.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/9/W.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/9/initial_state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/9/initial_state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/9/rank_data.txt	False	False	True	True	7.0	6.0	0.17225780525365098	0.24226374224514272	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Endothelial.cells/9/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/expression_full_matrix_log2.txt	False	True	True	True	29626500.0	0.0	0.0	0.0	0.0	19751.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/expression_full_matrix_scaled.txt	False	True	True	True	29626500.0	0.0	0.0	0.0	0.0	19751.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/expression_top_genes_scaled.txt	False	True	True	True	2250000.0	0.0	0.0	0.0	0.0	1500.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/expression_top_genes_scaled_filt.txt	False	True	True	True	17464500.0	0.0	0.0	0.0	0.0	11643.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/10/rank_data.txt	False	False	True	True	7.0	6.0	0.190954701874122	0.35564410630952636	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/10/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/11/rank_data.txt	False	False	True	True	7.0	6.0	0.232733400437922	0.4303116086317927	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/11/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/12/rank_data.txt	False	False	True	True	7.0	6.0	0.17573359869081895	0.33040560776599914	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/12/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/13/rank_data.txt	False	False	True	True	7.0	6.0	0.270143918774262	0.48366593441804256	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/13/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/14/rank_data.txt	False	False	True	True	7.0	6.0	0.27228250364992806	0.5951686493888341	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/14/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/15/rank_data.txt	False	False	True	True	7.0	6.0	0.29670053542448505	0.7032248903822511	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/15/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/16/rank_data.txt	False	False	True	True	7.0	6.0	0.327093756589431	0.8518710951347639	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/16/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/17/rank_data.txt	False	False	True	True	7.0	6.0	0.21940472759415497	0.5042812289376691	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/17/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/18/rank_data.txt	False	False	True	True	7.0	6.0	0.31127413863224007	0.8569698780313542	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/18/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/19/rank_data.txt	False	False	True	True	7.0	6.0	0.24355254788178404	0.5923084457888822	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/19/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/2/rank_data.txt	False	False	True	True	7.0	4.0	0.011016248888888969	0.011049195724452898	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/2/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/20/rank_data.txt	False	False	True	True	7.0	6.0	0.275409768470913	0.7032943168437019	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/20/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/3/rank_data.txt	False	False	True	True	7.0	6.0	0.21224988444444493	0.2162306503544149	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/3/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/4/rank_data.txt	False	False	True	True	7.0	6.0	0.17296962512829095	0.20849237055255115	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/4/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/5/rank_data.txt	False	False	True	True	7.0	6.0	0.394334549425282	0.40259973501283297	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/5/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/6/H.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/6/W.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/6/initial_state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/6/initial_state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/6/rank_data.txt	False	False	True	True	7.0	6.0	0.13649464888888807	0.16653525162278973	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/6/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/7/rank_data.txt	False	False	True	True	7.0	6.0	0.19080003089060393	0.23659421526088176	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/7/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/8/rank_data.txt	False	False	True	True	7.0	6.0	0.13168030120566498	0.21734989259351603	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/8/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/9/rank_data.txt	False	False	True	True	7.0	6.0	0.19655368300985304	0.28717410363816087	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Epithelial.cells/9/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/expression_full_matrix_log2.txt	False	True	True	True	29626500.0	0.0	0.0	0.0	0.0	19751.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/expression_full_matrix_scaled.txt	False	True	True	True	29626500.0	0.0	0.0	0.0	0.0	19751.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/expression_top_genes_scaled.txt	False	True	True	True	2250000.0	0.0	0.0	0.0	0.0	1500.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/expression_top_genes_scaled_filt.txt	False	True	True	True	12955500.0	0.0	0.0	0.0	0.0	8637.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/10/rank_data.txt	False	False	True	True	7.0	6.0	0.19974301488815105	0.26213748947379617	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/10/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/11/rank_data.txt	False	False	True	True	7.0	6.0	0.23963884183769302	0.34662371453791885	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/11/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/12/rank_data.txt	False	False	True	True	7.0	6.0	0.12903864879036697	0.30399581615785043	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/12/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/13/rank_data.txt	False	False	True	True	7.0	6.0	0.26288480018204297	0.6078822021539507	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/13/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/14/rank_data.txt	False	False	True	True	7.0	6.0	0.22508993187419307	0.5225538191829234	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/14/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/15/rank_data.txt	False	False	True	True	7.0	6.0	0.173164489906526	0.41524695295571473	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/15/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/16/rank_data.txt	False	False	True	True	7.0	6.0	0.292727869464196	0.8747128272140601	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/16/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/17/rank_data.txt	False	False	True	True	7.0	6.0	0.26594953631579	0.7087200418207236	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/17/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/18/rank_data.txt	False	False	True	True	7.0	6.0	0.27148464841901593	0.747654405899511	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/18/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/19/rank_data.txt	False	False	True	True	7.0	6.0	0.305446044746544	0.880891210554365	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/19/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/2/rank_data.txt	False	False	True	True	7.0	4.0	0.008038684444444999	0.008066175691987436	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/2/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/20/rank_data.txt	False	False	True	True	7.0	6.0	0.341772657186836	1.2681631026170637	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/20/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/3/rank_data.txt	False	False	True	True	7.0	6.0	0.14512440888889	0.14589483737768405	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/3/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/4/rank_data.txt	False	False	True	True	7.0	6.0	0.19551744000000004	0.19978422004439997	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/4/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/5/rank_data.txt	False	False	True	True	7.0	6.0	0.20146147555555494	0.21597585140036302	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/5/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/6/rank_data.txt	False	False	True	True	7.0	6.0	0.20947551436336698	0.2396369294472298	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/6/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/7/rank_data.txt	False	False	True	True	7.0	6.0	0.25595986348715394	0.28337373989948833	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/7/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/8/H.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/8/W.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/8/initial_state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/8/initial_state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/8/rank_data.txt	False	False	True	True	7.0	6.0	0.171615582106881	0.21987421559027678	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/8/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/9/rank_data.txt	False	False	True	True	7.0	6.0	0.188385234583472	0.363868624180514	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Fibroblasts/9/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/expression_full_matrix_log2.txt	False	True	True	True	3693437.0	0.0	0.0	0.0	0.0	19751.0	188.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/expression_full_matrix_scaled.txt	False	True	True	True	3693437.0	0.0	0.0	0.0	0.0	19751.0	188.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/expression_top_genes_scaled.txt	False	True	True	True	34969.0	0.0	0.0	0.0	0.0	187.0	188.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/expression_top_genes_scaled_filt.txt	False	True	True	True	59840.0	0.0	0.0	0.0	0.0	320.0	188.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/10/rank_data.txt	False	False	True	True	7.0	6.0	0.34753313176688405	0.5354925732020691	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/10/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/11/rank_data.txt	False	False	True	True	7.0	6.0	0.134956496052885	0.27456793608697355	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/11/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/12/rank_data.txt	False	False	True	True	7.0	6.0	0.1385596038659701	0.29374265581301023	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/12/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/13/rank_data.txt	False	False	True	True	7.0	6.0	0.14806030612346	0.3626597410101439	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/13/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/14/rank_data.txt	False	False	True	True	7.0	6.0	0.19694082062651502	0.4893594953892547	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/14/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/15/rank_data.txt	False	False	True	True	7.0	6.0	0.18974644277174102	0.46758672258533696	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/15/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/16/rank_data.txt	False	False	True	True	7.0	6.0	0.22003445048137504	0.41281677474427647	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/16/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/17/rank_data.txt	False	False	True	True	7.0	6.0	0.19998882136286	0.40803661319709855	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/17/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/18/rank_data.txt	False	False	True	True	7.0	6.0	0.189040289401601	0.5440145295881577	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/18/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/19/rank_data.txt	False	False	True	True	7.0	6.0	0.155602820738864	0.435371348687622	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/19/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/2/rank_data.txt	False	False	True	True	7.0	4.0	0.322882553118476	0.32845508399533135	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/2/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/20/rank_data.txt	False	False	True	True	7.0	6.0	0.15803839839690104	0.35843993326842294	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/20/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/3/rank_data.txt	False	False	True	True	7.0	6.0	0.366770568217564	0.5215074662550641	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/3/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/4/rank_data.txt	False	False	True	True	7.0	6.0	0.45158168663673504	0.4732707474935891	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/4/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/5/H.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/5/W.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/5/initial_state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/5/initial_state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/5/rank_data.txt	False	False	True	True	7.0	6.0	0.518786353627498	0.5358304476398744	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/5/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/6/rank_data.txt	False	False	True	True	7.0	6.0	0.35899313933806	0.46547643269952677	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/6/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/7/rank_data.txt	False	False	True	True	7.0	6.0	0.22537994858021498	0.31174052237148436	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/7/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/8/rank_data.txt	False	False	True	True	7.0	6.0	0.20954142384587204	0.29679370209088163	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/8/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/9/rank_data.txt	False	False	True	True	7.0	6.0	0.24521156323731297	0.3798386256077398	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Mast.cells/9/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/expression_full_matrix_log2.txt	False	True	True	True	29626500.0	0.0	0.0	0.0	0.0	19751.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/expression_full_matrix_scaled.txt	False	True	True	True	29626500.0	0.0	0.0	0.0	0.0	19751.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/expression_top_genes_scaled.txt	False	True	True	True	2250000.0	0.0	0.0	0.0	0.0	1500.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/expression_top_genes_scaled_filt.txt	False	True	True	True	2170500.0	0.0	0.0	0.0	0.0	1447.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/10/rank_data.txt	False	False	True	True	7.0	6.0	0.211271322987028	0.31229960531853307	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/10/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/11/rank_data.txt	False	False	True	True	7.0	6.0	0.42085938226579206	0.5225442732639693	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/11/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/12/rank_data.txt	False	False	True	True	7.0	6.0	0.15322113765450696	0.38233368292857717	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/12/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/13/rank_data.txt	False	False	True	True	7.0	6.0	0.22467826035150695	0.5785270580852174	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/13/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/14/rank_data.txt	False	False	True	True	7.0	6.0	0.27205302053597596	0.7359264887441046	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/14/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/15/rank_data.txt	False	False	True	True	7.0	6.0	0.365626422366434	1.020627502549125	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/15/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/16/rank_data.txt	False	False	True	True	7.0	6.0	0.24255872342621493	0.7035754445986702	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/16/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/17/rank_data.txt	False	False	True	True	7.0	6.0	0.23250116476312604	0.7287301181515897	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/17/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/18/rank_data.txt	False	False	True	True	7.0	6.0	0.24580379241082	0.8370080418970972	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/18/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/19/rank_data.txt	False	False	True	True	7.0	6.0	0.37723267102014696	1.3398028659828805	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/19/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/2/rank_data.txt	False	False	True	True	7.0	4.0	0.016021617777777997	0.016131406553487947	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/2/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/20/rank_data.txt	False	False	True	True	7.0	6.0	0.37601025717360903	1.4234347981021078	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/20/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/3/rank_data.txt	False	False	True	True	7.0	6.0	0.13487217777777705	0.1357055279338843	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/3/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/4/rank_data.txt	False	False	True	True	7.0	6.0	0.44704597333332996	0.45147762958774934	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/4/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/5/rank_data.txt	False	False	True	True	7.0	6.0	0.43221644339684895	0.4384829858747517	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/5/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/6/rank_data.txt	False	False	True	True	7.0	6.0	0.38395755007367605	0.3880700509592405	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/6/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/7/H.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/7/W.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/7/initial_state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/7/initial_state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/7/rank_data.txt	False	False	True	True	7.0	6.0	0.397726726860828	0.4450191840352754	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/7/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/8/rank_data.txt	False	False	True	True	7.0	6.0	0.299460982070755	0.41334543453896133	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/8/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/9/rank_data.txt	False	False	True	True	7.0	6.0	0.19766215111110907	0.2659610441089465	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/Monocytes.and.Macrophages/9/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/expression_full_matrix_log2.txt	False	True	True	True	21943361.0	0.0	0.0	0.0	0.0	19751.0	1112.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/expression_full_matrix_scaled.txt	False	True	True	True	21943361.0	0.0	0.0	0.0	0.0	19751.0	1112.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/expression_top_genes_scaled.txt	False	True	True	True	1234321.0	0.0	0.0	0.0	0.0	1111.0	1112.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/expression_top_genes_scaled_filt.txt	False	True	True	True	472175.0	0.0	0.0	0.0	0.0	425.0	1112.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/10/rank_data.txt	False	False	True	True	7.0	6.0	0.28040846986272705	0.7381287407691903	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/10/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/11/rank_data.txt	False	False	True	True	7.0	6.0	0.26894647241642	0.6294031630254113	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/11/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/12/rank_data.txt	False	False	True	True	7.0	6.0	0.33780567077265794	0.9543113451707674	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/12/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/13/rank_data.txt	False	False	True	True	7.0	6.0	0.275167371727651	0.7006474608845542	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/13/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/14/rank_data.txt	False	False	True	True	7.0	6.0	0.27794660834571805	0.8527734697674819	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/14/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/15/rank_data.txt	False	False	True	True	7.0	6.0	0.293459045328272	0.9433570669080623	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/15/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/16/rank_data.txt	False	False	True	True	7.0	6.0	0.29693966841054303	1.0063942089768867	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/16/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/17/rank_data.txt	False	False	True	True	7.0	6.0	0.32793111013031	1.1664531357134822	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/17/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/18/rank_data.txt	False	False	True	True	7.0	6.0	0.26736285708308405	0.9161893765360669	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/18/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/19/rank_data.txt	False	False	True	True	7.0	6.0	0.340308221240895	1.27899861710685	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/19/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/2/rank_data.txt	False	False	True	True	7.0	4.0	0.340696334259887	0.34286127624674845	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/2/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/20/rank_data.txt	False	False	True	True	7.0	6.0	0.326462000055763	1.3212679907033178	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/20/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/3/rank_data.txt	False	False	True	True	7.0	6.0	0.09260967923899899	0.1167746742072052	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/3/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/4/rank_data.txt	False	False	True	True	7.0	6.0	0.500921753741529	0.517867267268211	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/4/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/5/rank_data.txt	False	False	True	True	7.0	6.0	0.4644630081736979	0.4707043696687623	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/5/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/6/rank_data.txt	False	False	True	True	7.0	6.0	0.5049071520735761	0.517124587799275	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/6/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/7/H.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/7/W.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/7/initial_state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/7/initial_state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/7/rank_data.txt	False	False	True	True	7.0	6.0	0.34015365410328297	0.445059944230586	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/7/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/8/rank_data.txt	False	False	True	True	7.0	6.0	0.362723649531058	0.5989175601557775	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/8/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/9/rank_data.txt	False	False	True	True	7.0	6.0	0.44907541123858896	0.5640801812597372	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/NK.cells/9/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/expression_full_matrix_log2.txt	False	True	True	True	29626500.0	0.0	0.0	0.0	0.0	19751.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/expression_full_matrix_scaled.txt	False	True	True	True	29626500.0	0.0	0.0	0.0	0.0	19751.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/expression_top_genes_scaled.txt	False	True	True	True	2250000.0	0.0	0.0	0.0	0.0	1500.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/expression_top_genes_scaled_filt.txt	False	True	True	True	2410500.0	0.0	0.0	0.0	0.0	1607.0	1501.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/10/rank_data.txt	False	False	True	True	7.0	6.0	0.41814504114122397	0.5001160948635782	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/10/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/11/rank_data.txt	False	False	True	True	7.0	6.0	0.16090084855363596	0.40043370177819815	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/11/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/12/rank_data.txt	False	False	True	True	7.0	6.0	0.241231912770898	0.6390412240255094	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/12/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/13/rank_data.txt	False	False	True	True	7.0	6.0	0.199096114829859	0.37195887492841195	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/13/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/14/rank_data.txt	False	False	True	True	7.0	6.0	0.22983204869194895	0.6739567243080313	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/14/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/15/rank_data.txt	False	False	True	True	7.0	6.0	0.21451919590441498	0.6458727597403439	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/15/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/16/rank_data.txt	False	False	True	True	7.0	6.0	0.20136355637134	0.6183979274319577	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/16/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/17/rank_data.txt	False	False	True	True	7.0	6.0	0.374891801313756	1.1448143025197608	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/17/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/18/rank_data.txt	False	False	True	True	7.0	6.0	0.27814189133902995	0.9614591848990847	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/18/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/19/rank_data.txt	False	False	True	True	7.0	6.0	0.24099916226378304	0.7720506635409399	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/19/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/2/rank_data.txt	False	False	True	True	7.0	4.0	0.011702044444444004	0.011817502600338457	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/2/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/20/rank_data.txt	False	False	True	True	7.0	6.0	0.22762556878581697	0.8073441595766783	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/20/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/3/rank_data.txt	False	False	True	True	7.0	6.0	0.2838735644444439	0.2882739002547973	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/3/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/4/rank_data.txt	False	False	True	True	7.0	6.0	0.12626204422916898	0.17172058095677611	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/4/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/5/rank_data.txt	False	False	True	True	7.0	6.0	0.39372630051754	0.39511725164761907	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/5/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/6/H.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/6/W.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/6/initial_state_abundances.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/6/initial_state_assignment.txt	True										
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/6/rank_data.txt	False	False	True	True	7.0	6.0	0.408495332905779	0.4245529727144504	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/6/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/7/rank_data.txt	False	False	True	True	7.0	6.0	0.18783231999999894	0.26514708488276245	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/7/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/8/rank_data.txt	False	False	True	True	7.0	6.0	0.15427868444444293	0.32741030263050547	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/8/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/9/rank_data.txt	False	False	True	True	7.0	6.0	0.28897436273822197	0.39997142273471753	0.0	1.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Cell_States/discovery_cross_cor/PCs/9/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Ecotypes/discovery/assignment_p_vals.txt	False	False	False	False	0.0					8.0	34.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Ecotypes/discovery/binary_classification_all_states.txt	False	False	False	False	0.0					53.0	34.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Ecotypes/discovery/combined_state_abundances.txt	False	False	False	False	0.0					32.0	34.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Ecotypes/discovery/ecotype_abundance.txt	False	False	False	False	0.0					8.0	34.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Ecotypes/discovery/ecotype_assignment.txt	False	False	False	False	0.0					32.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Ecotypes/discovery/ecotypes.txt	False	False	False	False	0.0					32.0	6.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Ecotypes/discovery/initial_ecotype_assignment.txt	False	False	True	False	66.0	66.0	0.6022197284457766	669.371002035354	127.0	33.0	7.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Ecotypes/discovery/initial_ecotypes.txt	False	False	False	False	0.0					53.0	4.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Ecotypes/discovery/jaccard_matrix.txt	False	False	False	False	0.0					53.0	54.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Ecotypes/discovery/mapping_all_states.txt	False	False	False	False	0.0					53.0	5.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Ecotypes/discovery/silhouette.txt	False	False	True	True	1.0	1.0	0.09564881427464697	0.5044418595432154	0.0	1.0	1.0
+discovery_scRNA_CRC/Cell_type_specific_genes	Ecotypes/discovery/silhouette_initial.txt	False	False	True	True	1.0	1.0	0.056403787900031005	0.39933108779085236	0.0	1.0	1.0

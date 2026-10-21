@@ -86,6 +86,12 @@ of the assignments and chosen ranks:
 ```{include} _generated/solver_table.md
 ```
 
+On these data the cd solver does **not** reproduce R's partitions: chosen ranks differ for
+almost every cell type and the ARI of the final states against R is mostly 0.0-0.5 (the best
+case, CD4 T cells in T4/T6, is 0.66). It is faster on discovery (T4/T6 Python time about 30 s,
+tutorial 5 about 34 min wall with 32 jobs on the shared server), but it is a different model,
+so treat its output as exploratory and use the exact mode for anything compared with R.
+
 ## Memory
 
 Peak memory is reported as the summed PSS (proportional set size) of all processes. Pages

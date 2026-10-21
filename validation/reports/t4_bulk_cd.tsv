@@ -1,0 +1,609 @@
+tree	file	missing	identical_bytes	shape_equal	discrete_equal	n_numeric	n_diff_numeric	max_abs	max_rel	n_diff_other	rows	cols
+MyDiscovery/Carcinoma_Fractions	Analysis/rank_selection/rank_data.txt	False	False	True	False	11.0	11.0	13.0	3.0	10.0	11.0	3.0
+MyDiscovery/Carcinoma_Fractions	Analysis/rank_selection/rank_data_cutoff_0.95.txt	False	False	True	False	11.0	11.0	13.0	3.0	10.0	11.0	3.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/expression_full_matrix_log2.txt	False	False	True	True	110000.0	1.0	9.769962616701378e-15	1.3605232747163217e-15	0.0	440.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/expression_full_matrix_scaled.txt	False	False	True	True	110000.0	99.0	7.69939667577546e-14	8.222916398717018e-13	0.0	440.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/expression_top_genes_log2.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	0.0	1.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/expression_top_genes_scaled.txt	False	False	True	True	110000.0	99.0	7.69939667577546e-14	8.222916398717018e-13	0.0	440.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/10/rank_data.txt	False	False	True	True	7.0	6.0	0.477126313652502	0.9298787482497938	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/10/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/11/rank_data.txt	False	False	True	True	7.0	6.0	0.4498034621860201	0.9944742087040505	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/11/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/12/rank_data.txt	False	False	True	True	7.0	6.0	0.33588855379797394	1.145064907623751	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/12/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/13/rank_data.txt	False	False	True	True	7.0	6.0	0.687769780489645	2.3448475397501247	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/13/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/14/rank_data.txt	False	False	True	True	7.0	6.0	0.6344051143027181	2.2553827184356288	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/14/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/15/rank_data.txt	False	False	True	True	7.0	6.0	0.6959702402090829	2.4237559994964792	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/15/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/16/rank_data.txt	False	False	True	True	7.0	6.0	0.689319658021734	2.4924973593974706	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/16/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/17/rank_data.txt	False	False	True	True	7.0	6.0	0.6983314687166091	2.5668604578872496	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/17/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/18/rank_data.txt	False	False	True	True	7.0	6.0	0.6129364369831091	2.633392529340193	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/18/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/19/rank_data.txt	False	False	True	True	7.0	6.0	0.542150253918384	2.110251613657185	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/19/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/2/rank_data.txt	False	False	True	True	7.0	4.0	0.4956876800000001	0.5124969230809951	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/2/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/20/rank_data.txt	False	False	True	True	7.0	6.0	0.738030580352144	3.469330746471763	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/20/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/3/rank_data.txt	False	False	True	True	7.0	6.0	0.33119232	0.41447185050154256	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/3/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/4/rank_data.txt	False	False	True	True	7.0	6.0	0.38515712	0.39819287152925736	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/4/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/5/rank_data.txt	False	False	True	True	7.0	6.0	0.45044968375555894	0.49052991166489396	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/5/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/6/rank_data.txt	False	False	True	True	7.0	6.0	0.222346429889911	0.33127546372706007	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/6/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/7/rank_data.txt	False	False	True	True	7.0	6.0	0.41691196809169	0.5543544319503323	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/7/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/8/H.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/8/W.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/8/first_filter_data.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/8/gene_info.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/8/heatmap_data.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/8/heatmap_top_ann.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/8/initial_gene_info.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/8/initial_state_abundances.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/8/initial_state_assignment.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/8/mapping_to_initial_states.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/8/rank_data.txt	False	False	True	True	7.0	6.0	0.44378340337774697	0.5944229442654465	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/8/state_abundances.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/8/state_assignment.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/8/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/9/rank_data.txt	False	False	True	True	7.0	6.0	0.472551941355861	0.7086472298940797	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/B.cells/9/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/expression_full_matrix_log2.txt	False	True	True	True	28750.0	0.0	0.0	0.0	0.0	115.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/expression_full_matrix_scaled.txt	False	False	True	True	28750.0	1.0	3.9968028886505635e-15	6.379215012795071e-15	0.0	115.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/expression_top_genes_log2.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	0.0	1.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/expression_top_genes_scaled.txt	False	False	True	True	28750.0	1.0	3.9968028886505635e-15	6.379215012795071e-15	0.0	115.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/10/rank_data.txt	False	False	True	True	7.0	6.0	0.48431366459002695	1.4199031148747632	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/10/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/11/rank_data.txt	False	False	True	True	7.0	6.0	0.179649783903034	0.478276433824599	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/11/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/12/rank_data.txt	False	False	True	True	7.0	6.0	0.19247976097283098	0.5834299688238626	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/12/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/13/rank_data.txt	False	False	True	True	7.0	6.0	0.415582515694521	1.275319724570594	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/13/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/14/rank_data.txt	False	False	True	True	7.0	6.0	0.40523632438068796	1.4969513020444623	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/14/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/15/rank_data.txt	False	False	True	True	7.0	6.0	0.37608982200642505	1.1200821859208516	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/15/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/16/rank_data.txt	False	False	True	True	7.0	6.0	0.298915694464315	0.843852874122275	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/16/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/17/rank_data.txt	False	False	True	True	7.0	6.0	0.311538742875984	1.125796698942545	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/17/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/18/rank_data.txt	False	False	True	True	7.0	6.0	0.285152570598524	0.904739557641092	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/18/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/19/rank_data.txt	False	False	True	True	7.0	6.0	0.24593398723186405	0.8359181994608963	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/19/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/2/rank_data.txt	False	False	True	True	7.0	4.0	0.33575936000000006	0.34182536559176224	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/2/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/20/rank_data.txt	False	False	True	True	7.0	6.0	0.24109055999999995	0.624623778641628	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/20/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/3/rank_data.txt	False	False	True	True	7.0	6.0	0.25296595028076796	0.29966640073534967	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/3/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/4/rank_data.txt	False	False	True	True	7.0	6.0	0.389526903016742	0.4433734592605984	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/4/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/5/rank_data.txt	False	False	True	True	7.0	6.0	0.20953087999999997	0.31742979482916334	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/5/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/6/rank_data.txt	False	False	True	True	7.0	6.0	0.43410331057530105	1.5835665477538703	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/6/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/7/H.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/7/W.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/7/first_filter_data.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/7/gene_info.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/7/heatmap_data.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/7/heatmap_top_ann.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/7/initial_gene_info.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/7/initial_state_abundances.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/7/initial_state_assignment.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/7/mapping_to_initial_states.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/7/rank_data.txt	False	False	True	True	7.0	6.0	0.367668432207325	0.9696788284278263	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/7/state_abundances.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/7/state_assignment.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/7/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/8/rank_data.txt	False	False	True	True	7.0	6.0	0.23567256614784898	0.5736506659559767	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/8/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/9/rank_data.txt	False	False	True	True	7.0	6.0	0.28112639139699297	0.8987583855164364	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD4.T.cells/9/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/expression_full_matrix_log2.txt	False	True	True	True	26750.0	0.0	0.0	0.0	0.0	107.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/expression_full_matrix_scaled.txt	False	False	True	True	26750.0	21.0	1.9984014443252818e-14	1.61940670071333e-14	0.0	107.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/expression_top_genes_log2.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	0.0	1.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/expression_top_genes_scaled.txt	False	False	True	True	26750.0	21.0	1.9984014443252818e-14	1.61940670071333e-14	0.0	107.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/10/rank_data.txt	False	False	True	True	7.0	6.0	0.26886154776955595	0.7773325812754537	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/10/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/11/rank_data.txt	False	False	True	True	7.0	6.0	0.258943124351005	0.7130730451869539	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/11/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/12/rank_data.txt	False	False	True	True	7.0	6.0	0.213104133511398	0.5752425928368092	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/12/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/13/rank_data.txt	False	False	True	True	7.0	6.0	0.36582857272854397	1.1621316497035075	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/13/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/14/rank_data.txt	False	False	True	True	7.0	6.0	0.22541150390266296	0.5627994088113386	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/14/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/15/rank_data.txt	False	False	True	True	7.0	6.0	0.38283497351860407	1.4086333878800306	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/15/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/16/rank_data.txt	False	False	True	True	7.0	6.0	0.29184582289600797	0.8686224935118267	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/16/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/17/rank_data.txt	False	False	True	True	7.0	6.0	0.308246844293082	0.9221803855143802	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/17/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/18/rank_data.txt	False	False	True	True	7.0	6.0	0.33779448514006605	1.3922048426618876	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/18/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/19/rank_data.txt	False	False	True	True	7.0	6.0	0.32486842032426505	1.042096738279398	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/19/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/2/rank_data.txt	False	False	True	True	7.0	4.0	0.020070399999999933	0.020329156002935212	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/2/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/20/rank_data.txt	False	False	True	True	7.0	6.0	0.259960489426963	0.797370179598468	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/20/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/3/rank_data.txt	False	False	True	True	7.0	6.0	0.38608896000000004	0.40473500452192396	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/3/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/4/rank_data.txt	False	False	True	True	7.0	6.0	0.20923391999999996	0.22593316434141525	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/4/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/5/rank_data.txt	False	False	True	True	7.0	6.0	0.28424954082393505	0.33460229670813296	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/5/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/6/H.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/6/W.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/6/first_filter_data.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/6/gene_info.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/6/heatmap_data.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/6/heatmap_top_ann.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/6/initial_gene_info.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/6/initial_state_abundances.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/6/initial_state_assignment.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/6/mapping_to_initial_states.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/6/rank_data.txt	False	False	True	True	7.0	6.0	0.314511636016669	0.6378839627131992	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/6/state_abundances.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/6/state_assignment.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/6/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/7/rank_data.txt	False	False	True	True	7.0	6.0	0.18630152450821102	0.3923015434393244	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/7/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/8/rank_data.txt	False	False	True	True	7.0	6.0	0.22501806498403898	0.49390886763940334	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/8/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/9/rank_data.txt	False	False	True	True	7.0	6.0	0.295731549610872	0.8439438543328978	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/CD8.T.cells/9/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/expression_full_matrix_log2.txt	False	True	True	True	47750.0	0.0	0.0	0.0	0.0	191.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/expression_full_matrix_scaled.txt	False	False	True	True	47750.0	18.0	4.196643033083092e-14	5.171542100039337e-14	0.0	191.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/expression_top_genes_log2.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	0.0	1.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/expression_top_genes_scaled.txt	False	False	True	True	47750.0	18.0	4.196643033083092e-14	5.171542100039337e-14	0.0	191.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/10/rank_data.txt	False	False	True	True	7.0	6.0	0.253068761667214	0.7153879441823214	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/10/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/11/rank_data.txt	False	False	True	True	7.0	6.0	0.28152550962314	0.8483541303949723	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/11/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/12/rank_data.txt	False	False	True	True	7.0	6.0	0.26069593372714195	0.8628472098504927	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/12/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/13/rank_data.txt	False	False	True	True	7.0	6.0	0.22788884387892805	0.6286276330604722	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/13/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/14/rank_data.txt	False	False	True	True	7.0	6.0	0.367347297484852	1.424477822433273	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/14/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/15/rank_data.txt	False	False	True	True	7.0	6.0	0.18658496496070798	0.5467408691095785	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/15/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/16/rank_data.txt	False	False	True	True	7.0	6.0	0.257345002407695	0.936902552475472	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/16/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/17/rank_data.txt	False	False	True	True	7.0	6.0	0.33454841380264394	1.1876745612406818	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/17/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/18/rank_data.txt	False	False	True	True	7.0	6.0	0.300470171015346	1.2120882476769883	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/18/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/19/rank_data.txt	False	False	True	True	7.0	6.0	0.268925891473833	1.1909472302861424	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/19/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/2/rank_data.txt	False	False	True	True	7.0	4.0	0.4257791999999999	0.436841566136899	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/2/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/20/rank_data.txt	False	False	True	True	7.0	6.0	0.361840001012657	1.9598694899704214	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/20/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/3/rank_data.txt	False	False	True	True	7.0	6.0	0.29940736	0.3659437861583662	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/3/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/4/rank_data.txt	False	False	True	True	7.0	6.0	0.22094848	0.2856320222395049	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/4/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/5/rank_data.txt	False	False	True	True	7.0	6.0	0.30393013591757	0.39186679902899024	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/5/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/6/rank_data.txt	False	False	True	True	7.0	6.0	0.36898005082546603	0.4242180195094002	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/6/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/7/rank_data.txt	False	False	True	True	7.0	6.0	0.389773838277534	0.533696630492435	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/7/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/8/rank_data.txt	False	False	True	True	7.0	6.0	0.23510991363048206	0.367595334569094	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/8/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/9/H.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/9/W.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/9/first_filter_data.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/9/gene_info.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/9/heatmap_data.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/9/heatmap_top_ann.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/9/initial_gene_info.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/9/initial_state_abundances.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/9/initial_state_assignment.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/9/mapping_to_initial_states.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/9/rank_data.txt	False	False	True	True	7.0	6.0	0.26320730480196797	0.40202564888340786	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/9/state_abundances.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/9/state_assignment.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Dendritic.cells/9/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/expression_full_matrix_log2.txt	False	False	True	True	250000.0	2.0	9.769962616701378e-15	2.1998905594183656e-15	0.0	1000.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/expression_full_matrix_scaled.txt	False	False	True	True	380250.0	68.0	1.199040866595169e-14	2.7601799575535535e-14	0.0	1521.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/expression_top_genes_log2.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	0.0	1.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/expression_top_genes_scaled.txt	False	False	True	True	250000.0	62.0	9.992007221626409e-15	2.7601799575535535e-14	0.0	1000.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/10/rank_data.txt	False	False	True	True	7.0	6.0	0.695051623175071	2.6786714759533443	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/10/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/11/rank_data.txt	False	False	True	True	7.0	6.0	0.6875371724885501	2.508001813535628	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/11/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/12/rank_data.txt	False	False	True	True	7.0	6.0	0.751647432110921	3.6657130675246683	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/12/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/13/rank_data.txt	False	False	True	True	7.0	6.0	0.714362611491768	3.179251599256043	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/13/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/14/rank_data.txt	False	False	True	True	7.0	6.0	0.7134647782399131	3.320383420071921	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/14/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/15/rank_data.txt	False	False	True	True	7.0	6.0	0.554686573157694	2.59065193431681	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/15/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/16/rank_data.txt	False	False	True	True	7.0	6.0	0.6604883412189371	4.100717365952845	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/16/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/17/rank_data.txt	False	False	True	True	7.0	6.0	0.689763102641186	3.282946618335837	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/17/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/18/rank_data.txt	False	False	True	True	7.0	6.0	0.819404238174218	5.09005342964924	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/18/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/19/rank_data.txt	False	False	True	True	7.0	6.0	0.733864408739682	3.6033372694171146	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/19/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/2/rank_data.txt	False	False	True	True	7.0	4.0	0.33892352000000003	0.34861559122088664	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/2/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/20/rank_data.txt	False	False	True	True	7.0	6.0	0.813483506122757	5.247064536483939	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/20/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/3/rank_data.txt	False	False	True	True	7.0	6.0	0.5169663999999999	0.5283109693724051	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/3/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/4/rank_data.txt	False	False	True	True	7.0	6.0	0.2945024	0.37294344577180555	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/4/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/5/rank_data.txt	False	False	True	True	7.0	6.0	0.5565676407229779	0.5869102708969962	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/5/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/6/rank_data.txt	False	False	True	True	7.0	6.0	0.554791480978553	0.6446851930186542	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/6/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/7/rank_data.txt	False	False	True	True	7.0	6.0	0.6112403541151621	1.7957364391767505	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/7/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/8/H.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/8/W.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/8/first_filter_data.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/8/gene_info.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/8/heatmap_data.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/8/heatmap_top_ann.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/8/initial_gene_info.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/8/initial_state_abundances.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/8/initial_state_assignment.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/8/mapping_to_initial_states.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/8/rank_data.txt	False	False	True	True	7.0	6.0	0.639546731339384	2.1474019705298146	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/8/state_abundances.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/8/state_assignment.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/8/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/9/rank_data.txt	False	False	True	True	7.0	6.0	0.663878497512604	2.087273285090764	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Endothelial.cells/9/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/expression_full_matrix_log2.txt	False	False	True	True	250000.0	1.0	9.769962616701378e-15	1.9457535192078948e-15	0.0	1000.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/expression_full_matrix_scaled.txt	False	False	True	True	3630250.0	259.0	1.021405182655144e-14	1.393966472152638e-12	0.0	14521.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/expression_top_genes_log2.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	0.0	1.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/expression_top_genes_scaled.txt	False	False	True	True	250000.0	18.0	9.992007221626409e-15	3.899273000468404e-14	0.0	1000.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/10/rank_data.txt	False	False	True	True	7.0	6.0	0.32606614746596696	1.0170858599281882	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/10/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/11/rank_data.txt	False	False	True	True	7.0	6.0	0.30930080103021296	1.1391191266285303	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/11/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/12/rank_data.txt	False	False	True	True	7.0	6.0	0.2989034549204869	0.9452446426525933	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/12/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/13/rank_data.txt	False	False	True	True	7.0	6.0	0.316963748643466	1.1881275805338847	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/13/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/14/rank_data.txt	False	False	True	True	7.0	6.0	0.273798982545599	1.2156087011866201	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/14/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/15/rank_data.txt	False	False	True	True	7.0	6.0	0.25739213395944094	1.0327850994622045	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/15/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/16/H.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/16/W.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/16/first_filter_data.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/16/gene_info.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/16/heatmap_data.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/16/heatmap_top_ann.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/16/initial_gene_info.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/16/initial_state_abundances.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/16/initial_state_assignment.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/16/mapping_to_initial_states.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/16/rank_data.txt	False	False	True	True	7.0	6.0	0.25054762893304705	1.0493145420921606	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/16/state_abundances.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/16/state_assignment.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/16/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/17/rank_data.txt	False	False	True	True	7.0	6.0	0.32806172784236	1.6826590414774627	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/17/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/18/rank_data.txt	False	False	True	True	7.0	6.0	0.31891718106826195	1.2991469015346429	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/18/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/19/rank_data.txt	False	False	True	True	7.0	6.0	0.28240003486827703	1.1761993979355965	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/19/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/2/rank_data.txt	False	False	True	True	7.0	4.0	0.007618559999999941	0.007657610136040885	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/2/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/20/rank_data.txt	False	False	True	True	7.0	6.0	0.36732863336599597	1.147593313509811	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/20/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/3/rank_data.txt	False	False	True	True	7.0	6.0	0.42838016	0.4325883797582886	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/3/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/4/rank_data.txt	False	False	True	True	7.0	6.0	0.25133806135897796	0.3087135502549267	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/4/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/5/rank_data.txt	False	False	True	True	7.0	6.0	0.23874850052089291	0.4622556750951371	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/5/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/6/rank_data.txt	False	False	True	True	7.0	6.0	0.375904580357345	0.7599837722722509	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/6/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/7/rank_data.txt	False	False	True	True	7.0	6.0	0.384920063499242	0.8767912008906652	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/7/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/8/rank_data.txt	False	False	True	True	7.0	6.0	0.317725716110923	1.0318081188581618	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/8/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/9/rank_data.txt	False	False	True	True	7.0	6.0	0.334151754271716	1.0543600646489775	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Epithelial.cells/9/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/expression_full_matrix_log2.txt	False	False	True	True	250000.0	4.0	1.021405182655144e-14	5.211131505111517e-15	0.0	1000.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/expression_full_matrix_scaled.txt	False	False	True	True	1063000.0	432.0	3.4899860779091796e-13	2.41613620714102e-12	0.0	4252.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/expression_top_genes_log2.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	0.0	1.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/expression_top_genes_scaled.txt	False	False	True	True	250000.0	8.0	2.9976021664879227e-15	4.714679344040871e-15	0.0	1000.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/10/rank_data.txt	False	False	True	True	7.0	6.0	0.355137046483285	1.2034402012959189	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/10/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/11/rank_data.txt	False	False	True	True	7.0	6.0	0.32658442860170694	1.0018840049697886	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/11/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/12/rank_data.txt	False	False	True	True	7.0	6.0	0.33285263496754997	0.9709395543943696	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/12/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/13/H.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/13/W.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/13/first_filter_data.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/13/gene_info.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/13/heatmap_data.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/13/heatmap_top_ann.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/13/initial_gene_info.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/13/initial_state_abundances.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/13/initial_state_assignment.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/13/mapping_to_initial_states.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/13/rank_data.txt	False	False	True	True	7.0	6.0	0.279293624213245	1.0095265888947582	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/13/state_abundances.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/13/state_assignment.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/13/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/14/rank_data.txt	False	False	True	True	7.0	6.0	0.314963362754031	1.244877508244296	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/14/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/15/rank_data.txt	False	False	True	True	7.0	6.0	0.29686512825117994	1.1930718644308032	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/15/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/16/rank_data.txt	False	False	True	True	7.0	6.0	0.287379960772078	1.5818251176695546	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/16/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/17/rank_data.txt	False	False	True	True	7.0	6.0	0.219793145243438	0.9548600127914973	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/17/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/18/rank_data.txt	False	False	True	True	7.0	6.0	0.32905682708396605	1.887017648629409	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/18/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/19/rank_data.txt	False	False	True	True	7.0	6.0	0.227966839878846	1.0960035177103	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/19/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/2/rank_data.txt	False	False	True	True	7.0	4.0	0.28313600000000005	0.293467560690206	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/2/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/20/rank_data.txt	False	False	True	True	7.0	6.0	0.23973620268511503	0.9646014774510169	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/20/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/3/rank_data.txt	False	False	True	True	7.0	6.0	0.5925887999999999	0.6261479243364015	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/3/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/4/rank_data.txt	False	False	True	True	7.0	6.0	0.47127552	0.49026746171033814	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/4/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/5/rank_data.txt	False	False	True	True	7.0	6.0	0.15840256000000008	0.21462886715945245	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/5/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/6/rank_data.txt	False	False	True	True	7.0	6.0	0.226216393004603	0.5396110753252004	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/6/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/7/rank_data.txt	False	False	True	True	7.0	6.0	0.22950350526848096	0.550515141845847	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/7/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/8/rank_data.txt	False	False	True	True	7.0	6.0	0.31743282810932794	1.0966695124159873	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/8/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/9/rank_data.txt	False	False	True	True	7.0	6.0	0.342476063772184	1.0759008144390205	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Fibroblasts/9/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/expression_full_matrix_log2.txt	False	True	True	True	46000.0	0.0	0.0	0.0	0.0	184.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/expression_full_matrix_scaled.txt	False	False	True	True	46000.0	2.0	8.992806499463768e-15	9.89675027966829e-15	0.0	184.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/expression_top_genes_log2.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	0.0	1.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/expression_top_genes_scaled.txt	False	False	True	True	46000.0	2.0	8.992806499463768e-15	9.89675027966829e-15	0.0	184.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/10/rank_data.txt	False	False	True	True	7.0	6.0	0.20386557831144897	0.5776750829799695	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/10/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/11/rank_data.txt	False	False	True	True	7.0	6.0	0.245157300251735	0.5933324804458092	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/11/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/12/rank_data.txt	False	False	True	True	7.0	6.0	0.219166212515858	0.5468161711084165	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/12/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/13/rank_data.txt	False	False	True	True	7.0	6.0	0.182997148262161	0.41354055830338343	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/13/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/14/rank_data.txt	False	False	True	True	7.0	6.0	0.17353241545869602	0.37869961205491115	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/14/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/15/rank_data.txt	False	False	True	True	7.0	6.0	0.198990296748161	0.5364122779918465	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/15/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/16/rank_data.txt	False	False	True	True	7.0	6.0	0.167924860310119	0.5484847014331414	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/16/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/17/rank_data.txt	False	False	True	True	7.0	6.0	0.26780090538331197	0.7229702450035701	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/17/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/18/rank_data.txt	False	False	True	True	7.0	6.0	0.21583012202272905	0.6426894709602575	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/18/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/19/rank_data.txt	False	False	True	True	7.0	6.0	0.266681393309205	0.8864650642968651	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/19/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/2/rank_data.txt	False	False	True	True	7.0	4.0	0.40431616000000004	0.4126963388407941	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/2/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/20/rank_data.txt	False	False	True	True	7.0	6.0	0.175926655279175	0.5683413657239597	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/20/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/3/rank_data.txt	False	False	True	True	7.0	6.0	0.43678720000000004	0.44855498623733825	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/3/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/4/H.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/4/W.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/4/first_filter_data.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/4/gene_info.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/4/heatmap_data.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/4/heatmap_top_ann.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/4/initial_gene_info.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/4/initial_state_abundances.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/4/initial_state_assignment.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/4/mapping_to_initial_states.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/4/rank_data.txt	False	False	True	True	7.0	6.0	0.25696255999999995	0.31396446353227536	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/4/state_abundances.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/4/state_assignment.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/4/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/5/rank_data.txt	False	False	True	True	7.0	6.0	0.16617468242554906	0.3675206701026853	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/5/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/6/rank_data.txt	False	False	True	True	7.0	6.0	0.327224046528498	0.8608145713789827	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/6/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/7/rank_data.txt	False	False	True	True	7.0	6.0	0.405216242800017	1.168095865825305	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/7/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/8/rank_data.txt	False	False	True	True	7.0	6.0	0.262487296047499	0.7102211496454707	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/8/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/9/rank_data.txt	False	False	True	True	7.0	6.0	0.296933337518093	0.8043865490175016	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Mast.cells/9/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/expression_full_matrix_log2.txt	False	False	True	True	60250.0	1.0	9.769962616701378e-15	1.2650870577781186e-15	0.0	241.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/expression_full_matrix_scaled.txt	False	False	True	True	60250.0	28.0	9.992007221626409e-15	2.2804800774844906e-14	0.0	241.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/expression_top_genes_log2.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	0.0	1.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/expression_top_genes_scaled.txt	False	False	True	True	60250.0	28.0	9.992007221626409e-15	2.2804800774844906e-14	0.0	241.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/10/H.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/10/W.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/10/first_filter_data.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/10/gene_info.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/10/heatmap_data.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/10/heatmap_top_ann.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/10/initial_gene_info.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/10/initial_state_abundances.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/10/initial_state_assignment.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/10/mapping_to_initial_states.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/10/rank_data.txt	False	False	True	True	7.0	6.0	0.31152168266050906	0.8678286278957209	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/10/state_abundances.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/10/state_assignment.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/10/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/11/rank_data.txt	False	False	True	True	7.0	6.0	0.311454804575387	1.0171214338562087	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/11/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/12/rank_data.txt	False	False	True	True	7.0	6.0	0.368257326221617	1.2633126061374824	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/12/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/13/rank_data.txt	False	False	True	True	7.0	6.0	0.21912525217194495	0.687432284253406	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/13/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/14/rank_data.txt	False	False	True	True	7.0	6.0	0.383819292007375	1.1957573966976827	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/14/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/15/rank_data.txt	False	False	True	True	7.0	6.0	0.252032472647368	0.833590852219667	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/15/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/16/rank_data.txt	False	False	True	True	7.0	6.0	0.40856568424526596	1.7695086295816436	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/16/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/17/rank_data.txt	False	False	True	True	7.0	6.0	0.32530760547325893	1.1791260572702715	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/17/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/18/rank_data.txt	False	False	True	True	7.0	6.0	0.383315760927332	1.780989985157074	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/18/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/19/rank_data.txt	False	False	True	True	7.0	6.0	0.34101479666653495	1.409598917362181	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/19/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/2/rank_data.txt	False	False	True	True	7.0	4.0	0.20732927999999995	0.20839197906508192	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/2/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/20/rank_data.txt	False	False	True	True	7.0	6.0	0.4299287721470699	2.4649408453465136	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/20/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/3/rank_data.txt	False	False	True	True	7.0	6.0	0.20424704000000005	0.2558089576740443	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/3/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/4/rank_data.txt	False	False	True	True	7.0	6.0	0.33078272	0.36519030809364056	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/4/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/5/rank_data.txt	False	False	True	True	7.0	6.0	0.39378795836927605	0.42202806931961423	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/5/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/6/rank_data.txt	False	False	True	True	7.0	6.0	0.383667682381984	0.41688688784757033	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/6/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/7/rank_data.txt	False	False	True	True	7.0	6.0	0.284027995680888	0.6092285009890585	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/7/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/8/rank_data.txt	False	False	True	True	7.0	6.0	0.31856896638662	0.8616003323817217	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/8/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/9/rank_data.txt	False	False	True	True	7.0	6.0	0.241735134281703	0.5928091301156928	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/Monocytes.and.Macrophages/9/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/expression_full_matrix_log2.txt	False	True	True	True	84500.0	0.0	0.0	0.0	0.0	338.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/expression_full_matrix_scaled.txt	False	True	True	True	84500.0	0.0	0.0	0.0	0.0	338.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/expression_top_genes_log2.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	0.0	1.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/expression_top_genes_scaled.txt	False	True	True	True	84500.0	0.0	0.0	0.0	0.0	338.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/10/rank_data.txt	False	False	True	True	7.0	6.0	0.28498474812891994	0.7681336318789009	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/10/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/11/rank_data.txt	False	False	True	True	7.0	6.0	0.593130805310689	1.5393758472789016	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/11/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/12/rank_data.txt	False	False	True	True	7.0	6.0	0.426707919709719	1.1469280715933126	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/12/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/13/rank_data.txt	False	False	True	True	7.0	6.0	0.6235617030021919	1.7356588053306672	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/13/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/14/rank_data.txt	False	False	True	True	7.0	6.0	0.6980057749325981	2.5983743143491704	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/14/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/15/rank_data.txt	False	False	True	True	7.0	6.0	0.317266952563324	0.9919206538318979	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/15/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/16/rank_data.txt	False	False	True	True	7.0	6.0	0.695412355168508	2.5658227149445008	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/16/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/17/rank_data.txt	False	False	True	True	7.0	6.0	0.591369587819937	1.6756540712771597	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/17/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/18/rank_data.txt	False	False	True	True	7.0	6.0	0.6633094361942931	2.1643500946721104	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/18/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/19/rank_data.txt	False	False	True	True	7.0	6.0	0.659948785053855	2.2011277930018385	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/19/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/2/rank_data.txt	False	False	True	True	7.0	4.0	0.55323648	0.5618083267258523	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/2/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/20/rank_data.txt	False	False	True	True	7.0	6.0	0.6927273214877	2.478783028756595	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/20/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/3/rank_data.txt	False	False	True	True	7.0	6.0	0.4006912	0.5244306550022281	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/3/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/4/rank_data.txt	False	False	True	True	7.0	6.0	0.52483072	0.5329624478442281	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/4/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/5/rank_data.txt	False	False	True	True	7.0	6.0	0.29458587288872806	0.3664583417315391	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/5/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/6/rank_data.txt	False	False	True	True	7.0	6.0	0.409867167295526	0.5103704144796232	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/6/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/7/rank_data.txt	False	False	True	True	7.0	6.0	0.478405223754561	0.6343912922494471	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/7/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/8/H.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/8/W.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/8/first_filter_data.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/8/gene_info.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/8/heatmap_data.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/8/heatmap_top_ann.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/8/initial_gene_info.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/8/initial_state_abundances.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/8/initial_state_assignment.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/8/mapping_to_initial_states.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/8/rank_data.txt	False	False	True	True	7.0	6.0	0.450186225237133	0.5806781328602102	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/8/state_abundances.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/8/state_assignment.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/8/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/9/rank_data.txt	False	False	True	True	7.0	6.0	0.40871755739337295	0.7028842485607871	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PCs/9/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/expression_full_matrix_log2.txt	False	True	True	True	15250.0	0.0	0.0	0.0	0.0	61.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/expression_full_matrix_scaled.txt	False	True	True	True	15250.0	0.0	0.0	0.0	0.0	61.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/expression_top_genes_log2.txt	False	True	True	True	0.0	0.0	0.0	0.0	0.0	0.0	1.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/expression_top_genes_scaled.txt	False	True	True	True	15250.0	0.0	0.0	0.0	0.0	61.0	251.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/10/rank_data.txt	False	False	True	True	7.0	6.0	0.14281747169165598	0.3240682465601758	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/10/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/11/rank_data.txt	False	False	True	True	7.0	6.0	0.24971355792501393	0.6388064936485978	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/11/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/12/rank_data.txt	False	False	True	True	7.0	6.0	0.302774638460738	0.8021255726209934	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/12/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/13/rank_data.txt	False	False	True	True	7.0	6.0	0.293902888288939	0.6977056901520182	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/13/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/14/rank_data.txt	False	False	True	True	7.0	6.0	0.26248033816565297	0.6917441229603486	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/14/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/15/rank_data.txt	False	False	True	True	7.0	6.0	0.27072634080041197	0.6998823427797385	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/15/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/16/rank_data.txt	False	False	True	True	7.0	6.0	0.33022774053352105	0.983701124296592	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/16/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/17/rank_data.txt	False	False	True	True	7.0	6.0	0.33901339814614895	1.1391871936850697	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/17/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/18/rank_data.txt	False	False	True	True	7.0	6.0	0.20482047999999997	0.36273741103369195	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/18/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/19/rank_data.txt	False	False	True	True	7.0	6.0	0.13264896000000004	0.49062623002535416	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/19/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/2/rank_data.txt	False	False	True	True	7.0	4.0	0.519424	0.5274609863442457	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/2/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/20/rank_data.txt	False	False	True	True	7.0	6.0	0.31241215999999994	0.9375254023024946	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/20/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/3/rank_data.txt	False	False	True	True	7.0	6.0	0.5653811200000001	0.5870834828608265	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/3/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/4/rank_data.txt	False	False	True	True	7.0	6.0	0.48129024	0.4901745557887601	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/4/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/5/H.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/5/W.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/5/first_filter_data.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/5/gene_info.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/5/heatmap_data.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/5/heatmap_top_ann.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/5/initial_gene_info.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/5/initial_state_abundances.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/5/initial_state_assignment.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/5/mapping_to_initial_states.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/5/rank_data.txt	False	False	True	True	7.0	6.0	0.2531840000000001	0.325071242863388	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/5/state_abundances.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/5/state_assignment.txt	True										
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/5/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/6/rank_data.txt	False	False	True	True	7.0	6.0	0.31363248431950097	0.7261789767984542	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/6/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/7/rank_data.txt	False	False	True	True	7.0	6.0	0.256904544633244	0.5147995375154623	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/7/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/8/rank_data.txt	False	False	True	True	7.0	6.0	0.26850424899978903	0.6369612181617653	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/8/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/9/rank_data.txt	False	False	True	True	7.0	6.0	0.269160427817996	0.6451196758055792	0.0	1.0	7.0
+MyDiscovery/Carcinoma_Fractions	Cell_States/discovery/PMNs/9/used.txt	False	True	True	True	5.0	0.0	0.0	0.0	0.0	5.0	2.0
+MyDiscovery/Carcinoma_Fractions	Ecotypes/discovery/assignment_p_vals.txt	False	False	False	False	0.0					7.0	251.0
+MyDiscovery/Carcinoma_Fractions	Ecotypes/discovery/binary_classification_all_states.txt	False	False	False	False	0.0					44.0	251.0
+MyDiscovery/Carcinoma_Fractions	Ecotypes/discovery/combined_state_abundances.txt	False	False	False	False	0.0					35.0	251.0
+MyDiscovery/Carcinoma_Fractions	Ecotypes/discovery/ecotype_abundance.txt	False	False	False	False	0.0					7.0	251.0
+MyDiscovery/Carcinoma_Fractions	Ecotypes/discovery/ecotype_assignment.txt	False	False	False	False	0.0					190.0	12.0
+MyDiscovery/Carcinoma_Fractions	Ecotypes/discovery/ecotypes.txt	False	False	False	False	0.0					35.0	5.0
+MyDiscovery/Carcinoma_Fractions	Ecotypes/discovery/initial_ecotype_assignment.txt	False	False	True	False	990.0	850.0	5275.0	4.49423283715579e+307	1166.0	250.0	12.0
+MyDiscovery/Carcinoma_Fractions	Ecotypes/discovery/initial_ecotypes.txt	False	False	False	False	0.0					44.0	4.0
+MyDiscovery/Carcinoma_Fractions	Ecotypes/discovery/jaccard_matrix.txt	False	False	False	False	0.0					44.0	45.0
+MyDiscovery/Carcinoma_Fractions	Ecotypes/discovery/mapping_all_states.txt	False	False	False	False	0.0					44.0	5.0
+MyDiscovery/Carcinoma_Fractions	Ecotypes/discovery/silhouette.txt	False	False	True	True	1.0	1.0	0.08352553741812702	0.2686119337586933	0.0	1.0	1.0
+MyDiscovery/Carcinoma_Fractions	Ecotypes/discovery/silhouette_initial.txt	False	False	True	True	1.0	1.0	0.11493698395816901	0.3988894426470648	0.0	1.0	1.0
