@@ -62,6 +62,7 @@ tutorials/index
 cli
 api
 benchmarks
+performance
 validation
 ```
 

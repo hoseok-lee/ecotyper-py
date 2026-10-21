@@ -101,6 +101,17 @@ ecotyper-py discover -i Tutorial_6/PresortedDiscovery -a Tutorial_6/PresortedDis
 ecotyper-py discover-scrna -m scRNA_CRC_data.txt -a scRNA_CRC_annotation.txt -n discovery_scRNA_CRC -o out -t 8
 ```
 
+### Speed and alternative solver
+
+- `exact=True` (default) reproduces R bit-for-bit where R's arithmetic is deterministic (optimised C/numba kernels
+  with R's operation order; typically 3-7x faster than R on the single-cell and presorted tutorials).
+- `exact=False` (`--fast` on the CLI) uses BLAS updates and skips R's text round trips. Numerics stay within
+  about 1e-10 relative of R, and discrete outputs match on tutorials 1-4 and 6. On tutorial 5, 5 of 11 cell types
+  land in a different NMF consensus partition (NMF local optima), so use exact mode when you need R parity.
+- `nmf_method="cd"` (discovery only, `pip install ecotyper[sklearn]`) swaps the Brunet updates for scikit-learn's
+  coordinate-descent NMF with a Frobenius loss. It is not R-equivalent: chosen ranks and states differ from R.
+  See [docs/performance.md](docs/performance.md) for timings and agreement numbers.
+
 ### Randomness
 
 R's random number generator (Mersenne-Twister with R's seeding, `runif`,
