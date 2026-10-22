@@ -1,15 +1,25 @@
 [build-system]
-requires = ["setuptools>=68", "wheel"]
+requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "ecotyper"
+name = "ecotyper-py"
 version = "0.1.0"
 description = "Python/AnnData port of EcoTyper (Luca, Steen et al., Cell 2021) with numerical parity to the R implementation"
 readme = "README.md"
-license = { file = "LICENSE.md" }
+license = "LicenseRef-Stanford-NonCommercial"
+license-files = ["LICENSE.md"]
 requires-python = ">=3.10"
-authors = [{ name = "Python port contributors" }]
+authors = [{ name = "Ho Seok Lee" }]
+keywords = ["ecotyper", "anndata", "scverse", "single-cell", "spatial transcriptomics", "cell states", "NMF"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: C",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
 dependencies = [
     "numpy>=1.24",
     "scipy>=1.10",
@@ -25,6 +35,10 @@ plot = ["matplotlib>=3.7"]
 sklearn = ["scikit-learn>=1.3"]
 test = ["pytest>=7"]
 docs = ["sphinx>=7", "furo", "myst-parser>=2", "sphinx-copybutton", "sphinx-design"]
+
+[project.urls]
+Documentation = "https://hoseok-lee.github.io/ecotyper-py/"
+"Original EcoTyper (R)" = "https://github.com/digitalcytometry/ecotyper"
 
 [project.scripts]
 ecotyper-py = "ecotyper.cli:main"

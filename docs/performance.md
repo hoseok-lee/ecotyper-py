@@ -75,7 +75,7 @@ or cells close to a decision boundary can flip. Use the exact mode when results 
 
 `nmf_method="cd"` replaces EcoTyper's NMF (Kullback–Leibler divergence, Brunet multiplicative
 updates) in discovery with **Frobenius-loss NMF by coordinate descent** (scikit-learn's
-`NMF(solver="cd")`; install with `pip install "ecotyper[sklearn]"`). It starts from the same
+`NMF(solver="cd")`; install with `pip install "ecotyper-py[sklearn]"`). It starts from the same
 random initialisation and stops by scikit-learn's tolerance rule. The rest of the pipeline is
 unchanged: consensus over restarts, cophenetic rank selection, state filters and ecotypes.
 

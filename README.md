@@ -1,4 +1,4 @@
-# ecotyper (Python port)
+# ecotyper-py (Python port of EcoTyper)
 
 A Python/AnnData port of **EcoTyper**
 (<https://github.com/digitalcytometry/ecotyper>), the framework for
@@ -8,8 +8,7 @@ single-cell and spatial transcriptomes, by the Newman lab (Stanford).
 The port reproduces the R implementation: on the README tutorials (compared
 against R on x86-64/glibc), every discrete output is identical, about 60% of the
 files are byte-identical, and all numeric outputs agree to ≤8e-11 relative. See
-[VALIDATION.md](VALIDATION.md) for the comparison and
-[PORTING_PLAN.md](PORTING_PLAN.md) for the mapping from R to Python.
+the [validation report](https://hoseok-lee.github.io/ecotyper-py/validation.html) for the comparison.
 
 ## Documentation
 
@@ -34,7 +33,7 @@ colleagues. If you use it, cite:
   <https://doi.org/10.1016/j.ccell.2021.08.011>
 
 This port is a derivative of EcoTyper and is distributed under the same
-**Stanford non-commercial license** ([LICENSE.md](LICENSE.md)): free for
+**Stanford non-commercial license** (`LICENSE.md`, included in the package): free for
 non-commercial use only. It is an independent port, not affiliated with or endorsed by
 the EcoTyper authors.
 
@@ -43,6 +42,14 @@ CIBERSORTx is closed source and is **not** part of the port. Steps that need it
 CIBERSORTx outputs as inputs.
 
 ## Installation
+
+```bash
+pip install ecotyper-py           # the import name is `ecotyper`
+pip install "ecotyper-py[icu]"    # optional: R-identical string sorting via PyICU
+```
+
+A C compiler (`cc`, `gcc` or `clang`) is needed at run time: the exact-parity kernels ship as C source and are
+compiled on first use. From a source checkout, or with conda:
 
 ```bash
 conda create -n ecotyper-py -c conda-forge python=3.12 numpy scipy pandas anndata numba pyicu pyyaml pytest
@@ -108,9 +115,9 @@ ecotyper-py discover-scrna -m scRNA_CRC_data.txt -a scRNA_CRC_annotation.txt -n 
 - `exact=False` (`--fast` on the CLI) uses BLAS updates and skips R's text round trips. Numerics stay within
   about 1e-10 relative of R, and discrete outputs match on tutorials 1-4 and 6. On tutorial 5, 5 of 11 cell types
   land in a different NMF consensus partition (NMF local optima), so use exact mode when you need R parity.
-- `nmf_method="cd"` (discovery only, `pip install ecotyper[sklearn]`) swaps the Brunet updates for scikit-learn's
+- `nmf_method="cd"` (discovery only, `pip install ecotyper-py[sklearn]`) swaps the Brunet updates for scikit-learn's
   coordinate-descent NMF with a Frobenius loss. It is not R-equivalent: chosen ranks and states differ from R.
-  See [docs/performance.md](docs/performance.md) for timings and agreement numbers.
+  See the [performance page](https://hoseok-lee.github.io/ecotyper-py/performance.html) for timings and agreement numbers.
 
 ### Randomness
 

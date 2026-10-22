@@ -6,3 +6,5 @@ tests/data/ref/
 docs/_build/
 docs/_generated/
 docs/generated/
+dist/
+build/
