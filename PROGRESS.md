@@ -268,3 +268,6 @@ make ecotyper-py feel like a native scverse / `scanpy.external` tool (reference:
 ## STEP 2026-10-21 15:10 (cleanup: README, docs toctree, tests)
 - README: added "Speed and alternative solver" section (exact vs fast vs cd, with the t5 caveat). docs/index.md toctree now includes `performance` (sphinx warned it was orphaned); sphinx build is warning-free. Local tests: 44 passed, 1 skipped, 8 e2e deselected (113 s).
 - NEXT: (1) optional t5 parent profile (server work/prof/t5_parent.prof): only if serial parent steps can be sped up bit-safely; otherwise skip and note it in VALIDATION.md/benchmarks as a known limitation (t5 1.18x); (2) final check of VALIDATION.md "not exact / not tested" section, push, then final summary and disable the automation.
+
+## STEP 2026-10-21 21:20 (final check; port complete)
+- Decided to skip the t5 parent-profile optimisation (not bit-safe to parallelise cheaply); recorded as a known limitation in VALIDATION.md. All plan items (exact parity T1-T6, benchmark, fast mode, cd solver, cleanup, README, docs) done. Pushing and sending the final summary; automation disabled.

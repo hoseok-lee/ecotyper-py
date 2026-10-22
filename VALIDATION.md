@@ -50,6 +50,7 @@ ecotype, rank or gene set.
 - `ECOTYPER_NO_FMA=1` is needed on CPUs where numba would otherwise emit FMA, to match R's non-FMA
   conda build.
 - CIBERSORTx is not reimplemented and was not tested.
+- Exact-mode speed-up on t5 is small (1.18x): most of its wall time is serial parent steps (per-cell-type cross-correlation, DE) that are kept in R's exact reduction order; they were not parallelised because that would risk bit differences. t5 peak RSS summed over processes (380 GB) double-counts shared pages (PSS 15 GB).
 - `exact=False` fast mode and the alternative NMF solver: see docs/performance.md (done; fast mode is discrete-equal except t5, where 5 of 11 cell types land in a different NMF partition).
 
 ## Benchmarks (R vs Python, x86-64, 32 jobs)
