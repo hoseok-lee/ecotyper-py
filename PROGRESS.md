@@ -271,3 +271,10 @@ make ecotyper-py feel like a native scverse / `scanpy.external` tool (reference:
 
 ## STEP 2026-10-21 21:20 (final check; port complete)
 - Decided to skip the t5 parent-profile optimisation (not bit-safe to parallelise cheaply); recorded as a known limitation in VALIDATION.md. All plan items (exact parity T1-T6, benchmark, fast mode, cd solver, cleanup, README, docs) done. Pushing and sending the final summary; automation disabled.
+
+## 2026-10-22: RELEASED, PROJECT COMPLETE
+- Packaged as `ecotyper-py` 0.1.0 (import name `ecotyper`, CLI `ecotyper-py`): pure-Python wheel with the C kernels shipped as source and compiled on first use (needs a C compiler); license `LicenseRef-Stanford-NonCommercial` with LICENSE.md included; README links point to the public docs site.
+- PyICU is now optional: a built-in copy of ICU en_US collation weights for printable ASCII reproduces ICU exactly (`tests/test_collate.py`); non-ASCII names still need `ecotyper-py[icu]`. Commit 9068370.
+- Tests: 47 passed / 1 skipped from source with PyICU; 44 passed / 4 skipped from a clean wheel install without PyICU; `twine check` passed; built-in Carcinoma model download verified.
+- The user uploaded 0.1.0 to PyPI themselves (https://pypi.org/project/ecotyper-py/) and marked the project complete. The user accepted the Stanford non-commercial licence question for publishing.
+- Leftovers: the protected secret PYPI_API_TOKEN is stored in OpenClaw (the user may want to delete it); `secrets.egressProxy.enabled` was turned on for the upload attempt; server Docker images `ecotyper-py:dev` and `ecotyper-r:dev`, plus `~/workspace/ecotyper-py/work` (R references and runs) remain on the lab server.
