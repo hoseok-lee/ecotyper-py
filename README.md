@@ -1,4 +1,4 @@
-# ecotyper-py (Python port of EcoTyper)
+# ecotyper-py
 
 A Python/AnnData port of **EcoTyper**
 (<https://github.com/digitalcytometry/ecotyper>), the framework for
@@ -9,37 +9,6 @@ The port reproduces the R implementation: on the README tutorials (compared
 against R on x86-64/glibc), every discrete output is identical, about 60% of the
 files are byte-identical, and all numeric outputs agree to ≤8e-11 relative. See
 the [validation report](https://hoseok-lee.github.io/ecotyper-py/validation.html) for the comparison.
-
-## Documentation
-
-<https://hoseok-lee.github.io/ecotyper-py/>. Sphinx docs (installation, API reference, step-by-step tutorials, Python vs R
-benchmarks with charts) live in `docs/`. They are built and published by `.github/workflows/docs.yml` on every
-push to `main`. To build them locally:
-
-```bash
-pip install -e ".[docs]"
-sphinx-build -b html docs docs/_build/html   # open docs/_build/html/index.html
-```
-
-## Credit and license
-
-EcoTyper was developed by Bogdan A. Luca, Chloé B. Steen, Aaron M. Newman and
-colleagues. If you use it, cite:
-
-- Luca/Steen et al., *Atlas of clinically distinct cell states and ecosystems
-  across human solid tumors*, Cell 2021, <https://doi.org/10.1016/j.cell.2021.09.014>
-- Steen/Luca et al., *The landscape of tumor cell states and ecosystems in
-  diffuse large B cell lymphoma*, Cancer Cell 2021,
-  <https://doi.org/10.1016/j.ccell.2021.08.011>
-
-This port is a derivative of EcoTyper and is distributed under the same
-**Stanford non-commercial license** (`LICENSE.md`, included in the package): free for
-non-commercial use only. It is an independent port, not affiliated with or endorsed by
-the EcoTyper authors.
-
-CIBERSORTx is closed source and is **not** part of the port. Steps that need it
-(cell type fractions and high-resolution purification) take precomputed
-CIBERSORTx outputs as inputs.
 
 ## Installation
 
@@ -129,6 +98,37 @@ R's random number generator (Mersenne-Twister with R's seeding, `runif`,
 from run to run; the port takes an explicit `seed` (default 42), and an R run
 started with `set.seed(42)` (see `validation/r_reference/Rprofile.R`) gives
 the same output.
+
+## Documentation
+
+<https://hoseok-lee.github.io/ecotyper-py/>. Sphinx docs (installation, API reference, step-by-step tutorials, Python vs R
+benchmarks with charts) live in `docs/`. They are built and published by `.github/workflows/docs.yml` on every
+push to `main`. To build them locally:
+
+```bash
+pip install -e ".[docs]"
+sphinx-build -b html docs docs/_build/html   # open docs/_build/html/index.html
+```
+
+## Credit and license
+
+EcoTyper was developed by Bogdan A. Luca, Chloé B. Steen, Aaron M. Newman and
+colleagues. If you use it, cite:
+
+- Luca/Steen et al., *Atlas of clinically distinct cell states and ecosystems
+  across human solid tumors*, Cell 2021, <https://doi.org/10.1016/j.cell.2021.09.014>
+- Steen/Luca et al., *The landscape of tumor cell states and ecosystems in
+  diffuse large B cell lymphoma*, Cancer Cell 2021,
+  <https://doi.org/10.1016/j.ccell.2021.08.011>
+
+This port is a derivative of EcoTyper and is distributed under the same
+**Stanford non-commercial license** (`LICENSE.md`, included in the package): free for
+non-commercial use only. It is an independent port, not affiliated with or endorsed by
+the EcoTyper authors.
+
+CIBERSORTx is closed source and is **not** part of the port. Steps that need it
+(cell type fractions and high-resolution purification) take precomputed
+CIBERSORTx outputs as inputs.
 
 ## Layout
 
