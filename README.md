@@ -152,3 +152,10 @@ Plots (heatmaps) are not ported.
 pytest -m "not e2e"     # unit parity tests against R fixtures in tests/data
 pytest -m e2e           # tutorials vs R reference outputs (needs the R references, see validation/)
 ```
+
+## Releasing
+
+Releases are published to PyPI by GitHub Actions (`.github/workflows/publish.yml`) using
+PyPI Trusted Publishing, so no API token is needed. Bump `version` in `pyproject.toml`,
+push, then create a GitHub release tagged `v<version>`; the workflow runs the tests,
+builds, and uploads.
