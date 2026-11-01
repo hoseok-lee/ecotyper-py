@@ -19,7 +19,7 @@ make_cli_help.build()
 project = "ecotyper"
 author = "Python port contributors (EcoTyper: Luca, Steen, Newman et al.)"
 copyright = "Stanford University (EcoTyper); non-commercial license"
-release = "0.1.0"
+release = "0.1.1"
 
 extensions = [
     "sphinx.ext.autodoc",

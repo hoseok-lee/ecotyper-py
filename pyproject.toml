@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ecotyper-py"
-version = "0.1.0"
+version = "0.1.1"
 description = "Python/AnnData port of EcoTyper (Luca, Steen et al., Cell 2021) with numerical parity to the R implementation"
 readme = "README.md"
 license = "LicenseRef-Stanford-NonCommercial"
