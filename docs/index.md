@@ -1,5 +1,8 @@
 # ecotyper: EcoTyper in Python
 
+[![PyPI](https://img.shields.io/pypi/v/ecotyper-py)](https://pypi.org/project/ecotyper-py/)
+[![Python](https://img.shields.io/pypi/pyversions/ecotyper-py)](https://pypi.org/project/ecotyper-py/)
+
 A Python/AnnData port of [EcoTyper](https://github.com/digitalcytometry/ecotyper), the
 framework for identifying **cell states** and multicellular communities (**ecotypes**) in
 bulk, single-cell and spatial transcriptomes (Luca, Steen et al., *Cell* 2021).
@@ -8,13 +11,19 @@ The port reproduces the R implementation. On all six README tutorials every disc
 (states, ecotypes, ranks, gene sets) is identical to R's, and every numeric value agrees to
 within 8e-11 relative. See [Benchmarks](benchmarks.md) for the comparison and timings.
 
+Install it from [PyPI](https://pypi.org/project/ecotyper-py/):
+
+```bash
+pip install ecotyper-py      # import ecotyper
+```
+
 ::::{grid} 1 2 2 2
 :gutter: 3
 
 :::{grid-item-card} Installation
 :link: installation
 :link-type: doc
-Set up the environment and the R repository's example data and models.
+`pip install ecotyper-py`, plus the R repository's example data and models.
 :::
 
 :::{grid-item-card} Quickstart

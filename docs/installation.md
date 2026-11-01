@@ -9,9 +9,19 @@
 - a C compiler (`cc`) on x86-64, for the long-double kernels that make results bit-identical to R
   (built automatically on first use; see [Validation](validation.md))
 
-The package is not on PyPI. Install it from a clone of the repository.
+## From PyPI (recommended)
 
-## With conda (recommended)
+ecotyper-py is on [PyPI](https://pypi.org/project/ecotyper-py/):
+
+```bash
+pip install ecotyper-py             # the import name is `ecotyper`
+pip install "ecotyper-py[icu]"      # optional: R-identical string sorting via PyICU
+```
+
+The exact-parity kernels ship as C source and are compiled on first use, so a C compiler
+(`cc`, `gcc` or `clang`) must be available at run time.
+
+## From source, with conda
 
 ```bash
 git clone https://github.com/hoseok-lee/ecotyper-py.git
@@ -21,9 +31,11 @@ conda activate ecotyper-py
 pip install -e .
 ```
 
-## With pip
+## From source, with pip
 
 ```bash
+git clone https://github.com/hoseok-lee/ecotyper-py.git
+cd ecotyper-py
 pip install -e ".[icu,plot]"      # PyICU needs the ICU C library (e.g. brew install icu4c)
 ```
 

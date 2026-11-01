@@ -13,5 +13,5 @@ File-based workflows mirroring the R scripts are in :mod:`ecotyper.workflows`.
 from .api import discovery, infer_data_type, recovery
 from .model import EcoTyperModel
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 __all__ = ["EcoTyperModel", "discovery", "infer_data_type", "recovery"]
